@@ -1,0 +1,1771 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#03060f">
+<title>Astara Intelligence · PCI</title>
+<link rel="icon" type="image/svg+xml" href="assets/brand/pci-logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ==================================================================
+   ASTARA INTELLIGENCE · HIGHBEAM — presentación fluida · v3
+   Una sola familia (Manrope). Sin lienzo fijo: cada escena se compone
+   con la pantalla real.
+   --u = 1/100 del mayor 16:9 que cabe en pantalla (en 1920×1080 = 19.2px).
+   Horizontal: todo se dimensiona en --u y el espacio sobrante lo absorben
+   los elementos. Vertical (≤ 5:4): composición en una columna.
+   ================================================================== */
+:root{
+  --ink:#03060f; --cobalt:#2456ff; --sky:#8bcdff; --ice:#dcecff;
+  --t1:#f3f6fb; --t2:rgba(214,228,248,.74); --t3:rgba(170,192,224,.52);
+  --glass-2:rgba(255,255,255,.08); --edge:rgba(210,228,255,.16); --edge-hi:rgba(210,228,255,.34);
+  --f:'Manrope',system-ui,sans-serif;
+  --e:cubic-bezier(.32,.72,0,1); --eo:cubic-bezier(.16,1,.3,1);
+
+  --u:min(1vw,1.7778vh);
+  --px:max(20px,calc(var(--u)*6.25));
+  --py:max(22px,calc(var(--u)*5));
+  --nav-h:max(46px,calc(var(--u)*3));
+  --nav-b:max(12px,calc(var(--u)*1.35));
+  --pb:calc(var(--nav-h) + var(--nav-b) + max(16px,calc(var(--u)*2)));
+}
+@media (max-aspect-ratio:5/4){ :root{ --u:min(1.15vw,.9vh); --py:max(22px,calc(var(--u)*4)) } }
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--ink);overflow:hidden;overscroll-behavior:none}
+body{font-family:var(--f);color:var(--t2);-webkit-font-smoothing:antialiased;user-select:none;-webkit-tap-highlight-color:transparent}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+[data-count]{font-variant-numeric:tabular-nums}
+
+#stage{position:fixed;inset:0;overflow:hidden;background:var(--ink)}
+
+/* ---------- Aurora continua ---------- */
+#aura{position:absolute;inset:0;z-index:0;pointer-events:none;transition:opacity 1.2s var(--e)}
+#aura i{position:absolute;left:0;top:0;border-radius:50%;filter:blur(5.7vmax);transition:transform 1.8s var(--eo),opacity 1.4s var(--e)}
+#aura .b1{width:57vmax;height:47vmax;background:radial-gradient(closest-side,rgba(36,86,255,.85),rgba(36,86,255,0))}
+#aura .b2{width:37.5vmax;height:32vmax;background:radial-gradient(closest-side,rgba(139,205,255,.55),rgba(139,205,255,0))}
+#aura .b3{width:68vmax;height:47vmax;background:radial-gradient(closest-side,rgba(20,32,110,.9),rgba(20,32,110,0))}
+#stage[data-scene="0"] #aura .b1{transform:translate(61.5vw,-7.4vh)}
+#stage[data-scene="0"] #aura .b2{transform:translate(74vw,16.7vh)}
+#stage[data-scene="0"] #aura .b3{transform:translate(-15.6vw,46.3vh)}
+#stage[data-scene="1"] #aura .b1{transform:translate(46.9vw,18.5vh) scale(1.1)}
+#stage[data-scene="1"] #aura .b2{transform:translate(61.5vw,35.2vh)}
+#stage[data-scene="1"] #aura .b3{transform:translate(-20.8vw,-27.8vh)}
+#stage[data-scene="2"] #aura{opacity:0}
+#stage.hbz #aura .b1{transform:translate(54.7vw,-38.9vh) scale(1.25)}
+#stage.hbz #aura .b2{transform:translate(78.1vw,-14.8vh);opacity:.7}
+#stage.hbz #aura .b3{transform:translate(-26vw,38.9vh)}
+
+/* ---------- Fondos por bloque: Intelligence (cromado) · Solutions (flujo) · HighBeam (haces) ---------- */
+#bgs{position:absolute;inset:0;z-index:0;pointer-events:none}
+#bgs .bg{position:absolute;inset:0;opacity:0;transform:scale(1.05);background-size:cover;background-position:center;background-repeat:no-repeat;
+  transition:opacity 1.1s var(--e) 1.1s,transform 2.6s var(--eo)}
+#stage[data-scene="0"] .bg.b0,#stage[data-scene="1"] .bg.b1,#stage[data-scene="3"] .bg.b5,#stage[data-scene="4"] .bg.b5{opacity:1;transform:none;z-index:1;transition:opacity 1.1s var(--e),transform 2.6s var(--eo)}
+#stage[data-scene="2"] #bgs .bg{transition-delay:0s,0s}
+#bgs .b0{background-image:linear-gradient(90deg,rgba(3,6,15,.86) 0%,rgba(3,6,15,.35) 46%,rgba(3,6,15,0) 100%),linear-gradient(0deg,rgba(3,6,15,.7),rgba(3,6,15,0) 40%),url(assets/bg/flow-01.webp)}
+#bgs .b1{background-image:linear-gradient(90deg,rgba(3,6,15,.82) 0%,rgba(3,6,15,.45) 40%,rgba(3,6,15,.12) 100%),url(assets/bg/flow-02.webp)}
+#bgs .b2{background-image:linear-gradient(180deg,rgba(3,6,15,.85) 0%,rgba(3,6,15,.35) 38%,rgba(3,6,15,.5) 100%),url(assets/bg/flow-03.webp)}
+#bgs .b3{background-image:linear-gradient(90deg,rgba(3,6,15,.9) 0%,rgba(3,6,15,.72) 36%,rgba(3,6,15,.2) 72%,rgba(3,6,15,.35) 100%),url(assets/bg/intel-03.webp)}
+#bgs .b5{background-image:linear-gradient(90deg,rgba(3,6,15,.82) 0%,rgba(3,6,15,.4) 42%,rgba(3,6,15,.55) 100%),url(assets/bg/highbeam-01.webp)}
+@media (max-aspect-ratio:5/4){
+  #bgs .b3{background-image:linear-gradient(180deg,rgba(3,6,15,.88) 0%,rgba(3,6,15,.7) 45%,rgba(3,6,15,.45) 100%),url(assets/bg/intel-03.webp)}
+  #bgs .b0{background-image:linear-gradient(180deg,rgba(3,6,15,.35),rgba(3,6,15,.7)),url(assets/bg/flow-01.webp)}
+  #bgs .b1{background-image:linear-gradient(180deg,rgba(3,6,15,.8) 0%,rgba(3,6,15,.45) 45%,rgba(3,6,15,.4)),url(assets/bg/flow-02.webp)}
+  #bgs .b5{background-image:linear-gradient(180deg,rgba(3,6,15,.7),rgba(3,6,15,.6)),url(assets/bg/highbeam-01.webp)}
+}
+#aura{opacity:.28}
+
+#grain{position:fixed;inset:-50px;z-index:60;pointer-events:none;opacity:.09;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+.streaks{position:absolute;pointer-events:none;
+  background:
+    radial-gradient(ellipse 34% 46% at 55% 62%,rgba(139,205,255,.85),rgba(63,124,255,.35) 45%,transparent 72%),
+    repeating-linear-gradient(90deg,rgba(0,0,0,0) 0 18px,rgba(0,0,0,.55) 24px,rgba(0,0,0,0) 30px);
+  -webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 55%,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse 50% 50% at 50% 55%,#000 30%,transparent 75%);
+  filter:blur(2px)}
+
+/* ---------- Escenas ---------- */
+.scene{position:absolute;inset:0;z-index:1;padding:var(--py) var(--px) var(--pb);overflow:hidden auto;scrollbar-width:none;
+  opacity:0;visibility:hidden;transition:opacity .45s var(--e),visibility 0s linear .45s}
+.scene::-webkit-scrollbar{display:none}
+.scene.active{opacity:1;visibility:visible;transition:opacity .65s var(--e) .22s,visibility 0s}
+.a{opacity:0;transform:translateY(max(14px,calc(var(--u)*1.25)));transition:opacity .6s var(--eo),transform .8s var(--eo)}
+.scene.active .a{opacity:1;transform:none;transition-delay:var(--d,0s)}
+.line{display:block;overflow:hidden;padding-bottom:.32em;margin-bottom:-.32em}
+.line>span{display:block;transform:translateY(145%);transition:transform .9s var(--eo)}
+.scene.active .line>span{transform:none;transition-delay:var(--d,0s)}
+
+/* ---------- Tipografía ---------- */
+.pill{display:inline-flex;align-items:center;gap:max(8px,calc(var(--u)*.5));height:max(30px,calc(var(--u)*2));padding:0 max(12px,calc(var(--u)*.94));border-radius:9999px;
+  box-shadow:inset 0 0 0 1px var(--edge-hi);font-size:max(12px,calc(var(--u)*.73));font-weight:500;letter-spacing:.02em;color:var(--t1);white-space:nowrap}
+.eyebrow{font-size:max(11px,calc(var(--u)*.72));font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--sky)}
+.pill.solid{background:var(--glass-2);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.crumb{display:flex;align-items:center;gap:10px;font-size:max(13px,calc(var(--u)*.83));font-weight:500;color:var(--t3)}
+.crumb b{font-weight:500;color:var(--t1)} .crumb i{font-style:normal;opacity:.5}
+.mega{font-weight:400;letter-spacing:-.055em;line-height:.92;color:var(--t1);text-wrap:balance}
+.mega em{font-style:normal;background:linear-gradient(100deg,var(--sky) 10%,var(--ice) 60%,var(--sky) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.body{font-size:max(15px,calc(var(--u)*1.35));font-weight:400;line-height:1.5;color:var(--t2);letter-spacing:-.01em}
+.body strong{font-weight:500;color:var(--t1)}
+.label{font-size:max(11px,calc(var(--u)*.68));font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--t3)}
+.k-touch{display:none}
+@media (pointer:coarse){ .k-fine{display:none!important} .k-touch{display:inline} }
+
+.glass{position:relative;background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.025) 45%,rgba(255,255,255,.04));
+  backdrop-filter:blur(22px) saturate(140%);-webkit-backdrop-filter:blur(22px) saturate(140%);
+  box-shadow:inset 0 0 0 1px var(--edge),inset 0 1px 0 rgba(255,255,255,.28),0 40px 80px -40px rgba(0,0,0,.7)}
+
+.amark{display:block;width:auto;height:max(14px,calc(var(--u)*1.2))}
+.crumb .amark{height:max(11px,calc(var(--u)*.85));opacity:.8}
+
+/* ==================================================================
+   01 · ASTARA INTELLIGENCE · una sola idea
+   ================================================================== */
+.s01{display:flex;flex-direction:column;justify-content:center}
+.s01 .main{position:relative;z-index:2}
+.s01 .mega{font-size:max(46px,calc(var(--u)*9.4))}
+.s01 .body{margin-top:calc(var(--u)*2.6);max-width:max(300px,calc(var(--u)*37));font-size:max(16px,calc(var(--u)*1.5))}
+/* muchas señales convergen en una dirección */
+.conv{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;
+  -webkit-mask-image:linear-gradient(to bottom,#000 0,#000 74%,transparent 86%);mask-image:linear-gradient(to bottom,#000 0,#000 74%,transparent 86%)}
+.conv path{fill:none;stroke:rgba(150,208,255,.5);stroke-width:1.3;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.2s var(--eo) var(--d,0s)}
+.conv .out{stroke:rgba(220,236,255,.95);stroke-width:1.8;transition-duration:1.4s}
+.s01.active .conv path{stroke-dashoffset:0}
+.conv circle{fill:var(--ice);opacity:0;transform-box:fill-box;transform-origin:center;transition:opacity .8s var(--e) 2.3s,transform 1.2s var(--eo) 2.3s;transform:scale(.3)}
+.conv .halo{fill:rgba(139,205,255,.28);filter:blur(6px)}
+.s01.active .conv circle{opacity:1;transform:none}
+
+/* ==================================================================
+   02 · METHOD · iceberg: dos composiciones en la misma escena
+   Estado 1: titular + iceberg (solo la punta) + resultados visibles.
+   Estado 2: el titular se encoge, el iceberg sube y crece, el sistema
+   oculto (MULTILAYER DATA ANALYSIS) pasa a ser lo principal.
+   Todo se coloca en un escenario de 1680×863 que escala con la pantalla.
+   ================================================================== */
+.s02{--io:cubic-bezier(.65,0,.35,1)}
+.s02 .berg{position:absolute;left:var(--px);right:var(--px);top:var(--py);bottom:var(--pb);container-type:size}
+.stage2{position:absolute;left:50%;top:50%;width:min(100cqw,calc(100cqh*1.9467));aspect-ratio:1680/863;transform:translate(-50%,-50%);container-type:inline-size}
+
+/* titular: grande al inicio, pequeño arriba a la izquierda al revelar */
+.s02 .copy{position:absolute;left:0;top:50%;width:37.7cqw;z-index:3;transform:translateY(-50%);transform-origin:0 0;
+  transition:top .5s var(--e),transform .5s var(--e)}
+.s02.st-1 .copy{top:0;transform:scale(.46);transition:top 1s var(--io) .2s,transform 1s var(--io) .2s}
+.s02 .copy .eyebrow{font-size:.84cqw}
+.s02.st-1 .copy .eyebrow{font-size:calc(.84cqw/.46);transition:opacity .6s var(--eo),transform .8s var(--eo),font-size 1s var(--io) .2s}
+.s02 .mega{font-size:6.25cqw;margin:1.6cqw 0 2.2cqw}
+.s02 .sup{font-size:1.54cqw;line-height:1.5;font-weight:500;letter-spacing:-.01em;color:var(--t1);max-width:32cqw;opacity:0;transform:translateY(12px);
+  transition:opacity .9s var(--eo) .5s,transform .9s var(--eo) .5s}
+.s02.active .sup{opacity:1;transform:none}
+.s02.st-1 .sup{opacity:0;transform:none;transition:opacity .3s var(--e) 0s}
+
+/* iceberg: al inicio asoma la punta, más pequeño y bajo; al revelar sube, crece y se descubre */
+.berg-art{position:absolute;left:29.1%;top:4.17%;width:46.07%;height:92.7%;transform-origin:50% 39.8%;
+  opacity:0;transform:translateY(18.75%) scale(.86);transition:opacity .9s var(--e) .35s,transform .5s var(--e)}
+.s02.active .berg-art{opacity:1}
+.s02.st-1 .berg-art{transform:none;transition:opacity .9s var(--e),transform 1s var(--io) .2s}
+.berg-img{position:absolute;left:0;top:0;width:100%;height:100%;max-width:none;object-fit:contain;clip-path:inset(0 0 58% 0);transition:clip-path .4s var(--e)}
+.s02.st-1 .berg-img{clip-path:inset(0 0 0 0);transition:clip-path .85s var(--io) .55s}
+.berg-depth{position:absolute;left:-22%;width:144%;top:36%;height:70%;pointer-events:none;opacity:0;
+  background:radial-gradient(ellipse 50% 60% at 50% 35%,rgba(63,124,255,.22),transparent 70%);transition:opacity .5s var(--e)}
+.s02.st-1 .berg-depth{opacity:1;transition:opacity 1s var(--e) .7s}
+
+/* línea de flotación: sube con el iceberg */
+.wline{position:absolute;left:36%;right:0;top:calc(504*100%/863);height:1px;
+  background:linear-gradient(90deg,transparent 0%,rgba(139,205,255,.85) 14%,rgba(139,205,255,.85) 86%,transparent);
+  box-shadow:0 0 18px rgba(139,205,255,.45);opacity:0;transform:scaleX(0);transform-origin:50% 50%;transition:opacity .3s var(--e),transform .3s var(--e),top .5s var(--e),left .5s var(--e)}
+.s02.st-1 .wline{left:0;top:calc(354*100%/863);opacity:1;transform:none;transition:opacity .7s var(--e) .55s,transform 1.2s var(--eo) .55s,top 1s var(--io) .2s,left 1s var(--io) .2s}
+
+/* anotaciones (SVG 1680×863) */
+.ann{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.ann path{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
+.ann .i0{stroke:rgba(214,228,248,.42);stroke-width:1.2;transition:stroke-dashoffset .9s var(--eo) var(--d,0s),opacity .3s var(--e)}
+.s02.active .ann .i0{stroke-dashoffset:0}
+.s02.st-1 .ann .i0{opacity:0;transition:opacity .3s var(--e)}
+.ann .f1{stroke:rgba(214,228,248,.5);stroke-width:1.2;transition:stroke-dashoffset .3s var(--e)}
+.s02.st-1 .ann .f1{stroke-dashoffset:0;transition:stroke-dashoffset .8s var(--io) var(--d)}
+.ann .st{stroke:rgba(139,205,255,.5);stroke-width:1.3;transition:stroke-dashoffset .3s var(--e)}
+.ann .ld{stroke:rgba(139,205,255,.62);stroke-width:1.2;transition:stroke-dashoffset .3s var(--e)}
+.s02.st-1 .ann .st{stroke-dashoffset:0;transition:stroke-dashoffset .7s var(--io) var(--d)}
+.s02.st-1 .ann .ld{stroke-dashoffset:0;transition:stroke-dashoffset .55s var(--eo) var(--d)}
+.ann circle{opacity:0;transition:opacity .25s var(--e)}
+.ann .i0n{fill:var(--t1)}
+.s02.active .ann .i0n{opacity:.75;transition:opacity .5s var(--e) var(--d,0s)}
+.s02.st-1 .ann .i0n{opacity:0;transition:opacity .25s var(--e)}
+.ann .f1n{fill:var(--t1)}
+.ann .nd{fill:var(--sky)}
+.ann .au{fill:var(--gold)}
+.s02.st-1 .ann .f1n,.s02.st-1 .ann .nd,.s02.st-1 .ann .au{opacity:1;transition:opacity .4s var(--e) var(--d)}
+
+.tag-o,.tag-l,.hd,.mla,.close{text-shadow:0 1px 14px rgba(3,6,15,.5),0 0 2px rgba(3,6,15,.25)}
+
+/* rótulo sobre la flotación */
+.hd{position:absolute;font-size:.72cqw;font-weight:600;letter-spacing:.22em;text-transform:uppercase;white-space:nowrap}
+.hd.up{left:calc(1190*100%/1680);top:calc(300*100%/863);transform:translateY(-100%);color:var(--t3);opacity:0;
+  transition:opacity .6s var(--e) .7s,left .5s var(--e),top .5s var(--e)}
+.s02.active .hd.up{opacity:1}
+.s02.st-1 .hd.up{left:calc(1290*100%/1680);top:calc(346*100%/863);opacity:.55;transition:left 1s var(--io) .2s,top 1s var(--io) .2s,opacity .5s var(--e)}
+
+/* resultados visibles: categorías (primero a la derecha; al revelar suben y rodean la cima) */
+.tag-o{position:absolute;left:calc(var(--x0)*100%/1680);top:calc(var(--y0)*100%/863);transform:translateY(-100%);white-space:nowrap;
+  display:flex;align-items:baseline;gap:.6cqw;font-size:.98cqw;font-weight:500;letter-spacing:-.005em;color:var(--t1);
+  opacity:0;transition:opacity .6s var(--eo) var(--d),left .5s var(--e),top .5s var(--e)}
+.tag-o i{font-style:normal;font-size:.74em;font-weight:600;letter-spacing:.14em;color:var(--sky)}
+.s02.active .tag-o{opacity:1}
+.s02.st-1 .tag-o{left:calc(var(--x1)*100%/1680);top:calc(var(--y1)*100%/863);opacity:.88;
+  transition:left 1s var(--io) var(--r,.2s),top 1s var(--io) var(--r,.2s),opacity .4s var(--e)}
+
+/* bloque dominante del estado 2: MULTILAYER DATA ANALYSIS */
+.mla{position:absolute;left:0;top:calc(380*100%/863);z-index:2;
+  clip-path:inset(0 0 100% 0);transform:translateY(14px);transition:clip-path .3s var(--e),transform .3s var(--e)}
+.mla .me{font-size:.84cqw;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--sky)}
+.mla h3{margin-top:1.1cqw;font-size:3.6cqw;font-weight:500;letter-spacing:-.02em;line-height:1.04;color:var(--t1)}
+.s02.st-1 .mla{clip-path:inset(0 0 -20% 0);transform:none;transition:clip-path .9s var(--io) 1s,transform .9s var(--eo) 1s}
+
+/* capas: índice fantasma + título + descriptor, a la profundidad real del iceberg */
+.tag-l{position:absolute;left:calc(1290*100%/1680);top:calc(var(--y)*100%/863);transform:translate(-10px,-50%);width:22cqw;opacity:0;transition:opacity .25s var(--e),transform .25s var(--e)}
+.tag-l b{position:relative;display:block;font-size:1cqw;font-weight:600;letter-spacing:.08em;color:var(--t1);line-height:1.15}
+.tag-l span{position:relative;display:block;margin-top:.22cqw;font-size:.76cqw;color:rgba(214,228,248,.7);line-height:1.35}
+.s02.st-1 .tag-l{opacity:1;transform:translate(0,-50%);transition:opacity .44s var(--eo) var(--d),transform .5s var(--eo) var(--d)}
+
+/* tesis final: llega sola, a pantalla completa, al pie de la escena */
+.close{position:absolute;left:0;right:0;bottom:.5cqw;text-align:center;opacity:0;transform:translateY(16px);transition:opacity .2s var(--e),transform .2s var(--e)}
+.close span{display:block;font-size:1.55cqw;font-weight:400;letter-spacing:-.015em;color:rgba(214,228,248,.82)}
+.close em{display:block;margin-top:.4cqw;font-style:normal;font-size:2.15cqw;font-weight:500;letter-spacing:-.025em;color:var(--sky)}
+.s02.st-1 .close{opacity:1;transform:none;transition:opacity .45s var(--eo) 2.15s,transform .5s var(--eo) 2.15s}
+
+/* respaldo vertical: lista en columna */
+.pf{display:none}
+
+/* ==================================================================
+   03 · IMPACT · hub de tres rutas
+   ================================================================== */
+.s03{display:grid;grid-template-rows:auto minmax(0,1fr) auto;row-gap:calc(var(--u)*2.6)}
+.s03 .head{transition:opacity .6s var(--e)}
+.s03 .mega{font-size:max(38px,calc(var(--u)*5.5));margin-top:calc(var(--u)*1.56)}
+.pillars{position:relative;z-index:5;display:flex;gap:max(10px,calc(var(--u)*1.15));min-height:0;
+  transition:margin .9s var(--eo),gap .9s var(--eo)}
+.pillar{position:relative;flex:1 1 0;min-width:0;min-height:0;border-radius:max(18px,calc(var(--u)*1.56));overflow:hidden;
+  transition:flex-grow .9s var(--eo),opacity .7s var(--e),filter .7s var(--e),border-radius .9s var(--eo)}
+.pillar img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;opacity:.5;transition:opacity .7s var(--e),transform 1.2s var(--eo)}
+.pillar::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(3,6,15,.95) 10%,rgba(3,6,15,.45) 55%,rgba(3,6,15,.05))}
+.pillar .edge{position:absolute;inset:0;z-index:3;border-radius:inherit;box-shadow:inset 0 0 0 1px var(--edge),inset 0 1px 0 rgba(255,255,255,.25);pointer-events:none;transition:box-shadow .7s var(--e)}
+.pillar .top{position:absolute;z-index:2;left:max(14px,calc(var(--u)*1.5));top:max(14px,calc(var(--u)*1.45))}
+.pillar .txt{position:absolute;z-index:2;left:max(16px,calc(var(--u)*1.77));right:max(16px,calc(var(--u)*1.77));bottom:max(16px,calc(var(--u)*1.66))}
+.pillar h3{font-size:max(26px,calc(var(--u)*2.4));font-weight:400;letter-spacing:-.04em;color:var(--t1);line-height:1;white-space:nowrap;transition:font-size .7s var(--eo),height .7s var(--eo)}
+.pillar .tl{margin-top:max(8px,calc(var(--u)*.73));font-size:max(16px,calc(var(--u)*1.35));font-weight:500;letter-spacing:-.02em;color:var(--sky);transition:opacity .4s var(--e)}
+.pillar p{margin-top:max(6px,calc(var(--u)*.5));font-size:max(14px,calc(var(--u)*1.04));line-height:1.45;color:var(--t2);max-width:max(240px,calc(var(--u)*23));min-height:calc(2.9*max(15px,var(--u)*1.2));transition:opacity .4s var(--e),min-height .9s var(--eo)}
+.s03.st-1 .pillar.sol p{min-height:0}
+.s03 .sw{position:relative}
+.s03 .sw>div{transition:opacity .45s var(--e),transform .6s var(--eo)}
+.s03 .t-b{position:absolute;left:0;top:calc(max(8px,calc(var(--u)*.73))*-1);width:100%}
+.s03 .t-b{opacity:0;transform:translateY(10px);pointer-events:none}
+.s03 .t-b p{min-height:0;max-width:max(300px,calc(var(--u)*46));text-wrap:balance}
+.s03.st-1 .t-a, .s03:not(.st-1) .pillars:has(.pillar.sol:hover) .t-a{opacity:0;transform:translateY(-8px)}
+.s03.st-1 .t-b, .s03:not(.st-1) .pillars:has(.pillar.sol:hover) .t-b{opacity:1;transform:none;transition:opacity .7s var(--eo) .3s,transform .8s var(--eo) .3s}
+.s03.st-1 .pillar:not(.sol), .s03:not(.st-1) .pillars:has(.pillar.sol:hover) .pillar:not(.sol){flex-grow:.6;opacity:.38;filter:saturate(.3)}
+.s03.st-1 .pillar:not(.sol) p, .s03.st-1 .pillar:not(.sol) .tl, .s03:not(.st-1) .pillars:has(.pillar.sol:hover) .pillar:not(.sol) p, .s03:not(.st-1) .pillars:has(.pillar.sol:hover) .pillar:not(.sol) .tl{opacity:0;white-space:nowrap;overflow:hidden}
+.s03.st-1 .pillar:not(.sol) h3, .s03:not(.st-1) .pillars:has(.pillar.sol:hover) .pillar:not(.sol) h3{font-size:max(16px,calc(var(--u)*1.35));line-height:1.12;height:max(26px,calc(var(--u)*2.4));white-space:normal}
+.s03.st-1 .pillar.sol, .s03:not(.st-1) .pillars:has(.pillar.sol:hover) .pillar.sol{flex-grow:2.6}
+.s03.st-1 .pillar.sol img, .s03:not(.st-1) .pillars:has(.pillar.sol:hover) .pillar.sol img{opacity:.85;transform:scale(1.04)}
+.s03.st-1 .pillar.sol .edge, .s03:not(.st-1) .pillars:has(.pillar.sol:hover) .pillar.sol .edge{box-shadow:inset 0 0 0 1.5px rgba(139,205,255,.8),inset 0 1px 0 rgba(255,255,255,.4),0 0 80px rgba(63,124,255,.35)}
+/* Solutions se expande hacia la siguiente pantalla */
+.s03.st-1{overflow:hidden}
+.s03.st-1 .pillars{gap:0;margin:calc(var(--py)*-1 - var(--u)*16) calc(var(--px)*-1) calc(var(--pb)*-1 - var(--u)*9)}
+.s03.st-1 .pillar:not(.sol){flex-grow:0;opacity:0;min-width:0}
+.s03.st-1 .pillar.sol{flex-grow:1;border-radius:0}
+.pillar .txt{transition:bottom .9s var(--eo),left .9s var(--eo)}
+.s03.st-1 .pillar.sol .txt{bottom:calc(var(--pb) + var(--u)*3.2);left:var(--px)}
+.s03.st-1 .pillar.sol .top{left:var(--px);top:calc(var(--py) + var(--u)*.5)}
+.s03.st-1 .head,.s03.st-1 .strip{opacity:0}
+.strip{display:flex;justify-content:space-between;align-items:baseline;gap:max(12px,calc(var(--u)*1.5));padding-top:max(12px,calc(var(--u)*1.1));border-top:1px solid var(--edge);transition:opacity .6s var(--e)}
+.kp{display:flex;align-items:baseline;gap:max(8px,calc(var(--u)*.7));min-width:0}
+.kp b{font-size:max(22px,calc(var(--u)*2.2));font-weight:400;letter-spacing:-.04em;line-height:1;color:var(--t1)}
+.kp b small{font-size:.5em;margin-left:2px;color:var(--sky);font-weight:500;letter-spacing:0}
+.kp>span{font-size:max(11px,calc(var(--u)*.75));font-weight:500;color:var(--t3);white-space:nowrap}
+
+/* ==================================================================
+   04 · SOLUTIONS · hub: dos mundos (Platforms / HighBeam)
+   Sin productos en pantalla: la superficie hace el trabajo.
+   Platforms = varios sistemas (módulos que se iluminan por turnos).
+   HighBeam = un único ecosistema (una sola superficie luminosa).
+   ================================================================== */
+.s04{display:grid;grid-template-columns:minmax(0,calc(var(--u)*33)) minmax(0,1fr);column-gap:calc(var(--u)*3.4);align-items:center;grid-template-rows:minmax(0,1fr);
+  --io:cubic-bezier(.65,0,.35,1)}
+.s04 .copy{position:relative;z-index:2}
+.s04 .mega{font-size:max(30px,calc(var(--u)*3.45));margin-top:calc(var(--u)*1.3);line-height:1}
+.s04 .crumb{color:rgba(214,228,248,.7)}
+.s04 .sup{margin-top:calc(var(--u)*1.1);font-size:max(14px,calc(var(--u)*1.05));line-height:1.5;color:var(--t2);max-width:max(280px,calc(var(--u)*29))}
+
+.sys{position:relative;height:min(100%,calc(var(--u)*38));display:grid;grid-template-columns:minmax(0,1fr)}
+/* ==================================================================
+   ENTRADA A HIGHBEAM · tarjeta de acceso
+   Reposo: imagen arriba, título, texto y botón. Al pasar el ratón (o enfocar con teclado) la imagen se expande
+   por toda la tarjeta bajo un degradado y el botón se vuelve claro. En pantallas táctiles se muestra ya abierta.
+   ================================================================== */
+.hbcard{--pad:calc(var(--u)*.8);--rad:calc(var(--u)*2.2);
+  position:relative;display:block;width:min(100%,calc(var(--u)*44));height:calc(var(--u)*29);align-self:center;padding:0;border-radius:var(--rad);overflow:hidden;isolation:isolate;text-align:left;cursor:pointer;
+  background:linear-gradient(170deg,rgba(24,30,50,.9),rgba(8,11,22,.96));
+  box-shadow:inset 0 0 0 1px var(--edge),inset 0 1px 0 rgba(255,255,255,.14),0 40px 80px -34px rgba(0,0,0,.8);
+  transition:transform .6s var(--eo),box-shadow .6s var(--e)}
+.s04.active .hbcard{animation:worldIn 1.1s var(--eo) 1.1s backwards}
+@keyframes worldIn{from{opacity:0;transform:translateY(26px)}}
+.hbcard:hover,.hbcard:focus-visible{transform:translateY(-5px);outline:none;
+  box-shadow:inset 0 0 0 1px rgba(139,205,255,.55),inset 0 1px 0 rgba(255,255,255,.3),0 0 90px -8px rgba(63,124,255,.5),0 40px 80px -34px rgba(0,0,0,.8)}
+.hbcard:active{transform:translateY(-2px) scale(.995)}
+.hbcard .hbc-media{position:absolute;left:var(--pad);right:var(--pad);top:var(--pad);bottom:var(--bh,calc(var(--u)*13.4));border-radius:calc(var(--rad) - var(--pad));overflow:hidden;background:#03060f;
+  transition:left .7s var(--eo),right .7s var(--eo),top .7s var(--eo),bottom .7s var(--eo),border-radius .7s var(--eo)}
+.hbcard .hbc-media img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:50% 80%;transition:transform 1.4s var(--eo)}
+.hbcard .hbc-media::after{content:"";position:absolute;inset:0;opacity:0;transition:opacity .7s var(--e);
+  background:linear-gradient(to top,rgba(5,8,20,.97) 0%,rgba(5,8,20,.86) 30%,rgba(5,8,20,.4) 58%,rgba(5,8,20,.05) 82%)}
+.hbcard .hbc-body{position:absolute;left:0;right:0;bottom:0;z-index:2;display:grid;row-gap:calc(var(--u)*.7);padding:calc(var(--u)*1.5) calc(var(--u)*2) calc(var(--u)*1.6)}
+.hbcard .hbc-title{display:flex;align-items:center;gap:calc(var(--u)*.7)}
+.hbcard .wt{display:block;font-size:max(24px,calc(var(--u)*2.5));font-weight:500;letter-spacing:-.04em;line-height:1;color:var(--t1)}
+.hbcard .wd{display:block;max-width:calc(var(--u)*31);font-size:max(13px,calc(var(--u)*1.05));line-height:1.45;color:var(--t3);transition:color .5s var(--e)}
+.hbcard .hbc-foot{display:flex;align-items:center;justify-content:space-between;gap:calc(var(--u)*1.2);margin-top:calc(var(--u)*.4)}
+.hbcard .hbc-meta{display:flex;align-items:center;gap:calc(var(--u)*.9);min-width:0;font-size:max(11px,calc(var(--u)*.82));font-weight:500;color:var(--t2);white-space:nowrap}
+.hbcard .hbc-meta b{font-weight:600;color:var(--t1)}
+.hbcard .hbc-meta i{font-style:normal;letter-spacing:.12em;color:var(--t3);overflow:hidden;text-overflow:ellipsis}
+.hbcard .wx{flex:none;display:inline-flex;align-items:center;gap:.6em;height:max(38px,calc(var(--u)*2.9));padding:0 calc(var(--u)*1.5);border-radius:9999px;font-size:max(13px,calc(var(--u)*1));font-weight:600;letter-spacing:-.005em;color:var(--t1);
+  background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px var(--edge-hi),inset 0 1px 0 rgba(255,255,255,.12);transition:background .5s var(--e),color .5s var(--e),box-shadow .5s var(--e)}
+.hbcard .wx b{display:inline-block;font-weight:500;font-size:1.15em;transition:transform .5s var(--eo)}
+/* estado abierto */
+.hbcard:hover .hbc-media,.hbcard:focus-visible .hbc-media{left:0;right:0;top:0;bottom:0;border-radius:var(--rad)}
+.hbcard:hover .hbc-media img,.hbcard:focus-visible .hbc-media img{transform:scale(1.06)}
+.hbcard:hover .hbc-media::after,.hbcard:focus-visible .hbc-media::after{opacity:1}
+.hbcard:hover .wd,.hbcard:focus-visible .wd{color:rgba(236,244,255,.86)}
+.hbcard:hover .wx,.hbcard:focus-visible .wx{background:#f3f6fb;color:#0b1224;box-shadow:0 0 44px -4px rgba(139,205,255,.55)}
+.hbcard:hover .wx b,.hbcard:focus-visible .wx b{transform:translateX(.3em)}
+@media (hover:none){
+  .hbcard .hbc-media{left:0;right:0;top:0;bottom:0;border-radius:var(--rad)}
+  .hbcard .hbc-media::after{opacity:1}
+  .hbcard .wd{color:rgba(236,244,255,.86)}
+  .hbcard .wx{background:#f3f6fb;color:#0b1224;box-shadow:0 0 44px -4px rgba(139,205,255,.55)}
+}
+
+/* ==================================================================
+   05 · HIGHBEAM · el gran reveal
+   ================================================================== */
+.s05{background:#000;--pt5:max(16px,calc(var(--u)*2.2));--wm-s:.3;padding-top:var(--pt5)}
+.s05 .streaks{left:0;right:0;bottom:-16%;height:83%;opacity:0;transition:opacity 2s var(--e)}
+.s05.active .streaks{opacity:.9;transition-delay:1.5s}
+.s05.st-1 .streaks{opacity:.45}
+.s05 .streaks.img{inset:0;height:auto;bottom:0;filter:none;background:url(assets/bg/highbeam-reveal.webp) center 30%/cover no-repeat;
+  -webkit-mask-image:linear-gradient(to top,#000 8%,rgba(0,0,0,.6) 32%,transparent 58%);mask-image:linear-gradient(to top,#000 8%,rgba(0,0,0,.6) 32%,transparent 58%)}
+.s05.active .streaks.img{opacity:.8}
+.s05.st-1 .streaks.img{opacity:.22}
+.wm{position:absolute;inset:0;display:grid;place-items:center;text-align:center;pointer-events:none;z-index:3;transition:transform 1.1s var(--eo)}
+.wm-inner{position:relative}
+.wm-word{display:inline-block;font-size:max(62px,calc(var(--u)*12.3));font-weight:500;letter-spacing:-.06em;line-height:.9;color:var(--t1);padding:0 .04em .3em;margin-bottom:-.3em;
+  -webkit-mask-image:linear-gradient(90deg,#000 42%,transparent 58%);mask-image:linear-gradient(90deg,#000 42%,transparent 58%);
+  -webkit-mask-size:300% 100%;mask-size:300% 100%;-webkit-mask-position:100% 0;mask-position:100% 0;
+  transition:-webkit-mask-position 1.6s var(--e),mask-position 1.6s var(--e)}
+.s05.active .wm-word{-webkit-mask-position:0 0;mask-position:0 0;transition-delay:.6s}
+.sweep{position:absolute;top:18%;bottom:10%;left:0;width:max(80px,calc(var(--u)*9.4));margin-left:max(-40px,calc(var(--u)*-4.7));pointer-events:none;
+  background:radial-gradient(closest-side,rgba(139,205,255,.6),rgba(139,205,255,0));filter:blur(10px);opacity:0}
+.s05.active .sweep{animation:sweep 1.6s var(--e) .6s both}
+@keyframes sweep{0%{opacity:0;transform:translateX(0)}15%{opacity:1}85%{opacity:1}100%{opacity:0;transform:translateX(var(--ww,1000px))}}
+.wm-sub{margin-top:max(26px,calc(var(--u)*4.4));font-size:max(12px,calc(var(--u)*1.46));font-weight:400;letter-spacing:.5em;text-transform:uppercase;color:var(--sky);margin-right:-.5em;opacity:0;transition:opacity .9s var(--e)}
+.s05.active .wm-sub{opacity:1;transition-delay:1.8s}
+.wm-by{display:flex;justify-content:center;align-items:center;gap:max(8px,calc(var(--u)*.6));margin-top:max(14px,calc(var(--u)*1.5));font-size:max(14px,calc(var(--u)*1));font-weight:500;letter-spacing:.06em;color:var(--t2);opacity:0;transition:opacity .9s var(--e)}
+.wm-by .amark{height:max(16px,calc(var(--u)*1.35));opacity:1}
+.s05.active .wm-by{opacity:1;transition-delay:2.3s}
+.s05.st-1 .wm{transform:translateY(calc(var(--pt5) + var(--wm-h,60px)/2 - 50%)) scale(var(--wm-s))}
+.s05-flow{position:relative;z-index:2;min-height:100%;display:grid;grid-template-rows:var(--wm-h,60px) auto minmax(0,1fr) auto;row-gap:max(12px,calc(var(--u)*1.4))}
+.eco{text-align:center}
+.eco h2{font-size:max(28px,calc(var(--u)*4.06));font-weight:400;letter-spacing:-.045em;color:var(--t1);line-height:1.05;text-wrap:balance}
+.eco p{margin-top:max(8px,calc(var(--u)*1));font-size:max(15px,calc(var(--u)*1.46));color:var(--t2);opacity:0;transition:opacity .8s var(--e)}
+.s05 .eco .line>span{transform:translateY(145%)}
+.s05.st-1 .eco .line>span{transform:none;transition-delay:.45s}
+.s05.st-1 .eco p{opacity:1;transition-delay:.75s}
+/* El subtítulo cambia cuando se encienden los dos módulos nuevos */
+.eco .subs{display:grid}
+.eco .subs p{grid-area:1/1}
+.s05.st-3 .eco p.p1{opacity:0;transition-delay:0s}
+.eco p.p2{opacity:0!important;color:var(--sky);transition:opacity .8s var(--e)}
+.s05.st-3 .eco p.p2{opacity:1!important;transition-delay:.9s}
+/* Una sola pieza (un ecosistema) con cinco módulos: sin huecos, un único radio.
+   Al pasar el ratón, el módulo se abre (acordeón) y enseña la pregunta de negocio. */
+.dimwrap{position:relative;align-self:center;margin:0 calc(var(--u)*4.4)}
+.dims{position:relative;display:flex;height:calc(var(--u)*24.5);border-radius:calc(var(--u)*2);overflow:hidden;isolation:isolate;background:rgba(6,12,36,0);
+  box-shadow:0 36px 90px -30px rgba(0,0,0,0),0 0 70px -22px rgba(63,124,255,0);transition:background .9s var(--e) .1s,box-shadow .9s var(--e) .1s}
+.dims::after{content:"";position:absolute;inset:0;z-index:6;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(170,210,255,.34),inset 0 1px 0 rgba(255,255,255,.18);pointer-events:none;opacity:0;transition:opacity .9s var(--e) .1s}
+/* la caja aparece cuando entran los módulos, no desde el principio */
+.s05.st-2 .dims{background:rgba(6,12,36,.7);box-shadow:0 36px 90px -30px rgba(0,0,0,.85),0 0 70px -22px rgba(63,124,255,.5)}
+.s05.st-2 .dims::after{opacity:1}
+.dim{position:relative;flex:1 1 0;min-width:0;overflow:hidden;clip-path:inset(100% 0 0 0);border-left:1px solid rgba(190,220,255,.2);
+  transition:opacity .7s var(--e),flex-grow .8s var(--eo)}
+.dim:first-child{border-left:0}
+/* las capturas traen un marco claro de ~10 px: se sobredimensionan un 4,4 % para que lleguen a todas las esquinas */
+.dim>img{position:absolute;inset:-2.2%;width:104.4%;height:104.4%;max-width:none;object-fit:cover;object-position:50% 30%;opacity:1;transition:opacity .7s var(--e),transform 1.4s var(--eo)}
+.dim::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(4,8,26,.92) 0%,rgba(4,8,26,.5) 34%,rgba(4,8,26,0) 66%);pointer-events:none}
+.dim::before{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;z-index:4;background:linear-gradient(90deg,var(--sky),rgba(139,205,255,0));transform:scaleX(0);transform-origin:0 50%;transition:transform .7s var(--eo)}
+.dim-empty{background:linear-gradient(165deg,rgba(34,56,130,.5),rgba(8,14,40,.85))}
+.dim .t{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding:calc(var(--u)*1.5)}
+.dim .hbl{position:absolute;top:calc(var(--u)*1.4);left:calc(var(--u)*1.5);font-size:max(9px,calc(var(--u)*.56));font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:rgba(214,228,248,.8)}
+.dim h3{font-size:max(15px,calc(var(--u)*1.3));font-weight:600;letter-spacing:.08em;text-transform:uppercase;line-height:1.1;color:var(--sky);text-shadow:0 1px 16px rgba(3,6,15,.75),0 0 2px rgba(3,6,15,.4);white-space:normal;text-wrap:balance}
+.dim .desc{width:100%;max-width:calc(var(--u)*17);margin-top:calc(var(--u)*.7);min-height:5.4em;max-height:6.5em;overflow:hidden;font-size:max(11px,calc(var(--u)*.8));line-height:1.35;font-weight:600;color:rgba(238,244,255,.94);text-wrap:balance;text-shadow:0 1px 12px rgba(3,6,15,.6);
+  transition:opacity .35s var(--e),max-height .5s var(--eo),min-height .5s var(--eo),margin .5s var(--eo)}
+.dim .more{width:100%;max-width:calc(var(--u)*24);max-height:0;overflow:hidden;opacity:0;transition:max-height .6s var(--eo),opacity .45s var(--e) .1s}
+.dim .qq{font-size:max(13px,calc(var(--u)*1.05));line-height:1.25;font-weight:500;letter-spacing:-.01em;color:#fff;text-wrap:balance;text-shadow:0 1px 12px rgba(3,6,15,.55)}
+.dim .prd{margin-top:calc(var(--u)*.75);padding-top:calc(var(--u)*.65);border-top:1px solid rgba(214,228,248,.34);font-size:max(10px,calc(var(--u)*.7));font-weight:600;line-height:1.3;color:var(--sky)}
+.dim .prd span{color:rgba(214,228,248,.7);font-weight:500}
+/* abrir un módulo */
+.s05.st-4 .dim:hover{flex-grow:2.7}
+.s05.st-4 .dim:hover>img{transform:scale(1.04)}
+.s05.st-4 .dim:hover::before{transform:scaleX(1)}
+.s05.st-4 .dim:hover .desc{max-height:0;min-height:0;margin-top:0;opacity:0}
+.s05.st-4 .dim:hover .more{max-height:14em;opacity:1}
+.s05.st-4 .dims:has(.dim:hover) .dim:not(:hover)>img{opacity:.55}
+.s05.st-4 .dims:has(.dim:hover) .dim:not(:hover) .desc{opacity:.25}
+@media (hover:none){.s05 .dim .more{max-height:none;opacity:1;margin-top:calc(var(--u)*.6)}}
+.s05.st-2 .dim{clip-path:inset(0 0 0 0);animation:dimIn 1.4s var(--eo) var(--d) backwards}
+/* entrada fluida: cada módulo sube y se funde, la imagen se asienta desde un zoom suave y el texto llega después */
+.s05.st-2 .dim>img{animation:imgIn 2.2s var(--eo) var(--d) backwards}
+.s05.st-2 .dim .t{animation:txtIn 1.1s var(--eo) calc(var(--d) + .55s) backwards}
+@keyframes dimIn{from{opacity:0;transform:translateY(calc(var(--u)*2.6))}}
+@keyframes imgIn{from{transform:scale(1.18)}}
+@keyframes txtIn{from{opacity:0;transform:translateY(calc(var(--u)*1.1))}}
+/* Ampliación de la suite: Market y Used Vehicles entran después del núcleo original */
+.dim .hbl .tag{margin-left:0}
+.dim .tag{display:inline-block;margin-left:.9em;padding:.35em .7em;border-radius:9999px;font-size:.92em;letter-spacing:.2em;color:var(--ink);background:var(--sky);vertical-align:middle;opacity:0;transition:opacity .6s var(--e)}
+.s05.st-3 .dim .tag{opacity:1;transition-delay:1.3s}
+.dim .ray{position:absolute;inset:0;z-index:5;pointer-events:none;opacity:0;
+  background:linear-gradient(100deg,transparent 30%,rgba(139,205,255,.38) 48%,rgba(220,236,255,.55) 50%,rgba(139,205,255,.38) 52%,transparent 70%);background-size:300% 100%;background-position:100% 0}
+.s05.st-3 .dim .ray{animation:ray 1.6s var(--e) calc(var(--d) + .5s) both}
+@keyframes ray{0%{opacity:0;background-position:100% 0}20%{opacity:1}80%{opacity:1}100%{opacity:0;background-position:0 0}}
+.s05.st-3 .dim.nw::before{transform:scaleX(1);transition-delay:calc(var(--d) + .9s)}
+.s05.st-4 .dim.nw:hover{flex-grow:2.7}
+.s05.st-4 .dim.nw:not(:hover)::before{transform:scaleX(0);transition-delay:0s}
+.truth{text-align:center}
+.truth p{font-size:max(20px,calc(var(--u)*2.4));font-weight:400;letter-spacing:-.035em;color:var(--t1);text-wrap:balance}
+.truth p em{font-style:normal;color:var(--sky)}
+.s05 .truth .line>span{transform:translateY(145%)}
+.s05.st-4 .truth .line>span{transform:none;transition-delay:.3s}
+
+/* ==================================================================
+   05b · HOW IT CONNECTS · un caso, seis módulos
+   ================================================================== */
+.cx{display:grid;grid-template-rows:auto minmax(0,1fr) auto;row-gap:calc(var(--u)*2)}
+.cx .head{display:flex;justify-content:space-between;align-items:flex-end;gap:calc(var(--u)*3)}
+.cx .q{font-size:max(30px,calc(var(--u)*3.23));font-weight:400;letter-spacing:-.045em;line-height:1.02;color:var(--t1);margin-top:calc(var(--u)*1.56)}
+.cx .lede{max-width:calc(var(--u)*30);font-size:max(14px,calc(var(--u)*1.05));line-height:1.5;color:var(--t2);text-align:right}
+.cx .lede .pill{margin-top:calc(var(--u)*.8)}
+.chain{position:relative;align-self:center;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));column-gap:calc(var(--u)*1);row-gap:calc(var(--u)*1.1)}
+.gl{position:relative;display:flex;align-items:center;gap:calc(var(--u)*.8);font-size:max(10px,calc(var(--u)*.68));font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--t3);transition:color .5s var(--e)}
+.gl::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--edge-hi),transparent)}
+.gl.g1{grid-column:1/4}.gl.g2{grid-column:4/5}.gl.g3{grid-column:5/6}
+.cx.st-1 .gl.g1,.cx.st-2 .gl.g2,.cx.st-3 .gl.g3{color:var(--sky)}
+/* el haz que recorre la cadena */
+.rail{grid-column:1/-1;position:relative;height:2px;background:rgba(210,228,255,.12);border-radius:2px}
+.rail i{position:absolute;inset:0;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--cobalt),var(--sky));box-shadow:0 0 18px rgba(139,205,255,.7);transition:transform 1.2s var(--eo)}
+.cx.st-1 .rail i{transform:scaleX(.6)} .cx.st-2 .rail i{transform:scaleX(.8)} .cx.st-3 .rail i{transform:scaleX(1)}
+.node{display:flex;flex-direction:column;min-height:calc(var(--u)*17);padding:calc(var(--u)*1.25);border-radius:max(14px,calc(var(--u)*1.04));
+  opacity:.22;transform:translateY(calc(var(--u)*.8));transition:opacity .7s var(--e) var(--d,0s),transform .9s var(--eo) var(--d,0s),box-shadow .6s var(--e)}
+.node .mn{font-size:max(10px,calc(var(--u)*.62));font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--sky)}
+.node .mp{margin-top:4px;font-size:max(11px,calc(var(--u)*.72));font-weight:500;color:var(--t3)}
+.node h4{margin-top:calc(var(--u)*1.4);font-size:max(14px,calc(var(--u)*1.08));font-weight:500;letter-spacing:-.015em;line-height:1.3;color:var(--t1);text-wrap:pretty}
+.node .chip{margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;gap:.5em;padding:.45em .85em;border-radius:9999px;font-size:max(11px,calc(var(--u)*.72));font-weight:600;color:var(--t1);
+  background:rgba(139,205,255,.1);box-shadow:inset 0 0 0 1px rgba(139,205,255,.35)}
+.node .chip.flat{color:var(--t2);background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px var(--edge)}
+.node .chip.hot{color:#ffcbbf;background:rgba(255,171,152,.12);box-shadow:inset 0 0 0 1px rgba(255,171,152,.5)}
+.cx.st-1 .node.n1,.cx.st-1 .node.n2,.cx.st-1 .node.n3,.cx.st-2 .node.n4,.cx.st-3 .node.n5{opacity:1;transform:none}
+.cx.st-2 .node.n1,.cx.st-2 .node.n2,.cx.st-2 .node.n3{opacity:.5}
+.cx.st-3 .node.n5{box-shadow:inset 0 0 0 1.5px rgba(139,205,255,.8),inset 0 1px 0 rgba(255,255,255,.3),0 0 70px rgba(63,124,255,.4)}
+.cx.st-3 .node.n4{opacity:.85} .cx.st-3 .node.n1,.cx.st-3 .node.n2,.cx.st-3 .node.n3{opacity:.5}
+.cx .node.n2{--d:.12s} .cx .node.n3{--d:.24s}
+.verdict{text-align:center}
+.verdict p{font-size:max(20px,calc(var(--u)*2.4));font-weight:400;letter-spacing:-.035em;color:var(--t1);text-wrap:balance}
+.verdict p em{font-style:normal;color:var(--sky)}
+.verdict small{display:block;margin-top:calc(var(--u)*.6);font-size:max(13px,calc(var(--u)*1.05));color:var(--t2);opacity:0;transition:opacity .8s var(--e)}
+.cx .verdict .line>span{transform:translateY(145%)}
+.cx.st-3 .verdict .line>span{transform:none;transition-delay:.9s}
+.cx.st-3 .verdict small{opacity:1;transition-delay:1.4s}
+
+/* ==================================================================
+   06+ · SISTEMA DE PRODUCTO HIGHBEAM
+   ================================================================== */
+.prod{display:grid;grid-template-columns:minmax(0,calc(var(--u)*31.25)) minmax(0,1fr);column-gap:calc(var(--u)*3.1);align-items:start}
+.prod .q{font-size:max(30px,calc(var(--u)*3.23));font-weight:400;letter-spacing:-.045em;line-height:1.02;color:var(--t1);margin-top:calc(var(--u)*1.56)}
+.pid{margin-top:calc(var(--u)*2.08);display:flex;align-items:center;gap:max(12px,calc(var(--u)*1.04))}
+.pid .acr{font-size:max(44px,calc(var(--u)*4.8));font-weight:600;letter-spacing:-.05em;line-height:.8;background:linear-gradient(100deg,var(--sky),var(--ice));-webkit-background-clip:text;background-clip:text;color:transparent}
+.pid .name{font-size:max(15px,calc(var(--u)*.99));font-weight:500;letter-spacing:-.01em;color:var(--t1);line-height:1.3}
+.pid .name small{display:block;font-size:max(11px,calc(var(--u)*.68));font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--t3);margin-bottom:4px}
+.pcaps{list-style:none;margin-top:calc(var(--u)*2.08);display:grid;gap:max(8px,calc(var(--u)*.52))}
+.pcaps li{position:relative;display:grid;grid-template-columns:max(30px,calc(var(--u)*2.5)) 1fr;padding:max(12px,calc(var(--u)*.94)) max(14px,calc(var(--u)*1.15));border-radius:max(14px,calc(var(--u)*1.04));transition:opacity .45s var(--e),box-shadow .45s var(--e),transform .4s var(--eo),background .4s var(--e)}
+.pcaps .n{font-size:max(12px,calc(var(--u)*.73));font-weight:600;color:var(--t3);padding-top:3px;transition:color .4s var(--e)}
+.pcaps h4{font-size:max(16px,calc(var(--u)*1.1));font-weight:500;letter-spacing:-.02em;color:var(--t1)}
+.pcaps p{margin-top:4px;font-size:max(13px,calc(var(--u)*.83));line-height:1.45;color:var(--t2)}
+.prod.st-1:not(.st-2) .pcaps li:nth-child(1),
+.prod.st-2:not(.st-3) .pcaps li:nth-child(2),
+.prod.st-3 .pcaps li:nth-child(3){opacity:1}
+.prod.st-1:not(.st-2) .pcaps li:nth-child(1) h4,.prod.st-2:not(.st-3) .pcaps li:nth-child(2) h4,.prod.st-3 .pcaps li:nth-child(3) h4{color:var(--sky)}
+.prod.st-1:not(.st-2) .pcaps li:nth-child(1) .n,
+.prod.st-2:not(.st-3) .pcaps li:nth-child(2) .n,
+.prod.st-3 .pcaps li:nth-child(3) .n{color:var(--sky)}
+
+/* El producto es el héroe: tablet en órbita con lecturas flotantes. El hover sobre el mock-up lo activa. */
+.parea{min-width:0;margin-top:calc(var(--u)*.4)}
+.hv{position:relative;height:calc(var(--u)*33);display:grid;place-items:center}
+.orb{position:absolute;left:50%;top:50%;aspect-ratio:1;border-radius:50%;translate:-50% -50%;opacity:0;transition:opacity 1.2s var(--e) .5s}
+.scene.active .orb{opacity:1}
+.orb.o1{width:calc(var(--u)*37);border:1px dashed rgba(139,205,255,.26);animation:spin 90s linear infinite}
+.orb.o2{width:calc(var(--u)*29.5);border:1px solid rgba(139,205,255,.4);animation:spin 130s linear infinite reverse}
+.orb::after{content:"";position:absolute;top:-4px;left:50%;width:8px;height:8px;border-radius:50%;background:var(--sky);box-shadow:0 0 0 4px rgba(139,205,255,.2),0 0 18px var(--sky)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hdev{position:relative;width:calc(var(--u)*23.5);opacity:0;transform:translateY(34px);transition:opacity .8s var(--eo) .5s,transform 1s var(--eo) .5s}
+.scene.active .hdev{opacity:1;transform:none}
+.hdev .tilt{position:relative;transition:transform .6s var(--eo);will-change:transform}
+.hdev img{width:100%;height:auto;filter:drop-shadow(0 40px 60px rgba(0,0,0,.7)) drop-shadow(0 0 40px rgba(63,124,255,.25));transition:filter .6s var(--e)}
+.hdev:hover img{filter:drop-shadow(0 40px 60px rgba(0,0,0,.7)) drop-shadow(0 0 60px rgba(63,124,255,.65))}
+.hdev .br{opacity:0;position:absolute;width:calc(var(--u)*1.2);height:calc(var(--u)*1.2);border:0 solid rgba(190,225,255,.7);transition:transform .55s var(--eo),border-color .4s var(--e),filter .4s var(--e),opacity .35s var(--e)}
+.hdev .br.tl{left:calc(var(--u)*-.5);top:calc(var(--u)*-.5);border-width:1.5px 0 0 1.5px}
+.hdev .br.tr{right:calc(var(--u)*-.5);top:calc(var(--u)*-.5);border-width:1.5px 1.5px 0 0}
+.hdev .br.bl{left:calc(var(--u)*-.5);bottom:calc(var(--u)*-.5);border-width:0 0 1.5px 1.5px}
+.hdev .br.brr{right:calc(var(--u)*-.5);bottom:calc(var(--u)*-.5);border-width:0 1.5px 1.5px 0}
+.hdev:hover .br{opacity:1;border-color:var(--sky);filter:drop-shadow(0 0 8px rgba(139,205,255,.8))}
+.hdev:hover .br.tl{transform:translate(calc(var(--u)*-.6),calc(var(--u)*-.6))} .hdev:hover .br.tr{transform:translate(calc(var(--u)*.6),calc(var(--u)*-.6))}
+.hdev:hover .br.bl{transform:translate(calc(var(--u)*-.6),calc(var(--u)*.6))}  .hdev:hover .br.brr{transform:translate(calc(var(--u)*.6),calc(var(--u)*.6))}
+.hdev .scan{position:absolute;inset:5% 9% 8%;border-radius:max(12px,calc(var(--u)*1.1));overflow:hidden;pointer-events:none;opacity:0;transition:opacity .4s var(--e)}
+.hdev .scan::after{content:"";position:absolute;left:0;right:0;top:-18%;height:18%;background:linear-gradient(to bottom,transparent,rgba(139,205,255,.5),transparent);border-bottom:1px solid rgba(190,230,255,.9);animation:scan 2.4s linear infinite}
+@keyframes scan{to{top:100%}}
+.hdev:hover .scan,.prod.st-3 .hdev .scan{opacity:1}
+
+.hk{position:absolute;z-index:3;min-width:calc(var(--u)*9.4);display:flex;flex-direction:column;gap:calc(var(--u)*1.1);padding:calc(var(--u)*1) calc(var(--u)*1.2);border-radius:calc(var(--u)*1.1);
+  background:rgba(8,16,48,.72);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:inset 0 0 0 1px var(--edge),inset 0 1px 0 rgba(255,255,255,.12),0 24px 50px -22px rgba(0,0,0,.8);
+  opacity:0;transform:translateY(16px);transition:opacity .8s var(--eo) var(--d),transform .9s var(--eo) var(--d),box-shadow .5s var(--e)}
+.scene.active .hk{opacity:1;transform:none}
+.hk span{font-size:max(11px,calc(var(--u)*.7));font-weight:500;letter-spacing:.02em;line-height:1.3;color:var(--t2)}
+.hk b{align-self:flex-end;font-size:max(26px,calc(var(--u)*2.3));font-weight:600;letter-spacing:-.04em;line-height:1;color:var(--sky);font-variant-numeric:tabular-nums}
+.hk.k1{left:3%;top:13%;--d:1.1s}
+.hk.k2{right:1%;bottom:12%;--d:1.3s}
+.hk.k2 b{color:#ffab98}
+.hv:has(.hdev:hover) .hk{transform:translateY(-4px)}
+.prod.st-1:not(.st-2) .hk.k1,.prod.st-2:not(.st-3) .hk.k2{box-shadow:inset 0 0 0 1.5px rgba(139,205,255,.8),0 0 50px rgba(63,124,255,.35),0 24px 50px -22px rgba(0,0,0,.8)}
+.hk.k2.ok b{color:var(--sky)} .hk b.o{color:#ffab98}
+.pid .acr.sm{font-size:max(36px,calc(var(--u)*3.9))}
+
+/* Tablet construida en HTML (Market · Used Vehicles): misma gramática que el mock-up del DCI */
+.tab{position:relative;aspect-ratio:3/3.7;padding:calc(var(--u)*.75);border-radius:calc(var(--u)*1.7);background:linear-gradient(150deg,#1b1b22,#050507 60%);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.14),0 40px 60px -20px rgba(0,0,0,.75),0 0 40px rgba(63,124,255,.25);transition:box-shadow .6s var(--e)}
+.hdev:hover .tab{box-shadow:inset 0 0 0 1px rgba(255,255,255,.2),0 40px 60px -20px rgba(0,0,0,.75),0 0 60px rgba(63,124,255,.6)}
+.scr{position:relative;height:100%;border-radius:calc(var(--u)*1.05);overflow:hidden;display:flex;flex-direction:column;gap:calc(var(--u)*.7);padding:calc(var(--u)*1.05);
+  background:linear-gradient(135deg,#3b3858 0%,#2c2947 47%,#1f1c37 53%,#16142a 100%);font-size:calc(var(--u)*.5);color:rgba(220,226,245,.75)}
+.scr .sh{display:flex;justify-content:space-between;align-items:flex-start}
+.scr .lb{font-size:calc(var(--u)*.42);font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(200,206,235,.6)}
+.scr .big{margin-top:calc(var(--u)*.2);font-size:calc(var(--u)*1.35);font-weight:700;letter-spacing:-.03em;color:#fff;line-height:1}
+.scr .sm{font-size:calc(var(--u)*.45);color:#ff9f80;font-weight:600;margin-top:calc(var(--u)*.15)}
+.scr .sm.c{color:var(--sky)}
+.scr .tl{display:flex;gap:calc(var(--u)*.4)}
+.scr .tl span{padding:calc(var(--u)*.18) calc(var(--u)*.45);border-radius:9999px;background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);font-size:calc(var(--u)*.42);font-weight:600}
+.scr .tl span.on{background:rgba(139,205,255,.18);color:#fff}
+.scr .pn{border-radius:calc(var(--u)*.55);background:rgba(10,8,26,.38);box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);padding:calc(var(--u)*.7)}
+.scr .pn.grow{flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.scr svg{display:block;width:100%;flex:1;min-height:0;margin-top:calc(var(--u)*.4)}
+.scr .lg{display:flex;gap:calc(var(--u)*.8);margin-top:calc(var(--u)*.3);font-size:calc(var(--u)*.42)}
+.scr .lg i{display:inline-block;width:calc(var(--u)*.6);height:2px;margin-right:.4em;vertical-align:middle;background:var(--sky)}
+.scr .lg i.o{background:#ff9f80}
+.scr table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.scr th{font-size:calc(var(--u)*.4);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(200,206,235,.5);text-align:right;padding-bottom:calc(var(--u)*.3)}
+.scr th:first-child,.scr td:first-child{text-align:left}
+.scr td{padding:calc(var(--u)*.28) 0;border-top:1px solid rgba(255,255,255,.07);text-align:right;color:rgba(230,234,250,.85)}
+.scr td b{color:#fff;font-weight:700}
+.scr tr.me td{color:var(--sky)}
+.scr .bars{display:grid;gap:calc(var(--u)*.45);margin-top:calc(var(--u)*.5)}
+.scr .br2{display:grid;grid-template-columns:calc(var(--u)*3) 1fr calc(var(--u)*2.4);align-items:center;gap:calc(var(--u)*.5)}
+.scr .br2 em{font-style:normal;font-weight:600;color:rgba(230,234,250,.85)}
+.scr .br2 i{display:block;height:calc(var(--u)*.6);border-radius:9999px;background:linear-gradient(90deg,rgba(139,128,230,.9),rgba(139,128,230,.35));transform-origin:0 50%;transform:scaleX(0);transition:transform 1s var(--eo) var(--d,1s)}
+.scene.active .scr .br2 i{transform:scaleX(var(--w))}
+.scr .br2.rec i{background:linear-gradient(90deg,var(--sky),rgba(139,205,255,.4))}
+.scr .br2.slow i{background:linear-gradient(90deg,#ff9f80,rgba(255,159,128,.35))}
+.scr .br2 span{text-align:right;font-weight:600}
+.scr .act{display:grid;gap:calc(var(--u)*.3)}
+.scr .act div{display:flex;justify-content:space-between;align-items:center;padding:calc(var(--u)*.3) 0;border-top:1px solid rgba(255,255,255,.07)}
+.scr .act b{font-size:calc(var(--u)*.4);letter-spacing:.12em;padding:calc(var(--u)*.15) calc(var(--u)*.45);border-radius:9999px}
+.scr .act b.k{color:#bfe3ff;background:rgba(139,205,255,.15)} .scr .act b.r{color:#ffc6b5;background:rgba(255,159,128,.16)} .scr .act b.x{color:#d9d2ff;background:rgba(139,128,230,.22)}
+.scr .draw{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.6s var(--e) 1s}
+.scene.active .scr .draw{stroke-dashoffset:0}
+.scr .kv{flex:1;display:grid;grid-template-columns:repeat(4,1fr);align-items:center;margin-top:calc(var(--u)*.4)}
+.scr .kv div{display:flex;flex-direction:column;gap:calc(var(--u)*.2);padding-left:calc(var(--u)*.5);border-left:1px solid rgba(255,255,255,.08)}
+.scr .kv div:first-child{border-left:0;padding-left:0}
+.scr .kv em{font-style:normal;font-size:calc(var(--u)*.42);color:rgba(200,206,235,.6)}
+.scr .kv b{font-size:calc(var(--u)*.95);font-weight:700;color:#fff;letter-spacing:-.02em}
+.scr .kv b.o{color:#ff9f80}
+/* Recorrido del comprador bajo las tarjetas: fija el orden 01→06 que siguen las escenas de producto */
+.journey{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));margin-top:calc(var(--u)*1.2);padding-top:calc(var(--u)*.9);opacity:0;transform:translateY(8px);transition:opacity .7s var(--e),transform .8s var(--eo)}
+.journey::before{content:"";position:absolute;left:0;right:calc(var(--u)*.4);top:0;height:1px;background:linear-gradient(90deg,rgba(139,205,255,.15),var(--sky))}
+.journey::after{content:"";position:absolute;right:0;top:calc(var(--u)*-.35);width:calc(var(--u)*.7);height:calc(var(--u)*.7);border-top:1px solid var(--sky);border-right:1px solid var(--sky);transform:rotate(45deg)}
+.journey span{padding-left:0;text-align:center;text-indent:.18em;white-space:nowrap;font-size:max(10px,calc(var(--u)*.66));font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--t2)}
+.journey b{margin-right:.8em;color:var(--sky);font-weight:600}
+/* un punto azul sobre la línea, en el centro de cada módulo: marca de qué momento del recorrido es cada uno */
+.journey span{position:relative}
+.journey span::before{content:"";position:absolute;left:50%;top:calc(var(--u)*-.9);width:calc(var(--u)*.7);height:calc(var(--u)*.7);margin:calc(var(--u)*-.35) 0 0 calc(var(--u)*-.35);border-radius:50%;
+  background:var(--sky);box-shadow:0 0 0 calc(var(--u)*.3) rgba(139,205,255,.18),0 0 calc(var(--u)*1.2) rgba(139,205,255,.85);transform:scale(0);transition:transform .6s var(--eo)}
+.s05.st-4 .journey span::before{transform:scale(1)}
+.s05.st-4 .journey span:nth-child(1)::before{transition-delay:.7s}.s05.st-4 .journey span:nth-child(2)::before{transition-delay:.78s}
+.s05.st-4 .journey span:nth-child(3)::before{transition-delay:.86s}.s05.st-4 .journey span:nth-child(4)::before{transition-delay:.94s}
+.s05.st-4 .journey span:nth-child(5)::before{transition-delay:1.02s}.s05.st-4 .journey span:nth-child(6)::before{transition-delay:1.1s}
+.s05.st-4 .journey{opacity:1;transform:none;transition-delay:.6s}
+.s05.st-4 .dimwrap:has(.dim:hover) .journey{opacity:0;transition-delay:0s}
+.crumb.hb{gap:calc(var(--u)*.9);align-items:baseline}
+.crumb.hb .hbw{font-size:max(22px,calc(var(--u)*1.9));font-weight:500;letter-spacing:-.05em;line-height:1.1;color:var(--t1);padding-bottom:.12em}
+.crumb.hb i{font-size:max(16px,calc(var(--u)*1.3));opacity:.4}
+.crumb.hb b{font-size:max(12px,calc(var(--u)*.85));font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--sky)}
+.crumb .ix{margin-left:calc(var(--u)*1.2);padding-left:calc(var(--u)*1.2);border-left:1px solid var(--edge-hi);font-size:.86em;letter-spacing:.06em;color:var(--t3)}
+.crumb .ix b{color:var(--sky);font-weight:600}
+.node .nn{margin-right:.7em;color:var(--t3)}
+/* Model Diagnosis: promesa vs percepción */
+.scr .lgx{float:right;letter-spacing:.06em;text-transform:none;font-weight:500}
+.scr .lgx i{display:inline-block;width:calc(var(--u)*.55);height:calc(var(--u)*.3);margin:0 .35em 0 .6em;border-radius:2px;vertical-align:middle}
+.scr i.pr{box-shadow:inset 0 0 0 1px rgba(220,226,245,.55);background:transparent}
+.scr i.pe{background:var(--sky)} .scr i.pe.o{background:#ff9f80}
+.scr .gaps{display:grid;gap:calc(var(--u)*.42);margin-top:calc(var(--u)*.5)}
+.scr .gp{display:grid;grid-template-columns:calc(var(--u)*4.4) 1fr calc(var(--u)*1.4);align-items:center;gap:calc(var(--u)*.5)}
+.scr .gp em{font-style:normal;font-weight:600;color:rgba(230,234,250,.85)}
+.scr .gp span{position:relative;height:calc(var(--u)*.6)}
+.scr .gp i{position:absolute;left:0;top:0;bottom:0;border-radius:9999px;transform-origin:0 50%;transform:scaleX(0);transition:transform 1s var(--eo) var(--d,1s)}
+.scr .gp i.pr{width:calc(var(--p)*100%)} .scr .gp i.pe{top:22%;bottom:22%;width:calc(var(--r)*100%);opacity:.9}
+.scene.active .scr .gp i{transform:scaleX(1)}
+.scr .gp b{text-align:right;font-weight:700;color:var(--sky)} .scr .gp b.o{color:#ff9f80}
+.scr .vq{margin:calc(var(--u)*.5) 0 calc(var(--u)*.4);font-size:calc(var(--u)*.62);line-height:1.4;color:#fff;font-style:italic}
+/* Retail: tú vs. el vecino */
+.scr .vs{display:flex;align-items:center;justify-content:space-around;margin:calc(var(--u)*.5) 0 calc(var(--u)*.6)}
+.scr .vs div{display:flex;flex-direction:column;align-items:center;gap:calc(var(--u)*.2)}
+.scr .vs em{font-style:normal;font-size:calc(var(--u)*.42);color:rgba(200,206,235,.6)}
+.scr .vs b{font-size:calc(var(--u)*1.6);font-weight:700;color:var(--sky);letter-spacing:-.03em} .scr .vs b.o{color:#ff9f80}
+.scr .vs>span{font-size:calc(var(--u)*.5);color:rgba(200,206,235,.5)}
+.scr tr.lo td{color:#ff9f80}
+.scr td:last-child{font-size:.85em}
+.tab+.scan,.tilt>.scan.t2{inset:calc(var(--u)*.75);border-radius:calc(var(--u)*1.05)}
+.pcap-note{display:flex;justify-content:center;align-items:center;gap:calc(var(--u)*1);margin-top:calc(var(--u)*1.4)}
+
+/* ==================================================================
+   NAVEGACIÓN
+   ================================================================== */
+.nav{position:absolute;left:var(--px);right:var(--px);bottom:max(var(--nav-b),env(safe-area-inset-bottom));height:var(--nav-h);z-index:50;display:flex;align-items:center;gap:max(8px,calc(var(--u)*.52))}
+.nav .chap{display:flex;align-items:center;gap:max(5px,calc(var(--u)*.3))}
+.nav .right{margin-left:auto;display:flex;align-items:center;gap:max(8px,calc(var(--u)*.52));flex:none}
+
+/* Logo: vuelve al inicio */
+.nav .brand{flex-shrink:0;display:flex;align-items:center;height:100%;padding:0 max(10px,calc(var(--u)*.8)) 0 0;margin-right:max(4px,calc(var(--u)*.4));opacity:.72;
+  transition:opacity .25s var(--e),transform .35s var(--eo),filter .25s var(--e)}
+.nav .brand .amark{height:max(13px,calc(var(--u)*1.05));width:auto;max-width:none}
+.nav .brand:hover{opacity:1;transform:translateY(-1px);filter:drop-shadow(0 0 14px rgba(139,205,255,.55))}
+.nav .brand:active{transform:scale(.96)}
+.nav .brand.on{opacity:1}
+
+/* Botones: cápsula de cristal como las etiquetas; hover, pulsación y estado activo */
+.nav .chap button,.nav .arrow,.nav .cur{position:relative;display:inline-flex;align-items:center;justify-content:center;height:max(32px,calc(var(--u)*2));
+  padding:0 max(11px,calc(var(--u)*.78));border-radius:9999px;overflow:hidden;isolation:isolate;
+  font-size:max(12px,calc(var(--u)*.73));font-weight:500;letter-spacing:.02em;color:var(--t2);white-space:nowrap;
+  background:rgba(255,255,255,.055);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:inset 0 0 0 1px var(--edge-hi),inset 0 1px 0 rgba(255,255,255,.14);
+  transition:background .25s var(--e),color .25s var(--e),box-shadow .25s var(--e),transform .35s var(--eo)}
+/* halo que sigue al ratón dentro del botón */
+.nav .chap button::before,.nav .arrow::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .3s var(--e);
+  background:radial-gradient(circle 70px at var(--mx,50%) var(--my,50%),rgba(139,205,255,.38),transparent 70%)}
+/* destello al pulsar */
+.nav .chap button::after,.nav .arrow::after{content:"";position:absolute;left:var(--mx,50%);top:var(--my,50%);width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;z-index:-1;opacity:0;
+  background:rgba(220,236,255,.85);transform:scale(1)}
+.nav .pop::after{animation:pop .6s var(--eo)}
+@keyframes pop{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(26)}}
+@media (hover:hover){
+  .nav .chap button:not(:disabled):not(.on):hover,.nav .arrow:hover{
+    background:rgba(139,205,255,.14);color:var(--t1);transform:translateY(-2px);
+    box-shadow:inset 0 0 0 1px rgba(139,205,255,.75),inset 0 1px 0 rgba(255,255,255,.3),0 10px 28px -10px rgba(63,124,255,.65)}
+  .nav .chap button:not(:disabled):hover::before,.nav .arrow:hover::before{opacity:1}
+}
+.nav .chap button:not(:disabled):active,.nav .arrow:active{transform:translateY(0) scale(.95);background:rgba(139,205,255,.26);transition-duration:.08s}
+.nav button:focus-visible{outline:2px solid var(--sky);outline-offset:3px}
+/* activo */
+.nav .chap button.on{background:rgba(139,205,255,.12);color:var(--t1);box-shadow:inset 0 0 0 1px rgba(139,205,255,.6)}
+/* Solutions: la cápsula se abre y muestra HighBeam (hover, foco o cuando ya estamos dentro) */
+.nav .solx{position:relative;display:inline-flex;align-items:center;height:max(32px,calc(var(--u)*2));border-radius:9999px;
+  background:rgba(255,255,255,.055);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:inset 0 0 0 1px var(--edge-hi),inset 0 1px 0 rgba(255,255,255,.14);transition:box-shadow .3s var(--e),background .3s var(--e)}
+.nav .solx button{background:none!important;box-shadow:none!important;backdrop-filter:none;-webkit-backdrop-filter:none}
+.nav .solx .hbx{max-width:0;padding-left:0;padding-right:0;opacity:0;gap:.5em;color:var(--sky);transition:max-width .45s var(--eo),padding .45s var(--eo),opacity .3s var(--e),color .25s var(--e)}
+.nav .solx .hbx svg{width:1.05em;height:1.05em;flex:none}
+.nav .solx .hbx::after{content:"";position:absolute;left:0;top:28%;bottom:28%;width:1px;background:var(--edge-hi)}
+.nav .solx:hover .hbx,.nav .solx:focus-within .hbx,.nav .solx.open .hbx{max-width:12em;padding-left:max(11px,calc(var(--u)*.78));padding-right:max(11px,calc(var(--u)*.78));opacity:1}
+.nav .solx:hover,.nav .solx:focus-within{background:rgba(139,205,255,.1)}
+.nav .solx.on{background:rgba(139,205,255,.12);box-shadow:inset 0 0 0 1px rgba(139,205,255,.6)}
+.nav .solx .on{color:var(--t1)}
+.nav .solx .hbx:hover{color:var(--t1)}
+/* Navegación de HighBeam: arriba a la izquierda, separada de la de Astara */
+.hbnav{position:absolute;z-index:50;left:var(--px);top:max(16px,calc(var(--u)*1.25));display:flex;align-items:center;gap:calc(var(--u)*1.6);
+  opacity:0;pointer-events:none;transform:translateY(-6px);transition:opacity .5s var(--e),transform .6s var(--eo)}
+#stage.hbn .hbnav{opacity:1;pointer-events:auto;transform:none}
+.hbnav button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.hbnav .hbl{font-size:max(18px,calc(var(--u)*1.25));font-weight:500;letter-spacing:-.05em;line-height:1;color:var(--t1);padding:0 calc(var(--u)*1.6) .08em 0;border-right:1px solid var(--edge-hi);transition:color .25s var(--e),opacity .4s var(--e)}
+.hbnav .hbl:hover{color:var(--sky)}
+/* en el overview la propia suite hace de navegación (cada módulo lleva a su escena) */
+#stage.hbo .hbnav{opacity:0;pointer-events:none}
+.s05 .dim[data-go]{cursor:pointer}
+.s05 .dim[data-go]:focus-visible{outline:1px solid var(--sky);outline-offset:-3px}
+.hbnav .hbi{display:flex;align-items:center;gap:calc(var(--u)*1.5)}
+.hbnav .hbi button{position:relative;padding:.45em 0;font-size:max(10px,calc(var(--u)*.64));font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(214,228,248,.62);transition:color .25s var(--e)}
+.hbnav .hbi button::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1.5px;border-radius:2px;background:var(--sky);transform:scaleX(0);transform-origin:0 50%;transition:transform .45s var(--eo)}
+.hbnav .hbi button:hover{color:var(--t1)}
+.hbnav .hbi button.on{color:var(--sky)}
+.hbnav .hbi button.on::after{transform:none}
+.hbnav .hbsep{width:1px;height:max(12px,calc(var(--u)*.8));background:var(--edge-hi)}
+.hbnav .hbi button.all{color:rgba(139,205,255,.75)}
+.hbnav .hbi button.all.on{color:var(--sky)}
+.hbnav button:focus-visible{outline:1px solid var(--sky);outline-offset:4px;border-radius:4px}
+.scene[data-hb]{padding-top:calc(var(--py) + var(--u)*1.2)}
+.nav .chap button:disabled{opacity:.38;cursor:default;box-shadow:inset 0 0 0 1px var(--edge)}
+.nav .chap button:disabled::after{content:none}
+.nav .arrow{width:max(32px,calc(var(--u)*2));padding:0}
+.nav .arrow svg{transition:transform .3s var(--eo)}
+@media (hover:hover){.nav #next:hover svg{transform:translateX(2px)}.nav #prev:hover svg{transform:translateX(-2px)}}
+.nav .meta{display:inline-flex;align-items:center;gap:max(8px,calc(var(--u)*.6));height:max(32px,calc(var(--u)*2));padding:0 max(14px,calc(var(--u)*1));border-radius:9999px;
+  background:rgba(4,12,34,.66);backdrop-filter:blur(12px) saturate(120%);-webkit-backdrop-filter:blur(12px) saturate(120%);
+  box-shadow:inset 0 0 0 1px rgba(210,228,255,.1),0 10px 30px -14px rgba(0,0,0,.6)}
+.nav .keys{font-size:max(10px,calc(var(--u)*.56));font-weight:500;letter-spacing:.02em;color:rgba(214,228,248,.78);opacity:1;white-space:nowrap;margin-right:max(2px,calc(var(--u)*.2))}
+.nav .count{font-size:max(10px,calc(var(--u)*.56));font-weight:500;color:rgba(214,228,248,.7);white-space:nowrap;padding:0 max(2px,calc(var(--u)*.2))}
+.nav .count b{color:var(--t1);font-weight:600}
+.nav .cur{display:none;color:var(--t1);overflow:hidden;text-overflow:ellipsis;max-width:42vw}
+.nav .beats{display:flex;gap:6px;margin-right:max(2px,calc(var(--u)*.2))}
+.nav .beats{gap:5px}
+.nav .beats i{width:3px;height:3px;border-radius:50%;background:rgba(210,228,255,.28);transition:background .3s var(--e)}
+.nav .beats i.on{background:rgba(139,205,255,.8)}
+.progress{position:fixed;left:0;top:0;height:2px;background:linear-gradient(90deg,var(--cobalt),var(--sky));z-index:61;transition:width .6s var(--eo)}
+
+/* Navegación compacta: pantallas estrechas o verticales */
+@media (max-width:1100px),(max-aspect-ratio:5/4){
+  .nav .chap,.nav .keys{display:none}
+  .hbnav .hbi{gap:calc(var(--u)*1.2)}
+}
+@media (max-width:1100px),(max-aspect-ratio:5/4){
+  .nav .cur{display:inline-flex}
+}
+@media (pointer:coarse){ .nav .arrow{width:44px;height:44px} .nav .chap button,.nav .cur{height:40px} }
+
+/* ==================================================================
+   VERTICAL (≤ 5:4): tablet y móvil en vertical · una columna
+   ================================================================== */
+@media (max-aspect-ratio:5/4){
+  .s01 .mega{font-size:max(42px,calc(var(--u)*9.6))}
+  .conv{opacity:.7}
+
+  .s02 .berg{position:relative;inset:auto;container-type:normal}
+  .s02 .stage2{position:relative;left:auto;top:auto;width:100%;aspect-ratio:auto;transform:none;container-type:normal;display:flex;flex-direction:column;align-items:center;gap:calc(var(--u)*2)}
+  .s02 .copy{position:relative;top:auto!important;left:auto;width:100%;transform:none!important}
+  .s02 .copy .eyebrow{font-size:max(11px,calc(var(--u)*.9))}
+  .s02 .mega{font-size:max(36px,calc(var(--u)*6));margin:calc(var(--u)*1.4) 0 calc(var(--u)*1.6)}
+  .s02 .sup{font-size:max(15px,calc(var(--u)*1.6));max-width:none}
+  .s02.st-1 .sup{opacity:1}
+  .s02 .berg-art{position:relative;left:auto;top:auto;width:min(78%,calc(var(--u)*56));height:auto;aspect-ratio:1234/1275;transform:none!important}
+  .wline,.ann,.tag-o,.tag-l,.hd,.mla,.s02 .close{display:none!important}
+  .pf{display:grid;gap:calc(var(--u)*2.4);width:100%;margin-top:calc(var(--u)*1.2)}
+  .pf p{display:flex;gap:12px;align-items:baseline;margin:0;padding:max(8px,calc(var(--u)*.7)) 0;border-top:1px solid var(--edge);font-size:max(14px,calc(var(--u)*1.5));color:var(--t1)}
+  .pf p i{font-style:normal;font-size:.8em;font-weight:600;letter-spacing:.14em;color:var(--sky);min-width:2ch}
+  .pf p span strong{display:block;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+  .pf .pf-h{display:block;margin-bottom:6px;font-size:max(10px,calc(var(--u)*.9));font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--sky)}
+  .pf h3{margin:4px 0 8px;font-size:max(28px,calc(var(--u)*4.4));font-weight:500;line-height:1.04;color:var(--t1)}
+  .pf .pf-c{display:block;border:0;margin-top:calc(var(--u)*1.2);font-size:max(16px,calc(var(--u)*1.7));line-height:1.4;color:rgba(214,228,248,.82)}
+  .pf .pf-c em{display:block;font-style:normal;color:var(--sky);font-size:1.12em;font-weight:500}
+  .pf-g,.pf-c{opacity:0;transform:translateY(12px);transition:opacity .6s var(--eo) .3s,transform .6s var(--eo) .3s}
+  .s02.active .pf-g:first-child{opacity:1;transform:none}
+  .s02.st-1 .pf-g,.s02.st-1 .pf-c{opacity:1;transform:none}
+  .s02.st-1 .pf-c{transition-delay:2.15s}
+  .pillars{flex-direction:column}
+  .strip{flex-wrap:wrap;row-gap:10px}
+  .kp{flex:1 1 40%}
+
+  .s04{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto;align-content:center;align-items:start;row-gap:calc(var(--u)*4)}
+  .s04 .mega{font-size:max(34px,calc(var(--u)*5.6))}
+  .sys{height:auto;grid-template-columns:minmax(0,1fr);row-gap:calc(var(--u)*1.6)}
+  .hbcard{width:100%;height:calc(var(--u)*36)}
+
+  .s05{--wm-s:.5}
+  .s05-flow{grid-template-rows:var(--wm-h,80px) auto minmax(min-content,1fr) auto}
+  .dimwrap{margin:0}
+  .dims{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));height:auto}
+  .dim{flex:none;min-height:max(220px,calc(var(--u)*24));border-left:0;border-top:1px solid rgba(190,220,255,.2)}
+  .dim:last-child:nth-child(odd){grid-column:1/-1}
+
+  .cx{display:flex;flex-direction:column;gap:calc(var(--u)*2.4)}
+  .cx .head{flex-direction:column;align-items:flex-start;gap:calc(var(--u)*1.4)} .cx .lede{text-align:left;max-width:none}
+  .chain{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:calc(var(--u)*2)}
+  .gl,.rail{display:none}
+  .node{min-height:max(170px,calc(var(--u)*18))}
+
+  .prod{display:flex;flex-direction:column;align-items:stretch}
+  .prod .left{display:contents}
+  .prod .eyebrow{order:1} .prod .q{order:2} .pid{order:3} .parea{order:4} .pcaps{order:5}
+  .prod .pcaps li{padding:calc(var(--u)*1.2) 0;border-top:1px solid var(--edge)}
+  .stg2{display:grid;grid-template-columns:minmax(0,1fr);row-gap:calc(var(--u)*1.6)}
+  .stg2 .hv{height:auto}
+  .stg2 .hdev,.stg2 .device{position:relative;left:auto;top:auto;width:min(100%,calc(var(--u)*44));margin:0 auto;transform:none}
+  .stg2 .tilt>img,.stg2 img.mock{width:100%!important;height:auto!important}
+  .stg2 .hero{display:flex;flex-direction:column;align-items:center;row-gap:calc(var(--u)*1.6)}
+  .stg2 .ph{display:none}
+  .stg2 .shots:not(:has(.shot:not(.ph))){display:none}
+  .stg2 .shots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:calc(var(--u)*1.2)}
+  .stg2 .shot{margin:0;display:grid;place-items:center;padding:calc(var(--u)*.8);border-radius:calc(var(--u)*1.1);overflow:hidden;background:linear-gradient(160deg,rgba(14,28,78,.5),rgba(4,9,28,.6));box-shadow:inset 0 0 0 1px rgba(170,205,255,.16)}
+  .stg2 .shot.ref img{display:block;max-width:100%;height:auto}
+  .scene.active .stg2 .device,.scene.active .stg2 .hdev{transform:none}
+  .prod .pcaps li{display:grid;grid-template-columns:auto 1fr;column-gap:calc(var(--u)*1);padding:calc(var(--u)*1.1) calc(var(--u)*1.3);margin-top:calc(var(--u)*.8);border-top:0}
+  .parea{margin:calc(var(--u)*3) 0 0}
+  .hv{height:calc(var(--u)*38)}
+  .hdev{width:calc(var(--u)*26)}
+  .orb.o1{width:calc(var(--u)*44)} .orb.o2{width:calc(var(--u)*35)}
+}
+
+
+
+/* Strategy · el dashboard real con foco sobre cada punto; la tablet señala "vs. competidores" */
+.sw2{position:relative;width:100%}
+.screen{position:relative;border-radius:calc(var(--u)*1.56);padding:calc(var(--u)*.6);clip-path:inset(0 0 0 100% round calc(var(--u)*1.56));transition:clip-path 1.1s var(--eo) .2s}
+.scene.active .screen{clip-path:inset(0 0 0 0 round calc(var(--u)*1.56))}
+.screen .frame{position:relative;border-radius:calc(var(--u)*1);overflow:hidden}
+.screen img{width:100%;height:auto}
+.spot{position:absolute;border-radius:calc(var(--u)*.7);opacity:0;box-shadow:0 0 0 3000px rgba(2,5,14,.66),inset 0 0 0 2px var(--sky),0 0 50px rgba(139,205,255,.4);transition:opacity .45s var(--e)}
+.callout{position:absolute;display:flex;align-items:center;gap:8px;white-space:nowrap;font-size:max(12px,calc(var(--u)*.78));font-weight:500;color:var(--t1);
+  padding:max(5px,calc(var(--u)*.36)) max(13px,calc(var(--u)*.9));border-radius:9999px;background:rgba(3,6,15,.86);box-shadow:inset 0 0 0 1px var(--edge-hi);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.spot .callout{top:calc(100% + calc(var(--u)*.6));left:calc(var(--u)*.6)}
+.dimall{position:absolute;inset:0;background:rgba(2,5,14,.66);opacity:0;transition:opacity .45s var(--e)}
+.device{position:absolute;left:3%;top:50%;width:26%;filter:drop-shadow(0 40px 60px rgba(0,0,0,.7));opacity:0;transform:translateY(40px);transition:opacity .7s var(--eo),transform .9s var(--eo)}
+.scene.active .device{opacity:1;transform:translateY(-50%);transition-delay:.7s}
+.device .ring{position:absolute;inset:6% 9% 7%;border-radius:calc(var(--u)*1.25);opacity:0;box-shadow:inset 0 0 0 2px var(--sky),0 0 60px rgba(139,205,255,.5);transition:opacity .45s var(--e)}
+.device .ring .callout{bottom:calc(100% + calc(var(--u)*.6));left:-2px}
+.s06.st-1:not(.st-2) .spot.k1{opacity:1}
+.s06.st-2:not(.st-3) .dimall{opacity:1}
+.s06.st-2:not(.st-3) .device .ring{opacity:1}
+.s06.st-3 .spot.k3{opacity:1}
+
+/* Strategy · mock-up interactivo: esquinas que se abren, brillo, línea de escaneo e inclinación con el puntero */
+.device .tilt{position:relative;transition:transform .6s var(--eo);will-change:transform}
+.device .tilt>img{transition:filter .6s var(--e)}
+.device:hover .tilt>img{filter:drop-shadow(0 0 50px rgba(63,124,255,.65))}
+.device .br{opacity:0;position:absolute;z-index:4;width:calc(var(--u)*1.2);height:calc(var(--u)*1.2);border:0 solid rgba(190,225,255,.7);pointer-events:none;transition:transform .55s var(--eo),border-color .4s var(--e),filter .4s var(--e),opacity .35s var(--e)}
+.device .br.tl{left:calc(var(--u)*-.5);top:calc(var(--u)*-.5);border-width:1.5px 0 0 1.5px}
+.device .br.tr{right:calc(var(--u)*-.5);top:calc(var(--u)*-.5);border-width:1.5px 1.5px 0 0}
+.device .br.bl{left:calc(var(--u)*-.5);bottom:calc(var(--u)*-.5);border-width:0 0 1.5px 1.5px}
+.device .br.brr{right:calc(var(--u)*-.5);bottom:calc(var(--u)*-.5);border-width:0 1.5px 1.5px 0}
+.device:hover .br,.s06.st-2:not(.st-3) .device .br{opacity:1;border-color:var(--sky);filter:drop-shadow(0 0 8px rgba(139,205,255,.8))}
+.device:hover .br.tl{transform:translate(calc(var(--u)*-.6),calc(var(--u)*-.6))} .device:hover .br.tr{transform:translate(calc(var(--u)*.6),calc(var(--u)*-.6))}
+.device:hover .br.bl{transform:translate(calc(var(--u)*-.6),calc(var(--u)*.6))}  .device:hover .br.brr{transform:translate(calc(var(--u)*.6),calc(var(--u)*.6))}
+.device .scan{position:absolute;inset:5% 9% 8%;border-radius:calc(var(--u)*1.1);overflow:hidden;pointer-events:none;opacity:0;transition:opacity .4s var(--e)}
+.device .scan::after{content:"";position:absolute;left:0;right:0;top:-18%;height:18%;background:linear-gradient(to bottom,transparent,rgba(139,205,255,.5),transparent);border-bottom:1px solid rgba(190,230,255,.9);animation:scan 2.4s linear infinite}
+.device:hover .scan,.s06.st-2:not(.st-3) .device .scan{opacity:1}
+/* Solutions: puntos de capacidad, colmena de propuestas y acceso compacto a HighBeam */
+.spts{list-style:none;margin-top:calc(var(--u)*2);display:grid;row-gap:calc(var(--u)*1.05);max-width:calc(var(--u)*30)}
+.spts li{position:relative;padding-left:calc(var(--u)*1.5)}
+.spts li::before{content:"";position:absolute;left:0;top:calc(var(--u)*.3);width:calc(var(--u)*.5);height:calc(var(--u)*.5);background:var(--sky);box-shadow:0 0 10px rgba(139,205,255,.6)}
+.spts b{display:block;font-size:max(11px,calc(var(--u)*.74));font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--t1)}
+.spts span{display:block;margin-top:calc(var(--u)*.25);font-size:max(12px,calc(var(--u)*.78));line-height:1.45;color:var(--t2)}
+.s04 .sys{height:auto;display:flex;flex-direction:column;row-gap:calc(var(--u)*1.8)}
+/* fondo de las escenas de producto: más tenue para que la interfaz destaque */
+#stage.hbp .bg.b5{opacity:.45}
+#stage.hbr .bg.b5{opacity:.3}
+.hdev img,.stg2 .device img{filter:contrast(1.06) saturate(1.05)}
+/* Plantilla de producto HighBeam · layout ejecutivo compacto (lienzo 1920×1080: cabecera 70px, pie 80px, contenido Y≈90–900) */
+.prod .pcaps li{background:rgba(3,7,20,.42);box-shadow:inset 0 0 0 1px rgba(170,205,255,.14),inset 0 1px 0 rgba(255,255,255,.05);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:calc(var(--u)*.9);transition:box-shadow .4s var(--e),background .4s var(--e)}
+.prod .pcaps li:hover{box-shadow:inset 0 0 0 1px rgba(139,205,255,.4),inset 0 1px 0 rgba(255,255,255,.08)}
+.prod.st-1:not(.st-2) .pcaps li:nth-child(1),.prod.st-2:not(.st-3) .pcaps li:nth-child(2),.prod.st-3 .pcaps li:nth-child(3){background:rgba(10,24,64,.5);box-shadow:inset 0 0 0 1px rgba(139,205,255,.5),inset 0 1px 0 rgba(255,255,255,.08)}
+.prod .left .eyebrow{display:flex;align-items:center;font-size:max(11px,calc(var(--u)*.74));font-weight:700;letter-spacing:.32em;color:var(--sky)}
+.prod .pcaps .n{display:block;font-size:max(11px,calc(var(--u)*.68));font-weight:600;letter-spacing:.12em;line-height:1;color:rgba(214,228,248,.45);padding:0;margin:0;transition:color .4s var(--e)}
+.prod .pcaps h4{font-size:max(12px,calc(var(--u)*.78));font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--t1);transition:color .4s var(--e)}
+.prod .pcaps p{margin-top:calc(var(--u)*.35);font-size:max(12px,calc(var(--u)*.74));line-height:1.45;color:var(--t2);max-width:calc(var(--u)*24)}
+.prod .pcaps li:hover .n,.prod .pcaps li:hover h4{color:var(--sky)}
+.prod.st-1:not(.st-2) .pcaps li:nth-child(1) .n,.prod.st-2:not(.st-3) .pcaps li:nth-child(2) .n,.prod.st-3 .pcaps li:nth-child(3) .n{color:var(--sky)}
+/* Model Diagnosis: tablet apaisada con las capturas reales (la segunda aparece al avanzar) */
+.tab.ls{padding:calc(var(--u)*.7)}
+.scr.ls{position:relative;display:block;padding:0;gap:0;background:#0a0a12;aspect-ratio:2000/1126;border-radius:calc(var(--u)*.9);overflow:hidden}
+.scr.ls img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:opacity .9s var(--e)}
+.scr.ls .s2{opacity:0}
+.s-pi .scr.ls{aspect-ratio:1829/929}
+.s-md.st-2 .scr.ls .s2,.s-md.st-3 .scr.ls .s2{opacity:1}
+.hdev img.mock{display:block;width:100%;height:auto;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6)) drop-shadow(0 0 40px rgba(63,124,255,.25))}
+.stg2 .hk{display:none}
+
+/* ==================================================================
+   Plantilla de producto · rejilla editorial
+   Tesis espacial: dos columnas que comparten línea superior e inferior.
+   Izquierda: pregunta y producto arriba, capacidades abajo.
+   Derecha: héroe + vistas de apoyo con la misma altura total; el CTA cierra abajo a la derecha.
+   ================================================================== */
+/* cualquier pantalla horizontal (> 5:4): también tablets apaisadas y portátiles pequeños; ≤ 5:4 usa la columna vertical */
+@media (min-aspect-ratio:1251/1000){
+  .prod.sx{--ch:calc(var(--u)*27);padding-top:calc(var(--u)*6);padding-bottom:calc(var(--u)*9.4);
+    grid-template-columns:minmax(0,30fr) minmax(0,64fr);grid-template-rows:auto auto auto;align-content:center;align-items:start;column-gap:6%;row-gap:0}
+  .s-ra.sx{--ch:calc(var(--u)*24.5)}
+  /* columna editorial */
+  .sx .left{grid-column:1;grid-row:1;align-self:start}
+  .sx .q{margin-top:calc(var(--u)*1);font-size:max(28px,calc(var(--u)*2.5));line-height:1.06;text-wrap:balance}
+  .sx .pid{margin-top:calc(var(--u)*1.5);gap:calc(var(--u)*.8)}
+  .sx .pid .acr,.sx .pid .acr.sm{font-size:max(34px,calc(var(--u)*3.3))}
+  .sx .pid .name{font-size:max(13px,calc(var(--u)*.78))}
+  /* capacidades: un único contenedor, filas compactas; cierra la línea inferior */
+  .sx .pcaps{grid-column:1;grid-row:3;align-self:end;display:block;margin:calc(var(--u)*2.4) 0 0;padding:calc(var(--u)*.25) calc(var(--u)*1.2);border-radius:calc(var(--u)*1.1);
+    background:linear-gradient(160deg,rgba(14,28,78,.45),rgba(4,9,28,.55));box-shadow:inset 0 0 0 1px rgba(170,205,255,.14)}
+  .sx .pcaps li{display:grid;grid-template-columns:calc(var(--u)*2.4) minmax(0,1fr);align-items:baseline;margin:0;padding:calc(var(--u)*.75) 0;
+    background:none!important;box-shadow:none!important;backdrop-filter:none;-webkit-backdrop-filter:none;border-radius:0}
+  .sx .pcaps li+li{border-top:1px solid rgba(210,228,255,.1)}
+  .sx .pcaps li>div{min-width:0}
+  .sx .pcaps .n{font-size:max(15px,calc(var(--u)*1.15));font-weight:500;letter-spacing:-.02em;color:rgba(214,228,248,.42)}
+  .sx .pcaps p{font-size:max(11px,calc(var(--u)*.7));margin-top:calc(var(--u)*.2)}
+  /* escenario de producto: misma altura que la columna editorial */
+  .sx .parea{position:relative;grid-column:2;grid-row:1/4;align-self:stretch;margin:0;min-height:0;
+    display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-end}
+  .sx .parea::before{content:"";position:absolute;inset:-12% -8%;z-index:-1;pointer-events:none;background:radial-gradient(closest-side,rgba(2,4,12,.85),rgba(2,4,12,.42) 62%,transparent)}
+  .stg2{display:flex;justify-content:flex-end;align-items:flex-start;gap:calc(var(--u)*1.2);width:100%}
+  .stg2 .hero{flex:none;display:flex;flex-direction:column;align-items:center;row-gap:calc(var(--u)*1.4)}
+  .stg2 .hv{flex:none;height:var(--ch);display:block}
+  .stg2 .hdev,.stg2 .device{position:relative;flex:none;left:auto;top:auto;bottom:auto;height:var(--ch);width:auto;transform:translateY(24px)}
+  .scene.active .stg2 .device{transform:none;transition-delay:.7s}
+  .stg2 .tilt{height:100%}
+  .stg2 .tilt>img,.stg2 img.mock{height:100%!important;width:auto!important;max-width:none}
+  .stg2 .tab{height:100%;width:auto}
+  .stg2 .tab.ls{aspect-ratio:1.69}
+  .stg2 .tab.ls .scr.ls{height:100%;aspect-ratio:auto}
+  /* vistas de apoyo: dos tarjetas iguales, mismo marco y radio, alineadas con el héroe arriba y abajo */
+  .stg2 .shots{flex:1 1 0;height:var(--ch);max-width:calc(var(--u)*30);min-width:0;display:flex;flex-direction:column;gap:calc(var(--u)*1.2)}
+  .stg2 .shot{flex:1 1 0;min-height:0;margin:0;display:grid;place-items:center;padding:calc(var(--u)*.8);border-radius:calc(var(--u)*1.1);overflow:hidden;
+    background:linear-gradient(160deg,rgba(14,28,78,.5),rgba(4,9,28,.6));box-shadow:inset 0 0 0 1px rgba(170,205,255,.16),0 24px 44px -22px rgba(0,0,0,.85)}
+  .stg2 .shot.ref{opacity:0;transform:translateY(14px);transition:opacity .8s var(--eo) 1s,transform .9s var(--eo) 1s}
+  .scene.active .stg2 .shot.ref{opacity:1;transform:none}
+  .stg2 .shot.ref:nth-child(2){transition-delay:1.15s}
+  .stg2 .shot{position:relative}
+  .stg2 .shot,.stg2 .screen.shot{background:none!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;padding:0;overflow:visible}
+  .stg2 .shot.ref img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:contain;filter:drop-shadow(0 18px 30px rgba(0,0,0,.6))}
+  .stg2 .screen.shot{padding:0}
+  .stg2 .screen.shot .frame{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);height:100%;width:auto;aspect-ratio:1468/672;max-width:100%;border-radius:calc(var(--u)*.9);box-shadow:inset 0 0 0 1px rgba(170,205,255,.18),0 18px 30px -10px rgba(0,0,0,.6)}
+  .stg2 .screen.shot .frame>img{width:100%;height:100%;object-fit:contain}
+  .stg2 .screen .frame>img{filter:brightness(.78) contrast(.95)}
+  /* sin material de apoyo: no se reservan huecos; el héroe queda centrado */
+  .stg2 .ph{display:none}
+  .stg2 .shots:not(:has(.shot:not(.ph))){display:none}
+  .stg2:not(:has(.shot:not(.ph))){justify-content:center}
+  .sx .parea:not(:has(.shot:not(.ph))){align-items:center}
+}
+
+/* ==================================================================
+   AJUSTES ADAPTATIVOS · tablet y portátil
+   ================================================================== */
+/* Safari en iPad: vh incluye la barra del navegador; dvh mide lo que realmente se ve */
+@supports (height:1dvh){
+  :root{--u:min(1vw,1.7778dvh)}
+  @media (max-aspect-ratio:5/4){ :root{--u:min(1.15vw,.9dvh)} }
+}
+/* tarjeta de Pricing (slide 05): la columna es estrecha; se encuadra la zona de la mano y la tablet */
+.dim.nw>img{object-position:72% 22%}
+/* HighBeam overview: en 16:9 exacto la fila de módulos + recorrido desbordaba ~14 px */
+.s05-flow{row-gap:max(12px,calc(var(--u)*1.1))}
+.s05{padding-bottom:calc(var(--nav-h) + var(--nav-b) + max(10px,calc(var(--u)*1.4)))}
+/* Táctil en horizontal: sin hover, cada módulo enseña directamente su estado "abierto" (pregunta + producto) */
+@media (hover:none) and (min-aspect-ratio:1251/1000){
+  .s05 .dim .desc{display:none}
+}
+@media (max-aspect-ratio:5/4){
+  /* el recorrido 01→05 solo tiene sentido con los módulos en fila */
+  .journey{display:none}
+  /* último módulo impar a todo el ancho, como en la suite */
+  .chain>.node:last-child:nth-child(odd){grid-column:1/-1}
+  /* aire entre la barra de HighBeam y el antetítulo */
+  .scene[data-hb]{padding-top:calc(var(--py) + var(--u)*2.8)}
+  /* fundidos bajo las barras: el contenido que se desplaza no choca con la navegación */
+  .nav::before{content:"";position:absolute;z-index:-1;pointer-events:none;left:calc(var(--px)*-1);right:calc(var(--px)*-1);
+    bottom:calc(max(var(--nav-b),env(safe-area-inset-bottom))*-1);height:calc(100% + max(var(--nav-b),env(safe-area-inset-bottom)) + max(28px,calc(var(--u)*3)));
+    background:linear-gradient(to top,rgba(3,6,15,.94) 0%,rgba(3,6,15,.8) 55%,rgba(3,6,15,0))}
+  .hbnav::before{content:"";position:absolute;z-index:-1;pointer-events:none;left:calc(var(--px)*-1);width:100vw;
+    top:calc(max(16px,calc(var(--u)*1.25))*-1);height:calc(100% + max(16px,calc(var(--u)*1.25)) + max(22px,calc(var(--u)*2.4)));
+    background:linear-gradient(to bottom,rgba(3,6,15,.94) 0%,rgba(3,6,15,.75) 60%,rgba(3,6,15,0))}
+}
+/* Metodología en tablet vertical: iceberg algo menor y las dos listas en paralelo, para que quepa sin desplazarse */
+@media (max-aspect-ratio:5/4) and (min-width:600px){
+  .s02 .berg-art{width:min(58%,calc(var(--u)*43),24vh)}
+  .s02 .stage2{gap:calc(var(--u)*1.6)}
+  .s02 .pf{grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:calc(var(--u)*3.2);row-gap:calc(var(--u)*2.4);align-items:start}
+  .s02 .pf .pf-c{grid-column:1/-1;margin-top:0}
+  /* las 8 fuentes de OEMs en dos columnas, para que la lista no alargue la página */
+  .s02 .pf-u{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:calc(var(--u)*1.6)}
+  .s02 .pf-u .pf-h,.s02 .pf-u h3{grid-column:1/-1}
+}
+/* Producto en tablet vertical: texto y capacidades a la izquierda, mock-up a la derecha;
+   las vistas de apoyo quedan debajo (se llega desplazando) */
+@media (max-aspect-ratio:5/4) and (min-width:600px){
+  .prod.sx{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto auto auto;column-gap:calc(var(--u)*3.2);row-gap:0;align-items:start;align-content:start}
+  .prod.sx .left{display:block;grid-column:1;grid-row:1}
+  .prod.sx .pcaps{grid-column:1;grid-row:2;margin-top:calc(var(--u)*2.4)}
+  .prod.sx .pcaps li:first-child{margin-top:0}
+  .prod.sx .parea,.prod.sx .stg2{display:contents}
+  .prod.sx .stg2 .hero{grid-column:2;grid-row:1/3;align-self:center;margin-top:calc(var(--u)*2)}
+  .prod.sx .stg2 .hdev,.prod.sx .stg2 .device{width:100%}
+  /* Pricing, con un solo mock-up: texto arriba (título a la izquierda, capacidades a la derecha) y la tablet a todo el ancho debajo */
+  .s-pi.sx .pcaps{grid-column:2;grid-row:1;margin-top:0}
+  .s-pi.sx .stg2 .hero{grid-column:1/-1;grid-row:2;margin-top:calc(var(--u)*3.4)}
+  .s-pi.sx .stg2 .hdev{width:min(100%,calc(var(--u)*62))}
+  .prod.sx .stg2 .shots{grid-column:1/-1;grid-row:3;margin-top:calc(var(--u)*4)}
+}
+
+/* ==================================================================
+   IMAGEN DE APOYO · una por producto, proporción 10:9 (p. ej. 1200×1080)
+   Se coloca en assets/highbeam/<producto>/apoyo.webp (o .png / .jpg). Si existe sustituye a las
+   vistas de apoyo y queda a la misma altura que el mock-up; si no existe, todo queda como estaba.
+   ================================================================== */
+.stg2 .apoyo{display:none}
+.stg2.has-apoyo .apoyo{display:block;position:relative;opacity:0;transform:translateY(14px);transition:opacity .8s var(--eo) 1s,transform .9s var(--eo) 1s}
+.scene.active .stg2.has-apoyo .apoyo{opacity:1;transform:none}
+.stg2.has-apoyo .shots{display:none!important}
+.stg2 .apoyo img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 18px 30px rgba(0,0,0,.6))}
+@media (min-aspect-ratio:1251/1000){
+  .stg2.has-apoyo .apoyo{flex:none;height:var(--ch);aspect-ratio:var(--apoyo-ar,10/9)}
+  /* imagen muy vertical: más alta que el mock-up, dentro del alto de la columna editorial, para que se lea */
+  .stg2.apoyo-tall .apoyo{height:calc(var(--ch)*1.42)}
+  .prod.sx .stg2.has-apoyo{justify-content:flex-end;align-items:flex-start}
+  .prod.sx .parea:has(.stg2.has-apoyo){align-items:flex-end}
+  /* mock-ups apaisados (Model Diagnosis, Retail): mock-up e imagen a la misma altura, algo menor para que quepan juntos */
+  .s-md.sx .stg2.has-apoyo,.s-ra.sx .stg2.has-apoyo{--ch:calc(var(--u)*19)}
+  /* Pricing: tablet apaisada con la captura; con imagen de apoyo se reduce un poco para que quepan juntas */
+  .s-pi.sx .stg2 .tab.ls{aspect-ratio:1.91}
+  .s-pi.sx{--ch:min(calc(var(--u)*38),calc(var(--u)*55/1.91))}
+  .s-pi.sx .stg2.has-apoyo{--ch:calc(var(--u)*16.5)}
+  /* Model Diagnosis con imagen alargada: ocupa poco ancho, así que mock-up e imagen pueden ser algo mayores */
+  .s-md.sx .stg2.apoyo-tall{--ch:calc(var(--u)*21)}
+  /* imagen apaisada: junto a un mock-up apaisado no cabe legible; se apila debajo, a todo el ancho de la columna */
+  .prod.sx .stg2.apoyo-wide{flex-direction:column;align-items:center;justify-content:flex-start;gap:calc(var(--u)*1.4)}
+  .s-ra.sx .stg2.apoyo-wide{--ch:calc(var(--u)*14.5)}
+  .stg2.apoyo-wide .apoyo{height:auto;width:100%;aspect-ratio:var(--apoyo-ar)}
+}
+@media (max-aspect-ratio:5/4){
+  /* Model Diagnosis: su tablet se construye con capturas y no tiene ancho propio; sin esto se colapsaba (13 px) en vertical */
+  .stg2 .hero>.hv{align-self:stretch}
+  .stg2 .tab.ls{aspect-ratio:auto}
+  .stg2.has-apoyo .apoyo{width:min(100%,calc(var(--u)*44));aspect-ratio:var(--apoyo-ar,10/9);margin:calc(var(--u)*1.6) auto 0}
+  .stg2.apoyo-tall .apoyo{width:auto;height:calc(var(--u)*42);max-width:100%}
+}
+@media (max-aspect-ratio:5/4) and (min-width:600px){
+  .prod.sx .stg2.has-apoyo .apoyo{grid-column:1/-1;grid-row:3;margin-top:calc(var(--u)*3)}
+}
+
+
+/* ==================================================================
+   PCI · COMITÉ — añadidos sobre el sistema HighBeam (sin tokens nuevos)
+   Slide 02 = reveal de la suite (.s05) + marco de tablet de Pricing Intelligence (.s-pi).
+   Pasos: 0 wordmark · 1 titular · 2 tablet (Executive Summary) · 3 Pricing Architecture · 4 Full Detail + recorrido.
+   ================================================================== */
+.eco h2 em{font-style:normal;color:var(--sky)}
+/* logotipo PCI en el wordmark: misma altura óptica que la palabra «HighBeam» del original */
+.pci .wm-word{line-height:0}
+.pci .pci-logo{display:block;width:auto;height:1.05em}
+.pci .pv{--dh:calc(var(--u)*27);position:relative;align-self:center;display:grid;grid-template-columns:auto calc(var(--u)*17);
+  grid-template-rows:auto auto;column-gap:calc(var(--u)*3.2);justify-content:center;align-items:center}
+.pci .pv::before{content:"";position:absolute;inset:-10% -6%;z-index:-1;pointer-events:none;background:radial-gradient(closest-side,rgba(2,4,12,.8),rgba(2,4,12,.35) 62%,transparent)}
+/* tablet apaisada (misma gramática que .s-pi), a la proporción de las capturas reales */
+/* 1.737 = pantalla 16:9 de las capturas + el marco de la tablet (.7u por lado) */
+.pci .hdev{grid-column:1;grid-row:1;height:var(--dh);width:auto;aspect-ratio:1.737}
+.s05.pci.active .hdev{opacity:0;transform:translateY(34px)}
+.s05.pci.st-2 .hdev{opacity:1;transform:none;transition:opacity .9s var(--eo) .1s,transform 1.2s var(--eo) .1s}
+.pci .hdev .tilt,.pci .tab.ls{height:100%;width:100%}
+.pci .tab.ls{aspect-ratio:auto}
+.pci .tab.ls .scr.ls{height:100%;aspect-ratio:auto}
+.pci .scr.ls img{object-position:0 0}
+/* cambio de vista: la nueva pantalla entra rápida desde la derecha (como al navegar en la herramienta),
+   sin el fundido largo entre dos interfaces claras, que las emborrona */
+.pci .scr.ls img:not(.s1){opacity:0;transform:translateX(2.5%);transition:opacity .38s var(--e),transform .6s var(--eo)}
+.pci.st-3 .scr.ls .s2{opacity:1;transform:none}
+.pci.st-4 .scr.ls .s3{opacity:1;transform:none}
+.pci.st-5 .scr.ls .s4{opacity:1;transform:none}
+.pci.st-6 .scr.ls .s5{opacity:1;transform:none}
+.pci.st-7 .scr.ls .s6{opacity:1;transform:none}
+.pci.st-8 .scr.ls .s7{opacity:1;transform:none}
+/* columna lateral: frase de apoyo + las siete vistas reales del producto (la activa se ilumina) */
+.pv-side{grid-column:2;grid-row:1;opacity:0;transform:translateY(calc(var(--u)*1.1));transition:opacity .5s var(--e),transform .6s var(--eo)}
+.s05.pci.st-2 .pv-side{opacity:1;transform:none;transition:opacity .9s var(--eo) .55s,transform 1s var(--eo) .55s}
+.pv-lede{font-size:max(14px,calc(var(--u)*1.14));line-height:1.45;font-weight:500;letter-spacing:-.01em;color:var(--t1);text-wrap:balance}
+.pv-lb{margin-top:calc(var(--u)*2.2);padding-bottom:calc(var(--u)*.7);border-bottom:1px solid var(--edge);font-size:max(10px,calc(var(--u)*.62));font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--sky)}
+/* lista de vistas: el lenguaje de línea + nodo del deck (capas del iceberg, recorrido, orbital).
+   Un raíl fino; el tramo recorrido se ilumina y un nodo se desliza a la vista activa, unido al nombre por una línea corta. */
+.pv-nav{--ih:calc(var(--u)*2.1);--vi:0;--rx:calc(var(--u)*.5);position:relative;margin-top:calc(var(--u)*.6)}
+.pv-views{list-style:none}
+.pv-views li{position:relative;display:flex;align-items:center;height:var(--ih);padding-left:calc(var(--u)*2.3);font-size:max(10px,calc(var(--u)*.66));font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--t3);transition:color .45s var(--e)}
+.pv-views li::before{content:"";position:absolute;left:calc(var(--rx) + var(--u)*.6);top:50%;width:calc(var(--u)*1.05);height:1px;background:linear-gradient(90deg,var(--sky),rgba(139,205,255,.25));
+  transform:scaleX(0);transform-origin:0 50%;transition:transform .4s var(--eo)}
+.pv-rail{position:absolute;left:var(--rx);top:calc(var(--ih)/2);height:calc(var(--ih)*6);width:1px;background:var(--edge);pointer-events:none}
+/* una parada por vista sobre el raíl; las ya recorridas se encienden */
+.pv-views li::after{content:"";position:absolute;left:calc(var(--rx) - 1.5px);top:calc(50% - 1.5px);width:4px;height:4px;border-radius:50%;background:rgba(210,228,255,.3);transition:background .4s var(--e) .15s}
+.pci.st-2 .pv-views .v1::after{background:var(--sky)}
+.pci.st-3 .pv-views .v2::after{background:var(--sky)}
+.pci.st-4 .pv-views .v3::after{background:var(--sky)}
+.pci.st-5 .pv-views .v4::after{background:var(--sky)}
+.pci.st-6 .pv-views .v5::after{background:var(--sky)}
+.pci.st-7 .pv-views .v6::after{background:var(--sky)}
+.pci.st-8 .pv-views .v7::after{background:var(--sky)}
+.pv-rail i{position:absolute;left:0;top:0;width:1px;height:calc(var(--vi)*var(--ih));background:linear-gradient(to bottom,rgba(139,205,255,.2),var(--sky));transition:height .55s var(--eo)}
+.pv-rail b{position:absolute;left:.5px;top:0;width:calc(var(--u)*.55);height:calc(var(--u)*.55);border-radius:50%;background:var(--sky);
+  box-shadow:0 0 0 calc(var(--u)*.28) rgba(139,205,255,.16),0 0 calc(var(--u)*1.2) rgba(139,205,255,.85);
+  transform:translate(-50%,calc(-50% + var(--vi)*var(--ih)));transition:transform .55s var(--eo)}
+.pci.st-2 .pv-nav{--vi:0}
+.pci.st-3 .pv-nav{--vi:1}
+.pci.st-4 .pv-nav{--vi:2}
+.pci.st-5 .pv-nav{--vi:3}
+.pci.st-6 .pv-nav{--vi:4}
+.pci.st-7 .pv-nav{--vi:5}
+.pci.st-8 .pv-nav{--vi:6}
+.pci.st-2:not(.st-3) .pv-views .v1::before,.pci.st-3:not(.st-4) .pv-views .v2::before,.pci.st-4:not(.st-5) .pv-views .v3::before,.pci.st-5:not(.st-6) .pv-views .v4::before,.pci.st-6:not(.st-7) .pv-views .v5::before,.pci.st-7:not(.st-8) .pv-views .v6::before,.pci.st-8 .pv-views .v7::before{transform:scaleX(1);transition-delay:.25s}
+.pci.st-2:not(.st-3) .pv-views .v1,.pci.st-3:not(.st-4) .pv-views .v2,.pci.st-4:not(.st-5) .pv-views .v3,.pci.st-5:not(.st-6) .pv-views .v4,.pci.st-6:not(.st-7) .pv-views .v5,.pci.st-7:not(.st-8) .pv-views .v6,.pci.st-8 .pv-views .v7{color:var(--t1)}
+/* cada vista se puede abrir con un clic durante la presentación */
+.s05.pci:not(.st-2) .pv-views{pointer-events:none}
+.pv-views li{cursor:pointer}
+.pv-views li:hover{color:var(--t1)}
+.pv-views li:focus-visible{outline:1px solid var(--sky);outline-offset:3px;border-radius:4px}
+/* el recorrido Markets → Price y la frase final llegan con la última vista (Full Detail), no en el paso 4 del original */
+.s05.pci:not(.st-8) .journey{opacity:0;transform:translateY(8px);transition-delay:0s}
+.s05.pci:not(.st-8) .journey span::before{transform:scale(0);transition-delay:0s}
+.s05.pci:not(.st-8) .truth .line>span{transform:translateY(145%);transition-delay:0s}
+.pv-note{margin-top:calc(var(--u)*1.6);font-size:max(10px,calc(var(--u)*.6));font-weight:500;letter-spacing:.04em;color:var(--t3)}
+/* recorrido del dato bajo la tablet: el componente .journey de la suite, con seis dimensiones */
+.pci .journey{grid-column:1;grid-row:2;grid-template-columns:repeat(6,minmax(0,1fr));margin-top:calc(var(--u)*1.6)}
+@media (max-aspect-ratio:5/4){
+  .pci .pv{grid-template-columns:minmax(0,1fr);row-gap:calc(var(--u)*2.4);--dh:auto}
+  .pci .hdev{width:min(100%,calc(var(--u)*62));height:auto;aspect-ratio:1.737;justify-self:center}
+  .pv-side{grid-column:1;grid-row:2}
+}
+
+/* ==================================================================
+   03 · USE CASES — ocho tarjetas editoriales (4 × 2)
+   Fondo de las páginas de producto HighBeam (highbeam-01, atenuado como en .prod).
+   Cada tarjeta: superficie de cristal oscuro + capa visual vacía (recibirá una imagen) + degradado
+   inferior de los módulos de la suite (.dim::after) + índice/chip arriba + título y frase abajo.
+   ================================================================== */
+#stage[data-scene="3"] .bg.b5{opacity:.45}
+#stage[data-scene="3"] #aura{opacity:0}
+.uc{display:grid;grid-template-rows:auto minmax(0,1fr);row-gap:calc(var(--u)*2.2)}
+.uc .head{display:flex;justify-content:space-between;align-items:flex-end;gap:calc(var(--u)*4)}
+.uc .mega{font-size:max(40px,calc(var(--u)*5.6));margin-top:calc(var(--u)*1.2)}
+.uc .sup{max-width:calc(var(--u)*30);padding-bottom:calc(var(--u)*.5);font-size:max(15px,calc(var(--u)*1.3));line-height:1.45;font-weight:500;letter-spacing:-.01em;color:var(--t1);text-align:right;text-wrap:balance}
+.uc-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:calc(var(--u)*.9);min-height:0}
+.pci-use-case-card{position:relative;min-width:0;min-height:0}
+.pci-card-surface{--r:calc(var(--u)*1.25);position:absolute;inset:0;border-radius:var(--r);overflow:hidden;isolation:isolate;
+  background:radial-gradient(ellipse 85% 70% at var(--gx,30%) var(--gy,8%),rgba(63,124,255,.26),rgba(63,124,255,0) 70%),
+    linear-gradient(165deg,rgba(22,36,84,.82),rgba(6,11,30,.9) 62%);
+  -webkit-backdrop-filter:blur(16px) saturate(130%);backdrop-filter:blur(16px) saturate(130%);
+  box-shadow:inset 0 0 0 1px var(--edge),inset 0 1px 0 rgba(255,255,255,.14),0 30px 60px -36px rgba(0,0,0,.85);
+  transition:transform .5s var(--eo),box-shadow .5s var(--e)}
+/* capa visual: imagen de cada caso. Algo ampliada (--img-z) para poder subir el sujeto por encima del texto con --img-pos */
+.pci-card-visual{position:absolute;inset:0;z-index:0;background-size:calc(var(--img-z,1.15)*100%) auto;background-position:var(--img-pos,50% 35%);background-repeat:no-repeat}
+/* misma entrada que las imágenes de los módulos de la suite: se asienta desde un zoom suave */
+/* entrada contenida: zoom corto (no el 1.18 de la suite, que con 8 imágenes a la vez resulta inquieto) */
+.uc.active .pci-card-visual{animation:pci-img-in 1.6s var(--eo) var(--d,0s) backwards}
+@keyframes pci-img-in{from{transform:scale(1.07)}}
+.pci-card-visual{transition:transform 1s var(--eo)}
+@media (hover:hover){.pci-use-case-card:hover .pci-card-visual{transform:scale(1.04)}}
+.pci-card-visual>img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:var(--img-pos,50% 35%);display:block}
+/* degradado de lectura (mismo que los módulos de la suite) */
+.pci-card-surface::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(to top,rgba(4,8,26,.94) 0%,rgba(4,8,26,.62) 38%,rgba(4,8,26,0) 66%),
+    linear-gradient(to bottom,rgba(4,8,26,.5) 0%,rgba(4,8,26,0) 24%)}
+.pci-card-top{position:absolute;z-index:2;left:calc(var(--u)*1.3);right:calc(var(--u)*1.3);top:calc(var(--u)*1.2);display:flex;justify-content:space-between;align-items:center;gap:calc(var(--u)*.8)}
+.pci-card-index{font-size:max(10px,calc(var(--u)*.62));font-weight:600;letter-spacing:.2em;color:var(--t2);font-variant-numeric:tabular-nums}
+.pci-card-index b{color:var(--sky);font-weight:600}
+.pci-card-tag{display:inline-flex;align-items:center;height:max(20px,calc(var(--u)*1.35));padding:0 max(8px,calc(var(--u)*.65));border-radius:9999px;white-space:nowrap;
+  font-size:max(9px,calc(var(--u)*.52));font-weight:600;letter-spacing:.2em;color:rgba(214,228,248,.82);
+  background:rgba(4,8,26,.46);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:inset 0 0 0 1px var(--edge)}
+.pci-card-content{position:absolute;z-index:2;left:calc(var(--u)*1.3);right:calc(var(--u)*1.3);bottom:calc(var(--u)*1.25)}
+.pci-card-content h3{font-size:max(17px,calc(var(--u)*1.42));font-weight:500;letter-spacing:-.025em;line-height:1.12;color:var(--t1);text-wrap:balance;text-shadow:0 1px 14px rgba(3,6,15,.5)}
+.pci-card-content p{margin-top:calc(var(--u)*.55);font-size:max(12px,calc(var(--u)*.84));line-height:1.42;color:var(--t2);text-wrap:pretty}
+/* línea de acento al pie, como los módulos de la suite al abrirse */
+.pci-card-surface::before{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;z-index:3;background:linear-gradient(90deg,var(--sky),rgba(139,205,255,0));transform:scaleX(0);transform-origin:0 50%;transition:transform .6s var(--eo)}
+@media (hover:hover){
+  .pci-use-case-card:hover .pci-card-surface{transform:translateY(-4px);box-shadow:inset 0 0 0 1px rgba(139,205,255,.42),inset 0 1px 0 rgba(255,255,255,.2),0 34px 64px -34px rgba(0,0,0,.9)}
+  .pci-use-case-card:hover .pci-card-surface::before{transform:scaleX(1)}
+}
+/* ==================================================================
+   04 · BUSINESS APPLICATIONS — sistema orbital
+   Mecánica de Signals (CircularMap / signalsmap.css): arcos que se trazan (smap-draw), rótulo de familia
+   sobre el arco (textPath), nodos punto + anillo que brotan (smap-pop), foco que atenúa el resto.
+   Sistema visual de HighBeam: horizonte del iceberg, rótulos con líneas finas como las capas, cristal mínimo.
+   Escenario 1680 × 640: 1cqw = 16,8 unidades.
+   ================================================================== */
+#stage[data-scene="4"] .bg.b5{opacity:.45}
+#stage[data-scene="4"] #aura{opacity:0}
+.apps{display:grid;grid-template-rows:auto minmax(0,1fr);row-gap:calc(var(--u)*1.4);
+  --c-core:var(--sky);--c-decision:#6f95ff;--c-extended:rgba(220,236,255,.78)}
+.apps .head{display:flex;justify-content:space-between;align-items:flex-end;gap:calc(var(--u)*4)}
+.apps .mega{font-size:max(34px,calc(var(--u)*4.3));margin-top:calc(var(--u)*1.1)}
+.apps .side{max-width:calc(var(--u)*29);padding-bottom:calc(var(--u)*.4);text-align:right}
+.apps .side .label{color:var(--sky)}
+.apps .sup{margin-top:calc(var(--u)*.7);font-size:max(15px,calc(var(--u)*1.22));line-height:1.45;font-weight:500;letter-spacing:-.01em;color:var(--t1);text-wrap:balance}
+.pci-orbit-stage{position:relative;min-height:0;container-type:size}
+.pci-orbit{position:absolute;left:50%;bottom:0;width:min(100cqw,calc(100cqh*2.625));aspect-ratio:1680/640;transform:translateX(-50%);container-type:inline-size}
+.pci-orbit-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.pci-orbit .core{--c:var(--c-core)} .pci-orbit .decision{--c:var(--c-decision)} .pci-orbit .extended{--c:var(--c-extended)}
+/* anillos */
+.pci-arc{fill:none;stroke:var(--c);stroke-linecap:round;transition:opacity .4s var(--e),stroke-width .3s var(--e)}
+.core .pci-arc{stroke-width:3}
+.decision .pci-arc{stroke-width:2.2}
+.extended .pci-arc{stroke-width:1.8;stroke-dasharray:6 7}
+.pci-arc-draw{stroke-dasharray:1;fill:none}
+.pci-arc-mask{stroke:#fff;stroke-width:10}
+/* el trazo acelera y se asienta (curva --io): así el paso por cada nodo se percibe y el nodo se enciende a la vez */
+.apps.active .pci-arc-draw{animation:pci-draw .8s cubic-bezier(.65,0,.35,1) var(--d) backwards}
+.pci-fam{font-size:15px;font-weight:600;letter-spacing:.22em;fill:var(--c);transition:opacity .4s var(--e)}
+.apps.active .pci-fam{animation:pci-fade .5s var(--e) var(--d) backwards}
+.pci-glow{pointer-events:none}
+.apps.active .pci-glow{animation:pci-fade 1.2s var(--e) .3s backwards}
+/* nodos */
+.pci-orbit-node{cursor:pointer;transition:opacity .35s var(--e)}
+.pci-node-dot{fill:var(--c)}
+.pci-node-ring{fill:rgba(4,8,26,.65);stroke:var(--c);stroke-width:1.5;stroke-opacity:.55}
+.pci-node-hit{fill:transparent}
+.pci-orbit-node :is(.pci-node-dot,.pci-node-ring){transform-box:fill-box;transform-origin:center;transition:scale .5s cubic-bezier(.34,1.56,.64,1),stroke-opacity .3s var(--e)}
+.apps.active .pci-orbit-node :is(.pci-node-dot,.pci-node-ring){animation:pci-pop .55s cubic-bezier(.34,1.56,.64,1) var(--d) backwards}
+/* destello único al encenderse el nodo (sin bucles) */
+.pci-node-flash{fill:none;stroke:var(--c);stroke-width:1.5;opacity:0;transform-box:fill-box;transform-origin:center;pointer-events:none}
+.apps.active .pci-node-flash{animation:pci-pulse .9s cubic-bezier(.16,1,.3,1) var(--d) 1}
+/* tramo del anillo de la aplicación enfocada */
+.pci-seg{fill:none;stroke:var(--c);stroke-width:7;stroke-linecap:round;opacity:0;pointer-events:none;filter:drop-shadow(0 0 6px var(--c));transition:opacity .35s var(--e)}
+.pci-lead-end{fill:var(--c);transform-box:fill-box;transform-origin:center;transition:opacity .35s var(--e)}
+.apps.active .pci-lead-end{animation:pci-pop .4s cubic-bezier(.34,1.56,.64,1) var(--d) backwards}
+/* líneas hacia los rótulos (como las capas del iceberg) */
+.pci-lead{fill:none;stroke:var(--c);stroke-opacity:.42;stroke-width:1.2;stroke-dasharray:1;transition:stroke-opacity .35s var(--e),opacity .35s var(--e)}
+.apps.active .pci-lead{animation:pci-draw .42s cubic-bezier(.4,0,.2,1) var(--d) backwards}
+/* horizonte + motor */
+.pci-horizon{position:absolute;left:calc(270*100%/1680);right:calc(270*100%/1680);top:calc(596*100%/640);height:1px;
+  background:linear-gradient(90deg,transparent 0%,rgba(139,205,255,.85) 18%,rgba(139,205,255,.85) 82%,transparent);box-shadow:0 0 18px rgba(139,205,255,.45)}
+.apps.active .pci-horizon{animation:pci-wide 1s var(--eo) .25s backwards}
+.pci-orbit-hub{position:absolute;left:50%;top:calc(464*100%/640);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;row-gap:1.75cqw;pointer-events:none}
+.pci-orbit-hub img{width:7.14cqw;height:auto;display:block}
+.pci-orbit-hub span{font-size:.68cqw;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--sky);white-space:nowrap;margin-right:-.26em}
+.apps.active .pci-orbit-hub img{animation:pci-pop .7s cubic-bezier(.34,1.56,.64,1) .3s backwards}
+.apps.active .pci-orbit-hub span{animation:pci-fade .6s var(--e) .55s backwards}
+.pci-pulse{fill:none;stroke:var(--sky);stroke-width:1.5;opacity:0;transform-box:fill-box;transform-origin:center;pointer-events:none}
+.apps.active .pci-pulse{animation:pci-pulse 1.3s cubic-bezier(.16,1,.3,1) .5s 1}
+/* rótulos de aplicación */
+.pci-app{position:absolute;width:18.4cqw;transform:translateY(-.62em);font-size:max(14px,1.2cqw);cursor:pointer;outline:none;transition:opacity .35s var(--e)}
+.pci-app.l{text-align:right}
+.pci-app b{display:block;font-weight:500;letter-spacing:-.015em;line-height:1.2;color:var(--t1);transition:color .3s var(--e)}
+.pci-app span{display:block;margin-top:.32em;font-size:max(11px,.78cqw);line-height:1.42;color:var(--t2);text-wrap:pretty}
+.pci-app:focus-visible b{outline:1px solid var(--sky);outline-offset:4px;border-radius:3px}
+/* el rótulo llega en la dirección de su línea: hacia fuera desde el motor */
+.apps.active .pci-app{animation:pci-out-r .55s var(--eo) var(--d) backwards}
+.apps.active .pci-app.l{animation-name:pci-out-l}
+/* foco (pasar el ratón, Tab o clic): se ilumina una aplicación, su tramo de anillo y su familia; el resto se atenúa */
+.pci-orbit[data-active] .pci-app,.pci-orbit[data-active] .pci-orbit-node,.pci-orbit[data-active] .pci-lead,.pci-orbit[data-active] .pci-lead-end{opacity:.28}
+.pci-orbit[data-active] .pci-orbit-ring .pci-arc,.pci-orbit[data-active] .pci-fam{opacity:.35}
+.pci-orbit[data-active="01"] [data-app="01"]{opacity:1}.pci-orbit[data-active="01"] .pci-app[data-app="01"] b{color:var(--sky)}.pci-orbit[data-active="01"] .pci-lead[data-app="01"]{stroke-opacity:.95}.pci-orbit[data-active="01"] .pci-seg[data-app="01"]{opacity:.9}.pci-orbit[data-active="01"] .pci-orbit-node[data-app="01"] :is(.pci-node-dot,.pci-node-ring){scale:1.3}
+.pci-orbit[data-active="02"] [data-app="02"]{opacity:1}.pci-orbit[data-active="02"] .pci-app[data-app="02"] b{color:var(--sky)}.pci-orbit[data-active="02"] .pci-lead[data-app="02"]{stroke-opacity:.95}.pci-orbit[data-active="02"] .pci-seg[data-app="02"]{opacity:.9}.pci-orbit[data-active="02"] .pci-orbit-node[data-app="02"] :is(.pci-node-dot,.pci-node-ring){scale:1.3}
+.pci-orbit[data-active="03"] [data-app="03"]{opacity:1}.pci-orbit[data-active="03"] .pci-app[data-app="03"] b{color:var(--sky)}.pci-orbit[data-active="03"] .pci-lead[data-app="03"]{stroke-opacity:.95}.pci-orbit[data-active="03"] .pci-seg[data-app="03"]{opacity:.9}.pci-orbit[data-active="03"] .pci-orbit-node[data-app="03"] :is(.pci-node-dot,.pci-node-ring){scale:1.3}
+.pci-orbit[data-active="04"] [data-app="04"]{opacity:1}.pci-orbit[data-active="04"] .pci-app[data-app="04"] b{color:var(--sky)}.pci-orbit[data-active="04"] .pci-lead[data-app="04"]{stroke-opacity:.95}.pci-orbit[data-active="04"] .pci-seg[data-app="04"]{opacity:.9}.pci-orbit[data-active="04"] .pci-orbit-node[data-app="04"] :is(.pci-node-dot,.pci-node-ring){scale:1.3}
+.pci-orbit[data-active="05"] [data-app="05"]{opacity:1}.pci-orbit[data-active="05"] .pci-app[data-app="05"] b{color:var(--sky)}.pci-orbit[data-active="05"] .pci-lead[data-app="05"]{stroke-opacity:.95}.pci-orbit[data-active="05"] .pci-seg[data-app="05"]{opacity:.9}.pci-orbit[data-active="05"] .pci-orbit-node[data-app="05"] :is(.pci-node-dot,.pci-node-ring){scale:1.3}
+.pci-orbit[data-active="06"] [data-app="06"]{opacity:1}.pci-orbit[data-active="06"] .pci-app[data-app="06"] b{color:var(--sky)}.pci-orbit[data-active="06"] .pci-lead[data-app="06"]{stroke-opacity:.95}.pci-orbit[data-active="06"] .pci-seg[data-app="06"]{opacity:.9}.pci-orbit[data-active="06"] .pci-orbit-node[data-app="06"] :is(.pci-node-dot,.pci-node-ring){scale:1.3}
+.pci-orbit[data-active="07"] [data-app="07"]{opacity:1}.pci-orbit[data-active="07"] .pci-app[data-app="07"] b{color:var(--sky)}.pci-orbit[data-active="07"] .pci-lead[data-app="07"]{stroke-opacity:.95}.pci-orbit[data-active="07"] .pci-seg[data-app="07"]{opacity:.9}.pci-orbit[data-active="07"] .pci-orbit-node[data-app="07"] :is(.pci-node-dot,.pci-node-ring){scale:1.3}
+.pci-orbit[data-active="08"] [data-app="08"]{opacity:1}.pci-orbit[data-active="08"] .pci-app[data-app="08"] b{color:var(--sky)}.pci-orbit[data-active="08"] .pci-lead[data-app="08"]{stroke-opacity:.95}.pci-orbit[data-active="08"] .pci-seg[data-app="08"]{opacity:.9}.pci-orbit[data-active="08"] .pci-orbit-node[data-app="08"] :is(.pci-node-dot,.pci-node-ring){scale:1.3}
+.pci-orbit[data-ring="core"] .pci-orbit-ring.core :is(.pci-arc,.pci-fam){opacity:1}
+.pci-orbit[data-ring="decision"] .pci-orbit-ring.decision :is(.pci-arc,.pci-fam){opacity:1}
+.pci-orbit[data-ring="extended"] .pci-orbit-ring.extended :is(.pci-arc,.pci-fam){opacity:1}
+@keyframes pci-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes pci-pop{0%{opacity:0;scale:0}70%{opacity:1;scale:1.12}100%{scale:1}}
+@keyframes pci-fade{from{opacity:0}}
+@keyframes pci-rise{from{opacity:0;translate:0 8px}}
+@keyframes pci-out-r{from{opacity:0;translate:-14px 0}}
+@keyframes pci-out-l{from{opacity:0;translate:14px 0}}
+@keyframes pci-wide{from{opacity:0;transform:scaleX(.2)}}
+@keyframes pci-pulse{0%{opacity:.7;scale:1}100%{opacity:0;scale:2.6}}
+
+/* ==================================================================
+   05 · ENDING — cierre en círculo con la portada
+   Las líneas de «From data to decision» (.conv de la portada) vuelven, ahora desde ambos lados,
+   y convergen en el motor: el logo PCI se revela con el barrido del wordmark de la suite (.wm-word),
+   lanza un pulso único y firma. Fondo: los haces del reveal de HighBeam. Sin bucles: termina quieta.
+   ================================================================== */
+#stage[data-scene="5"] #aura{opacity:0}
+.end{background:#000;padding:0}
+.end-beams{position:absolute;inset:0;pointer-events:none;background:url(assets/bg/highbeam-reveal.webp) center 30%/cover no-repeat;opacity:.55;
+  -webkit-mask-image:linear-gradient(to top,#000 6%,rgba(0,0,0,.55) 34%,transparent 62%);mask-image:linear-gradient(to top,#000 6%,rgba(0,0,0,.55) 34%,transparent 62%)}
+.end.active .end-beams{animation:pci-fade 2.4s var(--e) .2s backwards}
+.end-glow{position:absolute;left:50%;top:44%;width:calc(var(--u)*60);aspect-ratio:1;translate:-50% -50%;border-radius:50%;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(63,124,255,.28),rgba(63,124,255,.08) 55%,transparent)}
+.end.active .end-glow{animation:pci-fade 1.6s var(--e) 1.3s backwards}
+/* líneas que convergen (misma pluma que la portada) */
+.end-conv{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;
+  -webkit-mask-image:linear-gradient(to bottom,#000 0,#000 52%,transparent 68%);mask-image:linear-gradient(to bottom,#000 0,#000 52%,transparent 68%)}
+.end-conv path{fill:none;stroke:rgba(150,208,255,.3);stroke-width:1.3;stroke-linecap:round;stroke-dasharray:1}
+.end.active .end-conv path{animation:pci-draw 1.5s cubic-bezier(.65,0,.35,1) var(--d) backwards}
+/* firma: logo + nombre + Astara, centrados sobre el punto de convergencia */
+.end-sign{position:absolute;left:50%;top:44%;translate:-50% calc(var(--u)*-6.2);display:flex;flex-direction:column;align-items:center;text-align:center}
+.end-logo{position:relative;width:calc(var(--u)*12.4);aspect-ratio:1;
+  -webkit-mask-image:linear-gradient(90deg,#000 42%,transparent 58%);mask-image:linear-gradient(90deg,#000 42%,transparent 58%);
+  -webkit-mask-size:300% 100%;mask-size:300% 100%;-webkit-mask-position:0 0;mask-position:0 0}
+.end-logo img{display:block;width:100%;height:100%}
+.end.active .end-logo{animation:pci-mask 1.2s var(--e) 1.45s backwards}
+@keyframes pci-mask{from{-webkit-mask-position:100% 0;mask-position:100% 0}}
+.end-sweep{position:absolute;top:10%;bottom:10%;left:0;width:calc(var(--u)*6);margin-left:calc(var(--u)*-3);pointer-events:none;
+  background:radial-gradient(closest-side,rgba(139,205,255,.6),rgba(139,205,255,0));filter:blur(10px);opacity:0}
+.end.active .end-sweep{animation:pci-sweep 1.2s var(--e) 1.45s both}
+@keyframes pci-sweep{0%{opacity:0;transform:translateX(0)}15%{opacity:1}85%{opacity:1}100%{opacity:0;transform:translateX(calc(var(--u)*12.4))}}
+.end-pulse{position:absolute;inset:0;border-radius:24%;box-shadow:inset 0 0 0 1.5px var(--sky);opacity:0;pointer-events:none}
+.end.active .end-pulse{animation:pci-pulse 1.4s cubic-bezier(.16,1,.3,1) 2.2s 1}
+.end-sub{margin-top:calc(var(--u)*3);margin-right:-.5em;font-size:max(12px,calc(var(--u)*1.3));font-weight:400;letter-spacing:.5em;text-transform:uppercase;color:var(--sky)}
+.end-by{display:flex;align-items:center;gap:calc(var(--u)*.6);margin-top:calc(var(--u)*1.3);font-size:max(13px,calc(var(--u)*.95));font-weight:500;letter-spacing:.06em;color:var(--t2)}
+.end-by .amark{height:max(15px,calc(var(--u)*1.3))}
+.end.active .end-sub{animation:pci-rise .8s var(--eo) 2.3s backwards}
+.end.active .end-by{animation:pci-rise .8s var(--eo) 2.55s backwards}
+/* eco de la portada */
+.end-tag{position:absolute;left:0;right:0;bottom:calc(var(--pb) + var(--u)*2.2);text-align:center}
+.end-tag .mega{font-size:max(30px,calc(var(--u)*3.4))}
+.end-tag .line>span{transition-delay:var(--d)}
+
+@media (max-aspect-ratio:5/4){
+  .uc .head{flex-direction:column;align-items:flex-start}
+  .uc .sup{text-align:left}
+  .uc-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:none;grid-auto-rows:calc(var(--u)*24)}
+  .pci-card-visual{background-size:cover}
+}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.001ms!important;animation:none!important}}
+</style>
+<noscript><style>.scene{opacity:1!important;visibility:visible!important;position:relative!important;min-height:100vh}.a,.line>span{opacity:1!important;transform:none!important}#stage{position:static!important}html,body{overflow:auto!important;height:auto!important}</style>
+<div style="position:fixed;z-index:999;left:0;right:0;top:0;padding:14px 20px;background:#fab42d;color:#03060f;font:600 15px system-ui">Esta presentación necesita JavaScript. Ábrela en Chrome, Edge o Safari (no en la vista previa de Dropbox).</div></noscript>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="hb" viewBox="0 0 64 40"><path d="M34 4c12 0 24 6 24 16s-12 16-24 16c-2 0-3-1-3-3V7c0-2 1-3 3-3Z" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linejoin="round"/><path d="M4 8h20M4 16h20M4 24h20M4 32h20" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></symbol>
+  <symbol id="spark" viewBox="0 0 32 32"><path d="M16 2v28M2 16h28M6 6l20 20M26 6 6 26" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+</svg>
+
+<div id="stage" data-scene="0">
+  <div id="bgs" aria-hidden="true"><i class="bg b0"></i><i class="bg b1"></i><i class="bg b5"></i></div>
+  <div id="aura" aria-hidden="true"><i class="b3"></i><i class="b1"></i><i class="b2"></i></div>
+
+  <!-- ============ 01 · INTRO · una sola idea ============ -->
+  <section class="scene s01" data-chap="0" data-steps="0" aria-label="Astara Intelligence">
+    <svg class="conv" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <path pathLength="1" style="--d:.3s"  d="M1920 70 C1600 70 1400 420 1040 470"/>
+      <path pathLength="1" style="--d:.45s" d="M1920 320 C1650 300 1350 470 1040 470"/>
+      <path pathLength="1" style="--d:.6s"  d="M1920 560 C1650 560 1350 480 1040 470"/>
+      <path pathLength="1" style="--d:.75s" d="M1920 820 C1650 800 1380 520 1040 470"/>
+      <path pathLength="1" style="--d:.9s"  d="M1920 1020 C1560 980 1280 560 1040 470"/>
+      <path pathLength="1" style="--d:.5s"  d="M1560 -10 C1500 200 1300 400 1040 470"/>
+      <path pathLength="1" style="--d:.7s"  d="M1240 -10 C1260 150 1160 360 1040 470"/>
+      <path pathLength="1" style="--d:.85s" d="M1480 1090 C1420 860 1220 600 1040 470"/>
+      <path pathLength="1" style="--d:1s"   d="M1150 1090 C1150 880 1100 640 1040 470"/>
+      <path class="out" pathLength="1" style="--d:2s" d="M1040 470 L948 470"/>
+      <circle class="halo" cx="1040" cy="470" r="26"/>
+      <circle cx="1040" cy="470" r="4.5"/>
+    </svg>
+    <div class="main">
+      <h1 class="mega"><span class="line"><span style="--d:.25s">From data</span></span><span class="line"><span style="--d:.4s"><em>to decision</em></span></span></h1>
+      <p class="body a" style="--d:.8s">We design, analyse and implement intelligent mobility systems grounded in data and built for the real world.</p>
+    </div>
+  </section>
+
+  <!-- ============ 01 · PRICING DATA · el iceberg original ============ -->
+  <section class="scene s02" data-chap="1" data-steps="1" data-lock="2600" aria-label="Pricing data">
+    <div class="berg">
+      <div class="stage2">
+        <div class="copy">
+          <div class="eyebrow a" style="--d:.1s">01 / Pricing data</div>
+          <h2 class="mega"><span class="line"><span style="--d:.2s">The insight you see.</span></span><span class="line"><span style="--d:.32s"><em>The data behind it.</em></span></span></h2>
+          <p class="sup">Comparable market intelligence starts long before the dashboard.</p>
+        </div>
+
+        <div class="berg-art">
+          <div class="berg-depth" aria-hidden="true"></div>
+          <img class="berg-img" src="assets/method/iceberg.webp" alt="">
+        </div>
+        <span class="wline" aria-hidden="true"></span>
+
+        <svg class="ann" viewBox="0 0 1680 863" preserveAspectRatio="none" aria-hidden="true">
+          <!-- estado 1: lo visible de PCI, al lado de la punta -->
+          <path class="i0" pathLength="1" style="--d:0.9s" d="M922 368 L1450 368"/>
+          <path class="i0" pathLength="1" style="--d:1.0s" d="M963 420 L1450 420"/>
+          <path class="i0" pathLength="1" style="--d:1.1s" d="M1030 471 L1450 471"/>
+          <circle class="i0n" style="--d:0.9s" cx="922" cy="368" r="3.5"/>
+          <circle class="i0n" style="--d:1.0s" cx="963" cy="420" r="3.5"/>
+          <circle class="i0n" style="--d:1.1s" cx="1030" cy="471" r="3.5"/>
+
+          <!-- estado 2: lo visible rodeando la cima (reglas finas + nodos) -->
+          <path class="f1" pathLength="1" style="--d:0.95s" d="M470 96 L811 96 L811 212"/>
+          <path class="f1" pathLength="1" style="--d:1.05s" d="M470 170 L752 170 L752 276"/>
+          <path class="f1" pathLength="1" style="--d:1.0s" d="M938 212 L938 96 L1240 96"/>
+          <circle class="f1n" style="--d:1.3s" cx="811" cy="212" r="4"/>
+          <circle class="f1n" style="--d:1.4s" cx="752" cy="276" r="4"/>
+          <circle class="f1n" style="--d:1.35s" cx="938" cy="212" r="4"/>
+
+          <!-- estado 2: cuatro capas de datos, a profundidades reales del iceberg -->
+          <path class="st" pathLength="1" style="--d:0.85s" d="M678 446 L1044 446"/>
+          <path class="st" pathLength="1" style="--d:0.97s" d="M720 530 L1009 530"/>
+          <path class="st" pathLength="1" style="--d:1.09s" d="M749 614 L974 614"/>
+          <path class="st" pathLength="1" style="--d:1.21s" d="M801 698 L890 698"/>
+          <path class="ld" pathLength="1" style="--d:0.95s" d="M1044 446 L1278 446"/>
+          <path class="ld" pathLength="1" style="--d:1.07s" d="M1009 530 L1278 530"/>
+          <path class="ld" pathLength="1" style="--d:1.19s" d="M974 614 L1278 614"/>
+          <path class="ld" pathLength="1" style="--d:1.31s" d="M890 698 L1278 698"/>
+          <circle class="nd" style="--d:1.00s" cx="1044" cy="446" r="5"/>
+          <circle class="nd" style="--d:1.12s" cx="1009" cy="530" r="5"/>
+          <circle class="nd" style="--d:1.24s" cx="974" cy="614" r="5"/>
+          <circle class="nd" style="--d:1.36s" cx="890" cy="698" r="5"/>
+        </svg>
+
+        <div class="hd up">Pricing intelligence</div>
+        <div class="tag-o" style="--x0:1190;--y0:362;--x1:470;--y1:90;--d:0.95s;--r:0.2s"><i>01</i>Market positioning</div>
+        <div class="tag-o" style="--x0:1190;--y0:413.5;--x1:470;--y1:164;--d:1.05s;--r:0.28s"><i>02</i>Portfolio comparison</div>
+        <div class="tag-o" style="--x0:1190;--y0:465;--x1:950;--y1:90;--d:1.15s;--r:0.24s"><i>03</i>Affordability</div>
+
+        <div class="mla"><div class="me">Underlying data</div><h3>Data foundation</h3></div>
+
+        <div class="tag-l" style="--y:446;--d:1.05s"><b>COMPARABILITY</b><span>Structured records · Consistent comparisons · Coverage &amp; depth awareness</span></div>
+        <div class="tag-l" style="--y:530;--d:1.17s"><b>COMMON DATA MODEL</b><span>Market · Brand · Model · Trim · Powertrain · Price</span></div>
+        <div class="tag-l" style="--y:614;--d:1.29s"><b>MARKET CONTEXT</b><span>Registrations &amp; economic indicators</span></div>
+        <div class="tag-l" style="--y:698;--d:1.41s"><b>OFFICIAL SOURCES</b><span>Manufacturer websites &amp; vehicle configurators</span></div>
+
+        <p class="close"><span>Prices become intelligence when they are comparable.</span><em>Comparability is built below the surface.</em></p>
+      </div>
+
+      <!-- respaldo vertical (tablet): misma información en columna -->
+      <div class="pf" aria-hidden="true">
+        <div class="pf-g"><b class="pf-h">Pricing intelligence</b>
+          <p><i>01</i>Market positioning</p><p><i>02</i>Portfolio comparison</p><p><i>03</i>Affordability</p></div>
+        <div class="pf-g pf-u"><b class="pf-h">Underlying data</b><h3>Data foundation</h3>
+          <p><span><strong>Comparability</strong>Structured records · Consistent comparisons · Coverage &amp; depth awareness</span></p>
+          <p><span><strong>Common data model</strong>Market · Brand · Model · Trim · Powertrain · Price</span></p>
+          <p><span><strong>Market context</strong>Registrations &amp; economic indicators</span></p>
+          <p><span><strong>Official sources</strong>Manufacturer websites &amp; vehicle configurators</span></p></div>
+        <p class="pf-c">Prices become intelligence when they are comparable.<em>Comparability is built below the surface.</em></p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ 02 · PCI PLATFORM · reveal de la suite + tablet de producto ============ -->
+  <section class="scene s05 pci" data-chap="2" data-steps="8" data-auto="3000,1500" aria-label="PCI platform">
+    <div class="streaks img"></div>
+    <div class="wm"><div class="wm-inner" id="wmInner">
+      <div class="wm-word" id="wmWord"><img class="pci-logo" src="assets/brand/pci-logo.svg" width="130" height="130" alt="PCI"></div>
+      <span class="sweep"></span>
+      <div class="wm-sub">Price Competitiveness Index</div>
+      <div class="wm-by"><span>by</span><img class="amark" src="assets/brand/astara-logo-white.svg" alt="Astara Intelligence"></div>
+    </div></div>
+    <div class="s05-flow">
+      <div aria-hidden="true"></div>
+      <div class="eco">
+        <h2><span class="line"><span>One data model. <em>Multiple perspectives.</em></span></span></h2>
+      </div>
+      <div class="pv">
+        <div class="hdev">
+          <span class="br tl"></span><span class="br tr"></span><span class="br bl"></span><span class="br brr"></span>
+          <div class="tilt"><div class="tab ls" role="img" aria-label="PCI dashboard on a tablet, one screen per view"><div class="scr ls">
+            <img class="s1" src="assets/pci/01-executive-summary.webp" alt="">
+            <img class="s2" src="assets/pci/02-group-footprint.webp" alt="">
+            <img class="s3" src="assets/pci/03-powertrain-mix.webp" alt="">
+            <img class="s4" src="assets/pci/04-pricing-architecture.webp" alt="">
+            <img class="s5" src="assets/pci/05-affordability.webp" alt="">
+            <img class="s6" src="assets/pci/06-market-share.webp" alt="">
+            <img class="s7" src="assets/pci/07-full-detail.webp" alt="">
+          </div></div><div class="scan t2"></div></div>
+        </div>
+        <aside class="pv-side">
+          <p class="pv-lede">Explore markets, portfolios and vehicle-level pricing in one connected environment.</p>
+          <div class="pv-lb">Seven connected views</div>
+          <div class="pv-nav"><span class="pv-rail" aria-hidden="true"><i></i><b></b></span>
+          <ol class="pv-views">
+            <li class="v1" data-step="2" role="button" tabindex="0">Executive Summary</li>
+            <li class="v2" data-step="3" role="button" tabindex="0">Group Footprint</li>
+            <li class="v3" data-step="4" role="button" tabindex="0">Powertrain Mix</li>
+            <li class="v4" data-step="5" role="button" tabindex="0">Pricing Architecture</li>
+            <li class="v5" data-step="6" role="button" tabindex="0">Affordability</li>
+            <li class="v6" data-step="7" role="button" tabindex="0">Market Share</li>
+            <li class="v7" data-step="8" role="button" tabindex="0">Full Detail</li>
+          </ol></div>
+          <div class="pv-note">Demo environment · 21 European markets</div>
+        </aside>
+        <div class="journey" aria-hidden="true"><span><b>01</b>Markets</span><span><b>02</b>Brands</span><span><b>03</b>Models</span><span><b>04</b>Trims</span><span><b>05</b>Powertrain</span><span><b>06</b>Price</span></div>
+      </div>
+      <div class="truth"><p><span class="line"><span><em>From market overview</em> to version-level pricing.</span></span></p></div>
+    </div>
+  </section>
+
+  <!-- ============ 03 · USE CASES · ocho tarjetas ============ -->
+  <section class="scene uc" data-chap="3" data-steps="0" aria-label="PCI use cases">
+    <div class="head">
+      <div>
+        <div class="eyebrow a" style="--d:.1s">PCI · Price Competitiveness Index</div>
+        <h2 class="mega"><span class="line"><span style="--d:.2s">Use <em>cases</em></span></span></h2>
+      </div>
+      <p class="sup a" style="--d:.38s">Eight ways PCI turns automotive data into business decisions.</p>
+    </div>
+    <div class="uc-grid">
+      <article class="pci-use-case-card a" data-use-case="01" style="--d:0.45s;--gx:22%;--gy:6%">
+        <div class="pci-card-surface">
+          <div class="pci-card-visual" aria-hidden="true" style="background-image:url(assets/use-cases/01.webp);--img-pos:50% 92%"></div>
+          <div class="pci-card-top"><span class="pci-card-tag">BENCHMARK</span></div>
+          <div class="pci-card-content"><h3>Competitive Price Benchmarking</h3><p>Compare price positioning across brands, models and trims.</p></div>
+        </div>
+      </article>
+      <article class="pci-use-case-card a" data-use-case="02" style="--d:0.52s;--gx:78%;--gy:4%">
+        <div class="pci-card-surface">
+          <div class="pci-card-visual" aria-hidden="true" style="background-image:url(assets/use-cases/02.webp);--img-pos:50% 80%"></div>
+          <div class="pci-card-top"><span class="pci-card-tag">MONITOR</span></div>
+          <div class="pci-card-content"><h3>Price Evolution &amp; Market Monitoring</h3><p>Track price movements and changing market strategies.</p></div>
+        </div>
+      </article>
+      <article class="pci-use-case-card a" data-use-case="03" style="--d:0.59s;--gx:40%;--gy:0%">
+        <div class="pci-card-surface">
+          <div class="pci-card-visual" aria-hidden="true" style="background-image:url(assets/use-cases/03.webp);--img-pos:50% 90%"></div>
+          <div class="pci-card-top"><span class="pci-card-tag">STRATEGY</span></div>
+          <div class="pci-card-content"><h3>Pricing Strategy &amp; Product Positioning</h3><p>Assess launch prices, positioning and competitive gaps.</p></div>
+        </div>
+      </article>
+      <article class="pci-use-case-card a" data-use-case="04" style="--d:0.66s;--gx:86%;--gy:12%">
+        <div class="pci-card-surface">
+          <div class="pci-card-visual" aria-hidden="true" style="background-image:url(assets/use-cases/04.webp);--img-pos:50% 90%"></div>
+          <div class="pci-card-top"><span class="pci-card-tag">PORTFOLIO</span></div>
+          <div class="pci-card-content"><h3>Portfolio &amp; Trim Optimization</h3><p>Identify price gaps, overlaps and range opportunities.</p></div>
+        </div>
+      </article>
+      <article class="pci-use-case-card a" data-use-case="05" style="--d:0.52s;--gx:14%;--gy:10%">
+        <div class="pci-card-surface">
+          <div class="pci-card-visual" aria-hidden="true" style="background-image:url(assets/use-cases/05.webp);--img-pos:50% 95%"></div>
+          <div class="pci-card-top"><span class="pci-card-tag">PROMOTIONS</span></div>
+          <div class="pci-card-content"><h3>Promotions &amp; Discount Intelligence</h3><p>Compare list prices, offers and promotional pressure.</p></div>
+        </div>
+      </article>
+      <article class="pci-use-case-card a" data-use-case="06" style="--d:0.59s;--gx:62%;--gy:2%">
+        <div class="pci-card-surface">
+          <div class="pci-card-visual" aria-hidden="true" style="background-image:url(assets/use-cases/06.webp);--img-pos:50% 95%"></div>
+          <div class="pci-card-top"><span class="pci-card-tag">FLEET</span></div>
+          <div class="pci-card-content"><h3>Fleet &amp; TCO Benchmarking</h3><p>Evaluate fleet acquisition costs and TCO opportunities.</p></div>
+        </div>
+      </article>
+      <article class="pci-use-case-card a" data-use-case="07" style="--d:0.66s;--gx:30%;--gy:14%">
+        <div class="pci-card-surface">
+          <div class="pci-card-visual" aria-hidden="true" style="background-image:url(assets/use-cases/07.webp);--img-pos:50% 85%"></div>
+          <div class="pci-card-top"><span class="pci-card-tag">OPPORTUNITY</span></div>
+          <div class="pci-card-content"><h3>Market Opportunities &amp; White Spaces</h3><p>Reveal underserved price bands, technologies and body types.</p></div>
+        </div>
+      </article>
+      <article class="pci-use-case-card a" data-use-case="08" style="--d:0.73s;--gx:74%;--gy:8%">
+        <div class="pci-card-surface">
+          <div class="pci-card-visual" aria-hidden="true" style="background-image:url(assets/use-cases/08.webp);--img-pos:50% 100%"></div>
+          <div class="pci-card-top"><span class="pci-card-tag">RESIDUAL VALUE</span></div>
+          <div class="pci-card-content"><h3>Residual Value &amp; Used Car Intelligence</h3><p>Explore depreciation through new and used vehicle prices.</p></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ 04 · BUSINESS APPLICATIONS · un motor, ocho aplicaciones ============ -->
+  <section class="scene apps" data-chap="4" data-steps="0" aria-label="PCI business applications">
+    <div class="head">
+      <div>
+        <div class="eyebrow a" style="--d:.1s">PCI · Price Competitiveness Index</div>
+        <h2 class="mega"><span class="line"><span style="--d:.2s">One engine.</span></span><span class="line"><span style="--d:.3s"><em>Multiple applications.</em></span></span></h2>
+      </div>
+      <div class="side a" style="--d:.38s"><div class="label">Business applications</div><p class="sup">A single pricing intelligence foundation can power multiple business solutions.</p></div>
+    </div>
+    <div class="pci-orbit-stage">
+      <div class="pci-orbit" id="pciOrbit">
+        <svg class="pci-orbit-svg" viewBox="0 0 1680 640" preserveAspectRatio="none" aria-hidden="true">
+          <defs><radialGradient id="pci-glow" cx="840" cy="596" r="560" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#3f7cff" stop-opacity=".22"/><stop offset=".55" stop-color="#3f7cff" stop-opacity=".07"/><stop offset="1" stop-color="#3f7cff" stop-opacity="0"/></radialGradient></defs>
+          <path class="pci-glow" d="M280 596 A560 560 0 0 1 1400 596 Z" fill="url(#pci-glow)"/>
+          <g class="pci-orbit-ring core" data-ring="core"><path class="pci-arc-draw pci-arc" pathLength="1" d="M640 596 A200 200 0 0 1 840 396" style="--d:0.45s"/><path class="pci-arc-draw pci-arc" pathLength="1" d="M1040 596 A200 200 0 0 0 840 396" style="--d:0.45s"/><path id="pci-lp-core" d="M662 596 A178 178 0 0 1 1018 596" fill="none"/><text class="pci-fam" style="--d:1.09s"><textPath href="#pci-lp-core" startOffset="56.7%" text-anchor="middle">CORE PRICING</textPath></text></g><g class="pci-orbit-ring decision" data-ring="decision"><path class="pci-arc-draw pci-arc" pathLength="1" d="M490 596 A350 350 0 0 1 840 246" style="--d:0.73s"/><path class="pci-arc-draw pci-arc" pathLength="1" d="M1190 596 A350 350 0 0 0 840 246" style="--d:0.73s"/><path id="pci-lp-decision" d="M512 596 A328 328 0 0 1 1168 596" fill="none"/><text class="pci-fam" style="--d:1.37s"><textPath href="#pci-lp-decision" startOffset="51.1%" text-anchor="middle">DECISION TOOLS</textPath></text></g><g class="pci-orbit-ring extended" data-ring="extended"><mask id="pci-m-extended" maskUnits="userSpaceOnUse" x="0" y="0" width="1680" height="640"><path class="pci-arc-draw pci-arc-mask" pathLength="1" d="M340 596 A500 500 0 0 1 840 96" style="--d:1.01s"/><path class="pci-arc-draw pci-arc-mask" pathLength="1" d="M1340 596 A500 500 0 0 0 840 96" style="--d:1.01s"/></mask><path class="pci-arc" mask="url(#pci-m-extended)" d="M340 596 A500 500 0 0 1 1340 596"/><path id="pci-lp-extended" d="M362 596 A478 478 0 0 1 1318 596" fill="none"/><text class="pci-fam" style="--d:1.65s"><textPath href="#pci-lp-extended" startOffset="51.1%" text-anchor="middle">EXTENDED INTELLIGENCE</textPath></text></g>
+          <g class="pci-segs"><path class="pci-seg core" data-app="01" d="M647.7 540.9 A200 200 0 0 1 696.1 457.1"/><path class="pci-seg core" data-app="02" d="M722.4 434.2 A200 200 0 0 1 812.2 397.9"/><path class="pci-seg core" data-app="03" d="M978.9 452.1 A200 200 0 0 1 1030.2 534.2"/><path class="pci-seg decision" data-app="04" d="M490.9 571.6 A350 350 0 0 1 543.2 410.5"/><path class="pci-seg decision" data-app="05" d="M912.8 253.6 A350 350 0 0 1 1065.0 327.9"/><path class="pci-seg decision" data-app="06" d="M1130.2 400.3 A350 350 0 0 1 1188.1 559.4"/><path class="pci-seg extended" data-app="07" d="M416.0 331.0 A500 500 0 0 1 590.0 163.0"/><path class="pci-seg extended" data-app="08" d="M1090.0 163.0 A500 500 0 0 1 1264.0 331.0"/></g>
+          <g class="pci-leads"><path class="pci-lead core" data-app="01" pathLength="1" style="--d:0.90s" d="M666.8 496.0 L381.0 331.0 L320 331.0"/><path class="pci-lead core" data-app="02" pathLength="1" style="--d:1.03s" d="M765.1 410.6 L641.5 104.6 L320 104.6"/><path class="pci-lead core" data-app="03" pathLength="1" style="--d:0.91s" d="M1009.6 490.0 L1289.5 315.1 L1360 315.1"/><path class="pci-lead decision" data-app="04" pathLength="1" style="--d:1.13s" d="M507.1 487.8 L335.9 432.2 L320 432.2"/><path class="pci-lead decision" data-app="05" pathLength="1" style="--d:1.30s" d="M993.4 281.4 L1072.3 119.6 L1360 119.6"/><path class="pci-lead decision" data-app="06" pathLength="1" style="--d:1.14s" d="M1168.9 476.3 L1338.0 414.7 L1360 414.7"/><path class="pci-lead extended" data-app="07" pathLength="1" style="--d:1.51s" d="M492.7 236.3 L471.8 214.7 L320 214.7"/><path class="pci-lead extended" data-app="08" pathLength="1" style="--d:1.51s" d="M1187.3 236.3 L1208.2 214.7 L1360 214.7"/><circle class="pci-lead-end core" data-app="01" cx="320" cy="331.0" r="3" style="--d:1.28s"/><circle class="pci-lead-end core" data-app="02" cx="320" cy="104.6" r="3" style="--d:1.41s"/><circle class="pci-lead-end core" data-app="03" cx="1360" cy="315.1" r="3" style="--d:1.29s"/><circle class="pci-lead-end decision" data-app="04" cx="320" cy="432.2" r="3" style="--d:1.50s"/><circle class="pci-lead-end decision" data-app="05" cx="1360" cy="119.6" r="3" style="--d:1.67s"/><circle class="pci-lead-end decision" data-app="06" cx="1360" cy="414.7" r="3" style="--d:1.51s"/><circle class="pci-lead-end extended" data-app="07" cx="320" cy="214.7" r="3" style="--d:1.89s"/><circle class="pci-lead-end extended" data-app="08" cx="1360" cy="214.7" r="3" style="--d:1.89s"/></g>
+          <g class="pci-nodes"><g class="pci-orbit-node core" data-app="01" transform="translate(666.8 496.0)" style="--d:0.80s"><circle class="pci-node-flash" r="13"/><circle class="pci-node-ring" r="13"/><circle class="pci-node-dot" r="7"/><circle class="pci-node-hit" r="26"/></g><g class="pci-orbit-node core" data-app="02" transform="translate(765.1 410.6)" style="--d:0.93s"><circle class="pci-node-flash" r="13"/><circle class="pci-node-ring" r="13"/><circle class="pci-node-dot" r="7"/><circle class="pci-node-hit" r="26"/></g><g class="pci-orbit-node core" data-app="03" transform="translate(1009.6 490.0)" style="--d:0.81s"><circle class="pci-node-flash" r="13"/><circle class="pci-node-ring" r="13"/><circle class="pci-node-dot" r="7"/><circle class="pci-node-hit" r="26"/></g><g class="pci-orbit-node decision" data-app="04" transform="translate(507.1 487.8)" style="--d:1.03s"><circle class="pci-node-flash" r="13"/><circle class="pci-node-ring" r="13"/><circle class="pci-node-dot" r="7"/><circle class="pci-node-hit" r="26"/></g><g class="pci-orbit-node decision" data-app="05" transform="translate(993.4 281.4)" style="--d:1.20s"><circle class="pci-node-flash" r="13"/><circle class="pci-node-ring" r="13"/><circle class="pci-node-dot" r="7"/><circle class="pci-node-hit" r="26"/></g><g class="pci-orbit-node decision" data-app="06" transform="translate(1168.9 476.3)" style="--d:1.04s"><circle class="pci-node-flash" r="13"/><circle class="pci-node-ring" r="13"/><circle class="pci-node-dot" r="7"/><circle class="pci-node-hit" r="26"/></g><g class="pci-orbit-node extended" data-app="07" transform="translate(492.7 236.3)" style="--d:1.41s"><circle class="pci-node-flash" r="13"/><circle class="pci-node-ring" r="13"/><circle class="pci-node-dot" r="7"/><circle class="pci-node-hit" r="26"/></g><g class="pci-orbit-node extended" data-app="08" transform="translate(1187.3 236.3)" style="--d:1.41s"><circle class="pci-node-flash" r="13"/><circle class="pci-node-ring" r="13"/><circle class="pci-node-dot" r="7"/><circle class="pci-node-hit" r="26"/></g></g>
+          <circle class="pci-pulse" cx="840" cy="524" r="64"/>
+        </svg>
+        <span class="pci-horizon" aria-hidden="true"></span>
+        <div class="pci-orbit-hub"><img src="assets/brand/pci-logo.svg" width="130" height="130" alt="PCI"><span>Pricing intelligence engine</span></div>
+        <div class="pci-app core l" data-app="01" data-ring="core" role="button" tabindex="0" style="right:calc(1370*100%/1680);top:calc(331.0*100%/640);--d:1.22s"><b>Competitive Benchmarking</b><span>Compare price positions across vehicles and markets.</span></div><div class="pci-app core l" data-app="02" data-ring="core" role="button" tabindex="0" style="right:calc(1370*100%/1680);top:calc(104.6*100%/640);--d:1.35s"><b>Price Monitoring</b><span>Track price changes and competitor moves.</span></div><div class="pci-app core" data-app="03" data-ring="core" role="button" tabindex="0" style="left:calc(1370*100%/1680);top:calc(315.1*100%/640);--d:1.22s"><b>Automotive Price Index</b><span>Build structured market-level pricing indicators.</span></div><div class="pci-app decision l" data-app="04" data-ring="decision" role="button" tabindex="0" style="right:calc(1370*100%/1680);top:calc(432.2*100%/640);--d:1.44s"><b>Launch Pricing Simulator</b><span>Explore pricing scenarios for new models.</span></div><div class="pci-app decision" data-app="05" data-ring="decision" role="button" tabindex="0" style="left:calc(1370*100%/1680);top:calc(119.6*100%/640);--d:1.61s"><b>Portfolio Optimization</b><span>Identify gaps, overlaps and range opportunities.</span></div><div class="pci-app decision" data-app="06" data-ring="decision" role="button" tabindex="0" style="left:calc(1370*100%/1680);top:calc(414.7*100%/640);--d:1.45s"><b>Promotions Intelligence</b><span>Assess offers, discounts and commercial pressure.</span></div><div class="pci-app extended l" data-app="07" data-ring="extended" role="button" tabindex="0" style="right:calc(1370*100%/1680);top:calc(214.7*100%/640);--d:1.83s"><b>TCO &amp; Fleet Intelligence</b><span>Connect acquisition prices with ownership costs.</span></div><div class="pci-app extended" data-app="08" data-ring="extended" role="button" tabindex="0" style="left:calc(1370*100%/1680);top:calc(214.7*100%/640);--d:1.83s"><b>Residual Value Analysis</b><span>Link new-car pricing with depreciation and resale.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05 · ENDING · las líneas de la portada convergen en el producto ============ -->
+  <section class="scene end" data-chap="5" data-steps="0" aria-label="PCI · Price Competitiveness Index">
+    <div class="end-beams" aria-hidden="true"></div>
+    <svg class="end-conv" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path pathLength="1" style="--d:0.15s" d="M-10 90 C426 90 680 429 960 475"/><path pathLength="1" style="--d:0.19s" d="M1930 90 C1494 90 1240 429 960 475"/><path pathLength="1" style="--d:0.22s" d="M-10 300 C426 300 680 454 960 475"/><path pathLength="1" style="--d:0.26s" d="M1930 300 C1494 300 1240 454 960 475"/><path pathLength="1" style="--d:0.29s" d="M-10 520 C426 520 680 480 960 475"/><path pathLength="1" style="--d:0.33s" d="M1930 520 C1494 520 1240 480 960 475"/><path pathLength="1" style="--d:0.36s" d="M-10 720 C426 720 680 504 960 475"/><path pathLength="1" style="--d:0.40s" d="M1930 720 C1494 720 1240 504 960 475"/><path pathLength="1" style="--d:0.43s" d="M250 -10 C570 -10 680 417 960 475"/><path pathLength="1" style="--d:0.47s" d="M1670 -10 C1350 -10 1240 417 960 475"/><path pathLength="1" style="--d:0.50s" d="M560 -10 C740 -10 680 417 960 475"/><path pathLength="1" style="--d:0.54s" d="M1360 -10 C1180 -10 1240 417 960 475"/><path pathLength="1" style="--d:0.57s" d="M820 -10 C883 -10 680 417 960 475"/><path pathLength="1" style="--d:0.61s" d="M1100 -10 C1037 -10 1240 417 960 475"/></svg>
+    <div class="end-glow" aria-hidden="true"></div>
+    <div class="end-sign">
+      <div class="end-logo"><img src="assets/brand/pci-logo.svg" width="130" height="130" alt="PCI"><span class="end-pulse" aria-hidden="true"></span><span class="end-sweep" aria-hidden="true"></span></div>
+      <div class="end-sub">Price Competitiveness Index</div>
+      <div class="end-by"><span>by</span><img class="amark" src="assets/brand/astara-logo-white.svg" alt="Astara Intelligence"></div>
+    </div>
+    <div class="end-tag"><h2 class="mega"><span class="line"><span style="--d:2.9s">From data <em>to decision.</em></span></span></h2></div>
+  </section>
+
+  <!-- ============ NAVEGACIÓN ============ -->
+  <nav class="nav" id="nav" aria-label="Astara Intelligence">
+    <button class="brand" data-go="0" aria-label="Astara Intelligence · back to start"><img class="amark" src="assets/brand/astara-logo-white.svg" alt="Astara Intelligence"></button>
+    <div class="chap">
+      <button data-go="0" data-chap="0">Intro</button>
+      <button data-go="1" data-chap="1">Pricing Data</button>
+      <button data-go="2" data-chap="2">Platform</button>
+      <button data-go="3" data-chap="3">Use Cases</button>
+      <button data-go="4" data-chap="4">Applications</button>
+    </div>
+    <span class="cur" id="curChap"></span>
+    <div class="right">
+      <span class="meta">
+      <span class="keys"><span class="k-fine">Click, space or → to continue · F fullscreen</span><span class="k-touch">Swipe or use the arrows</span></span>
+      <span class="beats" id="beats"></span>
+      <span class="count" id="count"><b>01</b> / 06</span>
+      </span>
+      <button class="arrow" id="prev" aria-label="Previous"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 8H3M7 4 3 8l4 4"/></svg></button>
+      <button class="arrow" id="next" aria-label="Next"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8h11M9 4l4 4-4 4"/></svg></button>
+    </div>
+  </nav>
+  <div class="progress" id="progress"></div>
+  <div id="grain" aria-hidden="true"></div>
+</div>
+
+<script>
+const stage=document.getElementById('stage');
+const coarse=matchMedia('(pointer:coarse)').matches;
+
+/* ---------- Medidas que dependen de la pantalla (wordmark de HighBeam) ---------- */
+const s05=document.querySelector('.s05'), wmInner=document.getElementById('wmInner'), wmWord=document.getElementById('wmWord');
+function measure(){
+  const S=parseFloat(getComputedStyle(s05).getPropertyValue('--wm-s'))||.3;
+  s05.style.setProperty('--wm-h',Math.ceil(wmInner.offsetHeight*S)+'px');
+  s05.style.setProperty('--ww',wmWord.offsetWidth+'px');
+}
+addEventListener('resize',measure); measure();
+document.fonts && document.fonts.ready.then(measure);
+
+/* ---------- Texturas de las capas (SVG generado, semilla fija) ---------- */
+let seed=7; const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+const svg=i=>`<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">${i}</svg>`;
+const L={
+  telco(){let s='';for(let x=24;x<500;x+=30)for(let y=24;y<500;y+=30)s+=`<circle cx="${x}" cy="${y}" r="1.6" fill="rgba(220,236,255,.35)"/>`;
+    for(let i=0;i<9;i++){const x1=40+rnd()*420,y1=40+rnd()*420,x2=40+rnd()*420,y2=40+rnd()*420;
+      s+=`<path d="M${x1} ${y1} Q ${(x1+x2)/2+(rnd()-.5)*230} ${(y1+y2)/2+(rnd()-.5)*230} ${x2} ${y2}" fill="none" stroke="rgba(170,215,255,${.4+rnd()*.45})" stroke-width="${1+rnd()*2}"/><circle cx="${x2}" cy="${y2}" r="4" fill="#dcecff"/>`}
+    return svg(s)},
+  digital(){let s='';for(let i=0;i<46;i++){const r=3+rnd()*16,x=30+rnd()*440,y=30+rnd()*440,g=rnd()<.12;
+      s+=`<circle cx="${x}" cy="${y}" r="${r}" fill="${g?'rgba(250,180,45,.28)':'rgba(220,236,255,.1)'}" stroke="${g?'rgba(250,180,45,.85)':'rgba(220,236,255,.5)'}" stroke-width="1"/>`}
+    return svg(s)},
+  cadastre(){let s='';const n=8,c=500/n,p=[];for(let i=0;i<=n;i++){p[i]=[];for(let j=0;j<=n;j++)p[i][j]=[i*c+(i%n?(rnd()-.5)*22:0),j*c+(j%n?(rnd()-.5)*22:0)]}
+    for(let i=0;i<n;i++)for(let j=0;j<n;j++){const q=[p[i][j],p[i+1][j],p[i+1][j+1],p[i][j+1]].map(v=>v.join(',')).join(' ');const f=rnd()<.16;
+      s+=`<polygon points="${q}" fill="${f?'rgba(220,236,255,.14)':'none'}" stroke="rgba(220,236,255,.26)" stroke-width="1"/>`}
+    s+=`<path d="M0 ${c*3} C160 ${c*3+40} 300 ${c*2} 500 ${c*2.4}" stroke="rgba(220,236,255,.75)" stroke-width="3" fill="none"/><path d="M${c*5} 0 L${c*4.6} 500" stroke="rgba(220,236,255,.5)" stroke-width="2" fill="none"/>`;
+    return svg(s)},
+  apis(){let s='';const pts=[...Array(20)].map(()=>[40+rnd()*420,40+rnd()*420]);
+    pts.forEach((a,i)=>{pts.map((b,j)=>[j,Math.hypot(a[0]-b[0],a[1]-b[1])]).filter(v=>v[0]!==i).sort((x,y)=>x[1]-y[1]).slice(0,2)
+      .forEach(([j])=>s+=`<line x1="${a[0]}" y1="${a[1]}" x2="${pts[j][0]}" y2="${pts[j][1]}" stroke="rgba(20,40,110,.55)" stroke-width="1.2"/>`)});
+    pts.forEach(([x,y],i)=>s+=`<rect x="${x-4}" y="${y-4}" width="8" height="8" rx="2" fill="${i%5?'#0b1a33':'#fab42d'}"/>`);
+    return svg(s)}
+};
+document.querySelectorAll('[data-layer]').forEach(f=>f.innerHTML=L[f.dataset.layer]());
+
+/* ---------- Motor de escenas ---------- */
+const scenes=[...document.querySelectorAll('.scene')];
+const TOTAL=document.querySelectorAll('.scene').length;
+const CHAPS=['Intro','Pricing Data','PCI Platform','Use Cases','Business Applications','PCI'];
+let cur=0, step=0, timers=[], lockUntil=0;
+const nav=document.getElementById('nav'), beats=document.getElementById('beats'), countEl=document.getElementById('count'), prog=document.getElementById('progress'), curChap=document.getElementById('curChap');
+const stepsOf=i=>+scenes[i].dataset.steps||0;
+const autoOf=i=>(scenes[i].dataset.auto||'').split(',').filter(Boolean).map(Number);
+const clearTimers=()=>{timers.forEach(clearTimeout);timers=[]};
+
+function counters(sc){
+  sc.querySelectorAll('[data-count]').forEach(n=>{const to=+n.dataset.count;n.textContent='0';
+    timers.push(setTimeout(()=>{const t0=performance.now();
+      const tick=t=>{const p=Math.min(1,Math.max(0,(t-t0)/1300));n.textContent=Math.round(to*(1-Math.pow(1-p,4)));if(p<1)requestAnimationFrame(tick)};
+      requestAnimationFrame(tick)},900))});
+}
+function schedule(){
+  const auto=autoOf(cur);
+  if(step<stepsOf(cur) && auto[step]!=null){ timers.push(setTimeout(()=>{step++;render(false);schedule()},auto[step])); return; }
+  /* data-chain: al llegar al último paso, la escena enlaza sola con la siguiente */
+  const ch=+scenes[cur].dataset.chain||0;
+  if(ch && step===stepsOf(cur)){ const me=cur; timers.push(setTimeout(()=>{ if(cur===me) go(cur+1) },ch)); }
+}
+function render(entering){
+  scenes.forEach((s,i)=>{const on=i===cur;s.classList.toggle('active',on);for(let k=1;k<=8;k++)s.classList.toggle('st-'+k,on&&step>=k)});
+  stage.dataset.scene=cur;
+  stage.classList.toggle('hbz','hb' in scenes[cur].dataset);
+  stage.classList.toggle('hbp',scenes[cur].classList.contains('prod'));
+  stage.classList.toggle('hbr',scenes[cur].classList.contains('s-ra'));
+  for(let k=1;k<=8;k++) stage.classList.toggle('st-'+k,step>=k);
+  if(entering){ scenes[cur].scrollTop=0; counters(scenes[cur]); }
+  const chap=+scenes[cur].dataset.chap;
+  nav.querySelectorAll('.chap [data-chap]').forEach(b=>b.classList.toggle('on',+b.dataset.chap===chap));
+  nav.querySelector('.brand').classList.toggle('on',chap===0);
+  curChap.textContent=CHAPS[chap]||'';
+  countEl.innerHTML=`<b>${String(cur+1).padStart(2,'0')}</b> / ${String(TOTAL).padStart(2,'0')}`;
+  const n=stepsOf(cur); beats.innerHTML=n?[...Array(n+1)].map((_,k)=>`<i class="${k<=step?'on':''}"></i>`).join(''):'';
+  prog.style.width=((cur+(n?step/(n+1):0)+1)/TOTAL*100)+'%';
+  try{history.replaceState(null,'',`#${cur+1}${step?'.'+step:''}`)}catch(e){}
+}
+function go(i,s=0){ if(i<0||i>=scenes.length) return; clearTimers(); const entering=i!==cur||!scenes[i].classList.contains('active'); cur=i; step=s; render(entering); schedule(); }
+function next(force){
+  if(!force && performance.now()<lockUntil) return;
+  clearTimers();
+  /* si la escena se está animando sola, avanzar lleva directamente a la siguiente escena */
+  if(force && autoOf(cur)[step]!=null && step<stepsOf(cur)){ if(cur<scenes.length-1){ go(cur+1); return; } step++; render(false); schedule(); return; }
+  /* en las páginas de producto, las flechas pasan de un producto a otro sin recorrer los pasos */
+  if(force && scenes[cur].classList.contains('prod')){ go(cur+1); return; }
+  if(step<stepsOf(cur)){ step++; render(false); schedule();
+    const L=+scenes[cur].dataset.lock||0; if(L && step===stepsOf(cur)) lockUntil=performance.now()+L; }
+  else go(cur+1);
+}
+function prev(force){ lockUntil=0; clearTimers();
+  if(force && scenes[cur].classList.contains('prod') && cur>0){ go(cur-1, scenes[cur-1].classList.contains('prod')?0:stepsOf(cur-1)); return; }
+  step>0 ? (step--,render(false)) : cur>0 && go(cur-1,stepsOf(cur-1)-(scenes[cur-1].dataset.chain?1:0)); }
+
+/* Escena 04: la tarjeta de HighBeam entra en el overview */
+document.querySelectorAll('.hbcard').forEach(w=>w.addEventListener('click',e=>{e.stopPropagation();go(cur+1)}));
+/* Productos: al pasar el ratón por la tablet se inclina suavemente */
+if(!coarse && !matchMedia('(prefers-reduced-motion:reduce)').matches) document.querySelectorAll('.hdev,.device').forEach(d=>{const t=d.querySelector('.tilt'); if(!t) return;
+  d.addEventListener('pointermove',e=>{const r=d.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;t.style.transform=`perspective(1000px) rotateY(${x*10}deg) rotateX(${-y*10}deg)`});
+  d.addEventListener('pointerleave',()=>{t.style.transform=''});});
+document.getElementById('next').addEventListener('click',e=>{e.stopPropagation();next(true)});
+document.getElementById('prev').addEventListener('click',e=>{e.stopPropagation();prev(true)});
+/* El halo sigue al ratón y la pulsación lanza un destello desde el punto del clic */
+nav.addEventListener('pointermove',e=>{const b=e.target.closest('.chap button,.arrow');if(!b)return;const r=b.getBoundingClientRect();b.style.setProperty('--mx',(e.clientX-r.left)+'px');b.style.setProperty('--my',(e.clientY-r.top)+'px')});
+nav.addEventListener('pointerdown',e=>{const b=e.target.closest('.chap button:not(:disabled),.arrow');if(!b)return;const r=b.getBoundingClientRect();
+  b.style.setProperty('--mx',(e.clientX-r.left)+'px');b.style.setProperty('--my',(e.clientY-r.top)+'px');b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop');
+  b.addEventListener('animationend',()=>b.classList.remove('pop'),{once:true})});
+nav.addEventListener('click',e=>{const b=e.target.closest('[data-go]');e.stopPropagation();if(b)go(+b.dataset.go)});
+document.querySelectorAll('.s05 .dim[data-go]').forEach(d=>{const f=e=>{e.stopPropagation();go(+d.dataset.go)};d.addEventListener('click',f);d.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();f(e)}})});
+(()=>{const o=document.getElementById('pciOrbit'); if(!o) return; let pin=null;
+  const show=id=>{const id2=id||pin; if(id2){o.dataset.active=id2;o.dataset.ring=o.querySelector('.pci-app[data-app="'+id2+'"]').dataset.ring}else{delete o.dataset.active;delete o.dataset.ring}};
+  const toggle=id=>{pin=pin===id?null:id;show(null)};
+  o.querySelectorAll('[data-app]').forEach(el=>{const id=el.dataset.app;
+    el.addEventListener('pointerenter',()=>show(id)); el.addEventListener('pointerleave',()=>show(null));
+    el.addEventListener('focus',()=>show(id)); el.addEventListener('blur',()=>show(null));
+    el.addEventListener('click',e=>{e.stopPropagation();toggle(id)});
+    el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle(id)}});});
+  addEventListener('keydown',e=>{if(e.key==='Escape'){pin=null;document.activeElement&&document.activeElement.blur&&document.activeElement.blur();show(null)}});
+  o.addEventListener('click',()=>{pin=null;show(null)});
+})();
+document.querySelectorAll('.pv-views [data-step]').forEach(v=>{const f=e=>{e.stopPropagation();go(cur,+v.dataset.step)};v.addEventListener('click',f);v.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();f(e)}})});
+/* Ratón: un clic avanza. Táctil: deslizar (un toque no avanza, para poder leer y desplazar) */
+stage.addEventListener('click',e=>{ if(!coarse && !e.target.closest('.nav')) next(); });
+let tx=0,ty=0;
+stage.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+stage.addEventListener('touchend',e=>{const t=e.changedTouches[0],dx=t.clientX-tx,dy=t.clientY-ty;
+  if(Math.abs(dx)>50 && Math.abs(dx)>Math.abs(dy)*1.4){ dx<0?next():prev(); }},{passive:true});
+addEventListener('keydown',e=>{
+  if((e.key==='Enter'||e.key===' ')&&e.target.closest&&e.target.closest('.nav,.pv-views,.pci-app')) return;
+  if(['ArrowRight','ArrowDown','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();next(true)}
+  else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].includes(e.key)){e.preventDefault();prev(true)}
+  else if(e.key==='Home') go(0);
+  else if(e.key==='End') go(scenes.length-1);
+  else if(/^[1-9]$/.test(e.key)&&+e.key<=scenes.length) go(+e.key-1);
+  else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen()}
+});
+/* Imagen de apoyo de cada producto: se busca apoyo.webp / .png / .jpg; si existe, se activa; si no, no pasa nada */
+document.querySelectorAll('.stg2[data-apoyo]').forEach(st=>{
+  const im=st.querySelector('.apoyo img'),exts=['webp','png','jpg'];
+  const probe=i=>{ if(i>=exts.length) return; const p=new Image(); p.onload=()=>{im.src=p.src;const ar=p.naturalWidth/p.naturalHeight;st.style.setProperty('--apoyo-ar',ar.toFixed(4));st.classList.toggle('apoyo-tall',ar<.8);st.classList.toggle('apoyo-wide',ar>1.5);st.classList.add('has-apoyo')}; p.onerror=()=>probe(i+1); p.src=st.dataset.apoyo+'.'+exts[i]; };
+  probe(0);
+});
+/* Tarjeta de entrada a HighBeam: la imagen llega hasta el texto, sea cual sea su altura en esta pantalla */
+(()=>{const c=document.querySelector('.hbcard'); if(!c) return; const b=c.querySelector('.hbc-body'); const set=()=>c.style.setProperty('--bh',b.offsetHeight+'px');
+  set(); if(window.ResizeObserver) new ResizeObserver(set).observe(b); else addEventListener('resize',set); document.fonts&&document.fonts.ready.then(set);})();
+/* Deep link: #5.2 = escena 5, paso 2 (sin pasos automáticos, para revisar) */
+const m=location.hash.match(/^#(\d+)(?:\.(\d+))?/);
+if(m){cur=Math.min(scenes.length,Math.max(1,+m[1]))-1;step=Math.min(stepsOf(cur),+(m[2]||0));render(true); if(!m[2]) schedule();}
+else { render(true); schedule(); }
+</script>
+</body>
+</html>
