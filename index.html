@@ -1,15 +1,23 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <meta name="theme-color" content="#03060f">
-<title>Astara Intelligence · PCI</title>
+<title>PCI Committee Deck</title>
 <link rel="icon" type="image/svg+xml" href="assets/brand/pci-logo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
+<style>/* Number tokens (a number with its unit or currency code) are wrapped in <n-u> by the script at the end of the page (a custom tag, so no existing span/b/i rule can restyle it).
+   .nu uses the full Inter alphabet so the unit matches its digits. */
+@font-face{font-family:'PCI Inter';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'PCI Inter';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'PCI Inter';font-style:normal;font-weight:600;font-display:swap;src:url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'PCI Inter';font-style:normal;font-weight:600;font-display:swap;src:url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+n-u,.nu{font-family:'PCI Inter','PCI Num','Manrope',system-ui,sans-serif}
+/* Numerals are always Inter: Medium (500) in body text and labels, SemiBold (600) in titles and headline figures.
+   Only 500 and 600 are declared, so any lighter weight resolves to Medium and any heavier one to SemiBold. */
+@font-face{font-family:'PCI Num';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2) format('woff2');unicode-range:U+0030-0039,U+0024,U+0025,U+002B,U+00D7,U+2191,U+2193,U+2212,U+20AC}
+@font-face{font-family:'PCI Num';font-style:normal;font-weight:600;font-display:swap;src:url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2) format('woff2');unicode-range:U+0030-0039,U+0024,U+0025,U+002B,U+00D7,U+2191,U+2193,U+2212,U+20AC}
+
 /* ==================================================================
    ASTARA INTELLIGENCE · HIGHBEAM — presentación fluida · v3
    Una sola familia (Manrope). Sin lienzo fijo: cada escena se compone
@@ -22,7 +30,7 @@
   --ink:#03060f; --cobalt:#2456ff; --sky:#8bcdff; --ice:#dcecff;
   --t1:#f3f6fb; --t2:rgba(214,228,248,.74); --t3:rgba(170,192,224,.52);
   --glass-2:rgba(255,255,255,.08); --edge:rgba(210,228,255,.16); --edge-hi:rgba(210,228,255,.34);
-  --f:'Manrope',system-ui,sans-serif;
+  --f:'PCI Num','Manrope',system-ui,sans-serif;
   --e:cubic-bezier(.32,.72,0,1); --eo:cubic-bezier(.16,1,.3,1);
 
   --u:min(1vw,1.7778vh);
@@ -35,7 +43,7 @@
 @media (max-aspect-ratio:5/4){ :root{ --u:min(1.15vw,.9vh); --py:max(22px,calc(var(--u)*4)) } }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;background:var(--ink);overflow:hidden;overscroll-behavior:none}
+html,body{height:100%;color-scheme:dark;background:var(--ink);overflow:hidden;overscroll-behavior:none}
 body{font-family:var(--f);color:var(--t2);-webkit-font-smoothing:antialiased;user-select:none;-webkit-tap-highlight-color:transparent}
 img{display:block;max-width:100%}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
@@ -55,7 +63,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #stage[data-scene="1"] #aura .b1{transform:translate(46.9vw,18.5vh) scale(1.1)}
 #stage[data-scene="1"] #aura .b2{transform:translate(61.5vw,35.2vh)}
 #stage[data-scene="1"] #aura .b3{transform:translate(-20.8vw,-27.8vh)}
-#stage[data-scene="2"] #aura{opacity:0}
+#stage[data-scene="7"] #aura{opacity:0}
 #stage.hbz #aura .b1{transform:translate(54.7vw,-38.9vh) scale(1.25)}
 #stage.hbz #aura .b2{transform:translate(78.1vw,-14.8vh);opacity:.7}
 #stage.hbz #aura .b3{transform:translate(-26vw,38.9vh)}
@@ -64,8 +72,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #bgs{position:absolute;inset:0;z-index:0;pointer-events:none}
 #bgs .bg{position:absolute;inset:0;opacity:0;transform:scale(1.05);background-size:cover;background-position:center;background-repeat:no-repeat;
   transition:opacity 1.1s var(--e) 1.1s,transform 2.6s var(--eo)}
-#stage[data-scene="0"] .bg.b0,#stage[data-scene="1"] .bg.b1,#stage[data-scene="3"] .bg.b5,#stage[data-scene="4"] .bg.b5{opacity:1;transform:none;z-index:1;transition:opacity 1.1s var(--e),transform 2.6s var(--eo)}
-#stage[data-scene="2"] #bgs .bg{transition-delay:0s,0s}
+#stage[data-scene="0"] .bg.b0,#stage[data-scene="1"] .bg.b1,#stage[data-scene="2"] .bg.b5,#stage[data-scene="3"] .bg.b5,#stage[data-scene="4"] .bg.b5,#stage[data-scene="5"] .bg.b5,#stage[data-scene="6"] .bg.b5{opacity:1;transform:none;z-index:1;transition:opacity 1.1s var(--e),transform 2.6s var(--eo)}
+#stage[data-scene="7"] #bgs .bg{transition-delay:0s,0s}
 #bgs .b0{background-image:linear-gradient(90deg,rgba(3,6,15,.86) 0%,rgba(3,6,15,.35) 46%,rgba(3,6,15,0) 100%),linear-gradient(0deg,rgba(3,6,15,.7),rgba(3,6,15,0) 40%),url(assets/bg/flow-01.webp)}
 #bgs .b1{background-image:linear-gradient(90deg,rgba(3,6,15,.82) 0%,rgba(3,6,15,.45) 40%,rgba(3,6,15,.12) 100%),url(assets/bg/flow-02.webp)}
 #bgs .b2{background-image:linear-gradient(180deg,rgba(3,6,15,.85) 0%,rgba(3,6,15,.35) 38%,rgba(3,6,15,.5) 100%),url(assets/bg/flow-03.webp)}
@@ -1134,8 +1142,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
    Cada tarjeta: superficie de cristal oscuro + capa visual vacía (recibirá una imagen) + degradado
    inferior de los módulos de la suite (.dim::after) + índice/chip arriba + título y frase abajo.
    ================================================================== */
-#stage[data-scene="3"] .bg.b5{opacity:.45}
-#stage[data-scene="3"] #aura{opacity:0}
+#stage[data-scene="6"] .bg.b5{opacity:.45}
+#stage[data-scene="6"] #aura{opacity:0}
 .uc{display:grid;grid-template-rows:auto minmax(0,1fr);row-gap:calc(var(--u)*2.2)}
 .uc .head{display:flex;justify-content:space-between;align-items:flex-end;gap:calc(var(--u)*4)}
 .uc .mega{font-size:max(40px,calc(var(--u)*5.6));margin-top:calc(var(--u)*1.2)}
@@ -1183,8 +1191,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
    Sistema visual de HighBeam: horizonte del iceberg, rótulos con líneas finas como las capas, cristal mínimo.
    Escenario 1680 × 640: 1cqw = 16,8 unidades.
    ================================================================== */
-#stage[data-scene="4"] .bg.b5{opacity:.45}
-#stage[data-scene="4"] #aura{opacity:0}
 .apps{display:grid;grid-template-rows:auto minmax(0,1fr);row-gap:calc(var(--u)*1.4);
   --c-core:var(--sky);--c-decision:#6f95ff;--c-extended:rgba(220,236,255,.78)}
 .apps .head{display:flex;justify-content:space-between;align-items:flex-end;gap:calc(var(--u)*4)}
@@ -1275,7 +1281,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
    y convergen en el motor: el logo PCI se revela con el barrido del wordmark de la suite (.wm-word),
    lanza un pulso único y firma. Fondo: los haces del reveal de HighBeam. Sin bucles: termina quieta.
    ================================================================== */
-#stage[data-scene="5"] #aura{opacity:0}
+#stage[data-scene="8"] #aura{opacity:0}
 .end{background:#000;padding:0}
 .end-beams{position:absolute;inset:0;pointer-events:none;background:url(assets/bg/highbeam-reveal.webp) center 30%/cover no-repeat;opacity:.55;
   -webkit-mask-image:linear-gradient(to top,#000 6%,rgba(0,0,0,.55) 34%,transparent 62%);mask-image:linear-gradient(to top,#000 6%,rgba(0,0,0,.55) 34%,transparent 62%)}
@@ -1312,6 +1318,240 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .end-tag .mega{font-size:max(30px,calc(var(--u)*3.4))}
 .end-tag .line>span{transition-delay:var(--d)}
 
+/* ==================================================================
+   02 · COVERAGE · 03 · PRICE LAYERS · CTA final — narrativa comité (oct 2026)
+   Mismo sistema: cristal --edge, tipografía mega/eyebrow, entrada .a. Sin tokens nuevos.
+   ================================================================== */
+#stage[data-scene="2"] .bg.b5,#stage[data-scene="3"] .bg.b5,#stage[data-scene="4"] .bg.b5,#stage[data-scene="5"] .bg.b5{opacity:.38}
+#stage[data-scene="2"] #aura,#stage[data-scene="3"] #aura,#stage[data-scene="4"] #aura,#stage[data-scene="5"] #aura{opacity:0}
+.cov,.pl{display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;row-gap:calc(var(--u)*1.9)}
+.pl{grid-template-rows:auto auto auto auto;align-content:space-between}
+.pl-card{min-height:calc(var(--u)*17)}
+:is(.cov,.pl) .head{display:flex;justify-content:space-between;align-items:flex-end;gap:calc(var(--u)*4)}
+:is(.cov,.pl) .mega{font-size:max(34px,calc(var(--u)*4.4));margin-top:calc(var(--u)*1.1)}
+:is(.cov,.pl) .sup{max-width:calc(var(--u)*33);padding-bottom:calc(var(--u)*.4);font-size:max(15px,calc(var(--u)*1.2));line-height:1.45;font-weight:500;letter-spacing:-.01em;color:var(--t1);text-align:right;text-wrap:balance}
+.glass{border-radius:calc(var(--u)*1.1);background:linear-gradient(165deg,rgba(22,36,84,.62),rgba(6,11,30,.78) 62%);
+  -webkit-backdrop-filter:blur(14px) saturate(130%);backdrop-filter:blur(14px) saturate(130%);box-shadow:inset 0 0 0 1px var(--edge),inset 0 1px 0 rgba(255,255,255,.1)}
+/* KPIs */
+.cov-kpis{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:calc(var(--u)*.8)}
+.cov-kpi{padding:calc(var(--u)*1.2) calc(var(--u)*1.3) calc(var(--u)*1.25)}
+.cov-kpi b{display:block;font-size:max(30px,calc(var(--u)*3.3));font-weight:400;letter-spacing:-.05em;line-height:1;color:var(--t1);font-variant-numeric:tabular-nums}
+.cov-kpi b sup{font-size:.5em;vertical-align:.7em;color:var(--sky);margin-left:.06em}
+.cov-kpi .k{display:block;margin-top:calc(var(--u)*.8);font-size:max(10px,calc(var(--u)*.64));font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--sky)}
+.cov-kpi .s{display:block;margin-top:calc(var(--u)*.45);font-size:max(11px,calc(var(--u)*.74));line-height:1.4;color:var(--t2);text-wrap:pretty}
+/* mercados: una barra por mercado (altura = webs de marca), versiones debajo */
+.cov-mk{display:grid;grid-template-columns:12fr 5fr;gap:calc(var(--u)*1.6);min-height:0;padding:calc(var(--u)*1.2) calc(var(--u)*1.6) calc(var(--u)*1)}
+.cov-g{display:grid;grid-template-rows:auto minmax(0,1fr);min-height:0}
+.cov-gh{display:flex;align-items:baseline;justify-content:space-between;gap:calc(var(--u)*1);padding-bottom:calc(var(--u)*.6);border-bottom:1px solid var(--edge)}
+.cov-gh b{font-size:max(11px,calc(var(--u)*.7));font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--t1)}
+.cov-gh span{font-size:max(10px,calc(var(--u)*.66));color:var(--t3);letter-spacing:.02em;white-space:nowrap}
+.cov-bars{display:flex;align-items:flex-end;gap:calc(var(--u)*.55);min-height:0;padding-top:calc(var(--u)*.8)}
+.cov-bar{flex:1;display:grid;grid-template-rows:minmax(0,1fr) auto auto;height:100%;min-width:0;text-align:center}
+.cov-bar .col{position:relative;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;min-height:0}
+.cov-bar em{font-style:normal;font-size:max(12px,calc(var(--u)*.92));font-weight:500;color:var(--t1);font-variant-numeric:tabular-nums;margin-bottom:calc(var(--u)*.3)}
+.cov-bar i{display:block;width:62%;height:calc(var(--v)/35*82%);border-radius:calc(var(--u)*.3) calc(var(--u)*.3) 0 0;
+  background:linear-gradient(to top,rgba(63,124,255,.35),var(--sky));box-shadow:0 0 calc(var(--u)*1.2) rgba(139,205,255,.25);transform-origin:50% 100%;transform:scaleY(0);transition:transform 1s var(--eo)}
+.cov.active .cov-bar i{transform:none;transition-delay:var(--d,0s)}
+.cov-bar strong{margin-top:calc(var(--u)*.45);padding-top:calc(var(--u)*.4);border-top:1px solid var(--edge);font-size:max(10px,calc(var(--u)*.66));font-weight:600;letter-spacing:.14em;color:var(--t1)}
+.cov-bar small{margin-top:calc(var(--u)*.2);font-size:max(9px,calc(var(--u)*.58));color:var(--t3);font-variant-numeric:tabular-nums}
+.cov-foot,.pl-foot{display:flex;justify-content:space-between;gap:calc(var(--u)*2);font-size:max(10px,calc(var(--u)*.62));letter-spacing:.03em;color:var(--t3)}
+.cov-foot b,.pl-foot b{font-weight:600;color:var(--t2)}
+/* PRICE LAYERS: seis tarjetas + el ciclo mensual */
+.pl-cards{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:calc(var(--u)*.8);min-height:0}
+.pl-card{position:relative;display:flex;flex-direction:column;padding:calc(var(--u)*1.3) calc(var(--u)*1.3) calc(var(--u)*1.25);min-height:0;overflow:hidden}
+/* highlight as a ring that follows the card radius: strongest at the top-left corner, fading along the top edge and down the left edge */
+.pl-card::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:2px;pointer-events:none;background:linear-gradient(112deg,var(--sky) 0%,rgba(139,205,255,.55) 22%,rgba(139,205,255,0) 52%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.pl-card .ix{font-size:max(10px,calc(var(--u)*.62));font-weight:600;letter-spacing:.2em;color:var(--sky)}
+.pl-card h3{margin-top:calc(var(--u)*.9);font-size:max(17px,calc(var(--u)*1.42));font-weight:500;letter-spacing:-.025em;line-height:1.12;color:var(--t1)}
+.pl-card p{margin-top:calc(var(--u)*.6);font-size:max(12px,calc(var(--u)*.82));line-height:1.42;color:var(--t2);text-wrap:pretty}
+.pl-card .m{margin-top:auto;padding-top:calc(var(--u)*1)}
+.pl-card .m b{display:block;font-size:max(22px,calc(var(--u)*2.1));font-weight:400;letter-spacing:-.04em;line-height:1;color:var(--t1);font-variant-numeric:tabular-nums}
+.pl-card .m span{display:block;margin-top:calc(var(--u)*.35);font-size:max(10px,calc(var(--u)*.62));line-height:1.35;letter-spacing:.06em;color:var(--t3)}
+.pl-flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:calc(var(--u)*1.6);position:relative;padding-top:calc(var(--u)*1.1)}
+.pl-flow::before{content:"";position:absolute;left:0;right:calc(var(--u)*.4);top:0;height:1px;background:linear-gradient(90deg,rgba(139,205,255,.15),var(--sky))}
+.pl-flow div{position:relative}
+.pl-flow div::before{content:"";position:absolute;left:0;top:calc(var(--u)*-1.1 - 3px);width:6px;height:6px;border-radius:50%;background:var(--sky);box-shadow:0 0 calc(var(--u)*.8) rgba(139,205,255,.8)}
+.pl-flow b{display:block;font-size:max(10px,calc(var(--u)*.66));font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--t1)}
+.pl-flow b i{font-style:normal;color:var(--sky);margin-right:.8em}
+.pl-flow span{display:block;margin-top:calc(var(--u)*.4);font-size:max(11px,calc(var(--u)*.76));line-height:1.42;color:var(--t2);text-wrap:pretty}
+
+/* 04 · PCI vs JATO — dos lentes complementarias. Tabla de 3 columnas; la columna PCI en cristal con borde sky */
+.jt{display:grid;grid-template-rows:auto minmax(0,1fr) auto;row-gap:calc(var(--u)*1.5)}
+.jt .head{display:flex;justify-content:space-between;align-items:flex-end;gap:calc(var(--u)*4)}
+.jt .mega{font-size:max(34px,calc(var(--u)*4.4));margin-top:calc(var(--u)*1.1)}
+.jt .sup{max-width:calc(var(--u)*34);padding-bottom:calc(var(--u)*.4);font-size:max(15px,calc(var(--u)*1.2));line-height:1.45;font-weight:500;letter-spacing:-.01em;color:var(--t1);text-align:right;text-wrap:balance}
+.jt-t{position:relative;display:grid;grid-template-columns:calc(var(--u)*14) minmax(0,1fr) minmax(0,1fr);grid-auto-rows:minmax(0,1fr);min-height:0;align-self:stretch}
+.jt-pci{position:absolute;top:0;bottom:0;right:0;width:calc((100% - var(--u)*14)/2);border-radius:calc(var(--u)*1.1);pointer-events:none;
+  background:radial-gradient(ellipse 80% 40% at 50% 0%,rgba(63,124,255,.3),rgba(63,124,255,0) 70%),linear-gradient(165deg,rgba(22,36,84,.7),rgba(6,11,30,.82) 62%);
+  box-shadow:inset 0 0 0 1px rgba(139,205,255,.45),inset 0 1px 0 rgba(255,255,255,.14),0 30px 60px -36px rgba(0,0,0,.85)}
+.jt-t>div{position:relative;display:flex;flex-direction:column;justify-content:center;padding:calc(var(--u)*.7) calc(var(--u)*1.6);border-top:1px solid var(--edge)}
+.jt-t>.hd{justify-content:flex-end;padding-top:calc(var(--u)*1.2);padding-bottom:calc(var(--u)*.9);border-top:0}
+.jt-t{grid-template-rows:auto;grid-auto-rows:minmax(0,1fr)}
+.jt-t>.hd b{font-size:max(18px,calc(var(--u)*1.6));font-weight:500;letter-spacing:-.025em;color:var(--t1)}
+.jt-t>.hd span{margin-top:calc(var(--u)*.3);font-size:max(10px,calc(var(--u)*.62));font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--t3)}
+.jt-t>.hd.p span{color:var(--sky)}
+.jt-t>.rl{padding-left:0;font-size:max(10px,calc(var(--u)*.64));font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--sky)}
+.jt-t>.c{font-size:max(13px,calc(var(--u)*.92));line-height:1.42;color:var(--t2);text-wrap:pretty}
+.jt-t>.c.p{color:var(--t1)}
+.jt-t>.c strong{font-weight:500;color:var(--t1)}
+.jt-t>.c.p strong{color:var(--sky)}
+.jt-t>.c.p,.jt-t>.hd.p{border-top-color:rgba(139,205,255,.18)}
+.jt-t>.hd.p{border-top:0}
+.jt-end{display:flex;justify-content:space-between;align-items:flex-end;gap:calc(var(--u)*3)}
+.jt-end p{font-size:max(18px,calc(var(--u)*1.75));font-weight:400;letter-spacing:-.03em;line-height:1.25;color:var(--t1);text-wrap:balance}
+.jt-end p em{font-style:normal;color:var(--sky)}
+.jt-end small{flex:none;max-width:calc(var(--u)*26);text-align:right;font-size:max(10px,calc(var(--u)*.6));line-height:1.45;letter-spacing:.03em;color:var(--t3)}
+@media (max-aspect-ratio:5/4){
+  .jt{grid-template-rows:none;align-content:start}
+  .jt .head,.jt-end{flex-direction:column;align-items:flex-start}
+  .jt .sup,.jt-end small{text-align:left}
+  .jt-t{grid-template-columns:calc(var(--u)*16) minmax(0,1fr) minmax(0,1fr);grid-auto-rows:auto}
+  .jt-pci{width:calc((100% - var(--u)*16)/2)}
+  .jt-t{min-height:auto}
+  .jt-t>div{padding:calc(var(--u)*1.4) calc(var(--u)*1.2)}
+}
+
+/* 01 · ONE CAR, ELEVEN MARKETS — sustituye al iceberg. Caso real: Kia EV3 versión base, Full Run oct-2026.
+   Izquierda: el precio tal como lo publica cada web (moneda y formato locales). Derecha: el mismo dato en PCI,
+   en euros, lista (anillo) frente a precio mostrado (punto). Debajo, tres cifras que solo salen al comparar. */
+#stage[data-scene="1"] .bg.b1{opacity:.55}
+.ev{display:grid;grid-template-rows:auto minmax(0,1fr) auto auto;row-gap:calc(var(--u)*1.6)}
+.ev .head{display:flex;justify-content:space-between;align-items:flex-end;gap:calc(var(--u)*4)}
+.ev .mega{font-size:max(34px,calc(var(--u)*4.4));margin-top:calc(var(--u)*1.1)}
+.ev .sup{max-width:calc(var(--u)*32);padding-bottom:calc(var(--u)*.4);font-size:max(15px,calc(var(--u)*1.2));line-height:1.45;font-weight:500;letter-spacing:-.01em;color:var(--t1);text-align:right;text-wrap:balance}
+.ev-body{display:grid;grid-template-columns:calc(var(--u)*21) minmax(0,1fr);gap:calc(var(--u)*1);min-height:0}
+.ev-p{display:flex;flex-direction:column;min-height:0;padding:calc(var(--u)*1.2) calc(var(--u)*1.5)}
+.ev-p h3{font-size:max(10px,calc(var(--u)*.64));font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--sky)}
+.ev-p h3 small{display:block;margin-top:calc(var(--u)*.35);font-size:max(10px,calc(var(--u)*.62));font-weight:500;letter-spacing:.02em;text-transform:none;color:var(--t3)}
+.ev-raw ul{list-style:none;flex:1;display:flex;flex-direction:column;justify-content:space-between;margin-top:calc(var(--u)*.9)}
+.ev-raw li{display:flex;align-items:baseline;gap:calc(var(--u)*1);padding:calc(var(--u)*.22) 0;border-top:1px dashed rgba(210,228,255,.12)}
+.ev-raw li b{width:calc(var(--u)*2);font-size:max(10px,calc(var(--u)*.62));font-weight:600;letter-spacing:.14em;color:var(--t3)}
+.ev-raw li span{font-family:'PCI Num',ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;font-size:max(12px,calc(var(--u)*.82));color:var(--t1);font-variant-numeric:tabular-nums}
+.ev-raw li s{margin-right:.8em;color:var(--t3);text-decoration-color:rgba(250,180,45,.8)}
+.ev-chart{position:relative}
+.ev-legend{display:flex;gap:calc(var(--u)*1.4);margin-top:calc(var(--u)*.45);font-size:max(10px,calc(var(--u)*.62));color:var(--t3)}
+.ev-legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:.5em;vertical-align:-1px}
+.ev-legend .l1{box-shadow:inset 0 0 0 1.5px var(--t2)}
+.ev-legend .l2{background:var(--sky)}
+.ev-legend .l3{background:#fab42d}
+.ev-rows{position:relative;flex:1;display:flex;flex-direction:column;justify-content:space-between;margin-top:calc(var(--u)*.9);padding-bottom:calc(var(--u)*1.4)}
+.ev-r{display:grid;grid-template-columns:calc(var(--u)*2.4) minmax(0,1fr) calc(var(--u)*7.2);align-items:center;gap:calc(var(--u)*.8)}
+.ev-r b{font-size:max(10px,calc(var(--u)*.62));font-weight:600;letter-spacing:.14em;color:var(--t2)}
+.ev-r span{font-size:max(12px,calc(var(--u)*.8));color:var(--t1);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ev-r span em{font-style:normal;margin-left:.6em;padding:.1em .45em;border-radius:9999px;font-size:.85em;font-weight:600;color:#fab42d;background:rgba(250,180,45,.12)}
+.trk{position:relative;height:1px;background:rgba(210,228,255,.12)}
+.trk i{position:absolute;top:50%}
+.trk .dp,.trk .dl{width:calc(var(--u)*.7);height:calc(var(--u)*.7);min-width:8px;min-height:8px;border-radius:50%;translate:-50% -50%}
+.trk .dp{background:var(--sky);box-shadow:0 0 calc(var(--u)*.7) rgba(139,205,255,.8)}
+.trk .dp.hot{background:#fab42d;box-shadow:0 0 calc(var(--u)*.7) rgba(250,180,45,.75)}
+.trk .dl{box-shadow:inset 0 0 0 1.5px var(--t2);background:rgba(4,8,26,.9)}
+.trk .seg{height:2px;translate:0 -50%;background:linear-gradient(90deg,#fab42d,rgba(250,180,45,.25));transform-origin:100% 50%}
+.ev-r .trk i{opacity:0;transition:opacity .5s var(--e),scale .7s var(--eo)}
+.ev-r .trk .seg{scale:0 1}
+.ev.active .ev-r .trk i{opacity:1;scale:1;transition-delay:var(--d)}
+.ev-axis{position:absolute;left:calc(var(--u)*3.2);right:calc(var(--u)*8);bottom:0;height:calc(var(--u)*1)}
+.ev-axis span{position:absolute;translate:-50% 0;font-size:max(9px,calc(var(--u)*.56));color:var(--t3);font-variant-numeric:tabular-nums}
+.ev-take{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:calc(var(--u)*1)}
+.ev-take div{display:flex;align-items:baseline;gap:calc(var(--u)*1);padding-top:calc(var(--u)*.8);border-top:1px solid var(--edge)}
+.ev-take b{white-space:nowrap;font-size:max(26px,calc(var(--u)*2.6));font-weight:400;letter-spacing:-.04em;line-height:1;color:var(--t1);font-variant-numeric:tabular-nums}
+.ev-take div.hot b{color:#fab42d}
+.ev-take span{font-size:max(12px,calc(var(--u)*.8));line-height:1.4;color:var(--t2);text-wrap:pretty}
+.ev-foot{display:flex;justify-content:space-between;gap:calc(var(--u)*2);font-size:max(10px,calc(var(--u)*.6));letter-spacing:.03em;color:var(--t3)}
+.ev-foot b{font-weight:600;color:var(--t2)}
+/* Country buttons: rounded square tile holding the flag (assets/flags, flag-icons, MIT) */
+.ctry{--fs:1.55;display:block!important;box-sizing:border-box;flex:none;width:calc(var(--u)*var(--fs))!important;height:calc(var(--u)*var(--fs));padding:calc(var(--u)*.15);line-height:0;border-radius:calc(var(--u)*.38);background:linear-gradient(160deg,rgba(255,255,255,.12),rgba(255,255,255,.04));border:1px solid rgba(210,228,255,.2);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 calc(var(--u)*.15) calc(var(--u)*.4) rgba(0,0,0,.28);letter-spacing:0}
+.ctry img{display:block;width:100%;height:100%;border-radius:calc(var(--u)*.28);object-fit:cover}
+.ev-raw li:has(.ctry){align-items:center;padding-block:calc(var(--u)*.1)}
+.ev-raw .ctry{--fs:1.35}
+.ev-r .ctry{--fs:1.45}
+.mm-r .ctry{--fs:1.2}
+.ev-r:has(.ctry){grid-template-columns:calc(var(--u)*1.45) minmax(0,1fr) calc(var(--u)*7.2)}
+.cov-bar strong{display:grid;justify-items:center}
+.cov-bar .ctry{margin-inline:auto}
+.mm-r:has(.ctry){grid-template-columns:calc(var(--u)*2.2) minmax(0,1fr) minmax(0,1fr) calc(var(--u)*4.6)}
+@media (max-aspect-ratio:5/4){
+  .ev{grid-template-rows:none;align-content:start}
+  .ev .head,.ev-foot{flex-direction:column;align-items:flex-start}
+  .ev .sup{text-align:left}
+  .ev-body{grid-template-columns:minmax(0,1fr)}
+  .ev-rows{min-height:calc(var(--u)*48)}
+  .ev-take{grid-template-columns:minmax(0,1fr)}
+  .ev-body,.ev-take{min-height:auto}
+}
+
+/* 04 · MONTH ON MONTH — sep→oct 2026. Dos regiones con su resumen, barras divergentes por mercado
+   (izquierda bajadas en ámbar, derecha subidas en sky, % de versiones comparadas) y cuatro movimientos concretos. */
+.mm{display:grid;grid-template-rows:auto minmax(0,1fr) auto;row-gap:calc(var(--u)*1.6)}
+.mm .head{display:flex;justify-content:space-between;align-items:flex-end;gap:calc(var(--u)*4)}
+.mm .mega{font-size:max(34px,calc(var(--u)*4.4));margin-top:calc(var(--u)*1.1)}
+.mm .sup{max-width:calc(var(--u)*34);padding-bottom:calc(var(--u)*.4);font-size:max(15px,calc(var(--u)*1.2));line-height:1.45;font-weight:500;letter-spacing:-.01em;color:var(--t1);text-align:right;text-wrap:balance}
+.mm-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) calc(var(--u)*24);gap:calc(var(--u)*1);min-height:0}
+.mm-p{display:flex;flex-direction:column;min-height:0;padding:calc(var(--u)*1.2) calc(var(--u)*1.5)}
+.mm-p h3{font-size:max(10px,calc(var(--u)*.64));font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--sky)}
+.mm-k{display:flex;align-items:baseline;gap:calc(var(--u)*.8);margin-top:calc(var(--u)*.8)}
+.mm-k b{font-size:max(28px,calc(var(--u)*3));font-weight:400;letter-spacing:-.05em;line-height:1;color:var(--t1);font-variant-numeric:tabular-nums}
+.mm-k span{font-size:max(12px,calc(var(--u)*.8));line-height:1.35;color:var(--t2)}
+.mm-s{display:flex;flex-wrap:wrap;gap:calc(var(--u)*.4) calc(var(--u)*1.4);margin-top:calc(var(--u)*.7);font-size:max(11px,calc(var(--u)*.74));color:var(--t2);font-variant-numeric:tabular-nums}
+.mm-s .u b{color:var(--sky);font-weight:600}
+.mm-r span em{font-style:normal;display:inline-block;min-width:2.6em}
+.mm-r span em.d{color:#fab42d}.mm-r span em.u{color:var(--sky)}
+.mm-s .d b{color:#fab42d;font-weight:600}
+.mm-note{margin-top:calc(var(--u)*.6);font-size:max(12px,calc(var(--u)*.8));line-height:1.42;color:var(--t1);text-wrap:pretty}
+.mm-rows{flex:1;display:flex;flex-direction:column;justify-content:space-evenly;margin-top:calc(var(--u)*.8);padding-top:calc(var(--u)*.6);border-top:1px solid var(--edge)}
+.mm-r{display:grid;grid-template-columns:calc(var(--u)*2.2) minmax(0,1fr) minmax(0,1fr) calc(var(--u)*4.6);align-items:center;column-gap:0}
+.mm-r b{font-size:max(10px,calc(var(--u)*.62));font-weight:600;letter-spacing:.14em;color:var(--t2)}
+.mm-r .dn,.mm-r .up{position:relative;height:calc(var(--u)*.6);min-height:6px}
+.mm-r .dn{border-right:1px solid rgba(210,228,255,.35)}
+.mm-r i{position:absolute;top:0;bottom:0;border-radius:2px;transition:transform .9s var(--eo)}
+.mm-r .dn i{right:0;background:linear-gradient(270deg,#fab42d,rgba(250,180,45,.45));transform-origin:100% 50%;transform:scaleX(0)}
+.mm-r .up i{left:0;background:linear-gradient(90deg,var(--sky),rgba(139,205,255,.45));transform-origin:0 50%;transform:scaleX(0)}
+.mm.active .mm-r i{transform:none;transition-delay:var(--d)}
+.mm-r span{text-align:right;font-size:max(11px,calc(var(--u)*.72));color:var(--t1);font-variant-numeric:tabular-nums}
+.mm-ax{display:grid;grid-template-columns:calc(var(--u)*2.2) minmax(0,1fr) minmax(0,1fr) calc(var(--u)*4.6);margin-top:calc(var(--u)*.4);font-size:max(9px,calc(var(--u)*.56));color:var(--t3)}
+.mm-ax span:nth-child(2){text-align:left}.mm-ax span:nth-child(3){text-align:right}
+.mm-mv ul{list-style:none;flex:1;display:flex;flex-direction:column;justify-content:space-between;margin-top:calc(var(--u)*.9)}
+.mm-mv li{display:flex;flex-direction:column;gap:calc(var(--u)*.35);padding:calc(var(--u)*.6) 0;border-top:1px solid var(--edge)}
+.mm-mv li>div:first-child{display:flex;justify-content:space-between;gap:calc(var(--u)*.6);align-items:baseline}
+.mm-mv li b{font-size:max(13px,calc(var(--u)*.92));font-weight:500;color:var(--t1)}
+.mm-mv li span{font-size:max(10px,calc(var(--u)*.62));letter-spacing:.12em;text-transform:uppercase;color:var(--t3);white-space:nowrap}
+.mm-mv .pr{font-size:max(12px,calc(var(--u)*.84));color:var(--t1);font-variant-numeric:tabular-nums}
+.mm-mv .pr s{margin-right:.7em;color:var(--t3)}
+.mm-mv .pr em{font-style:normal;margin-left:.7em;padding:.1em .45em;border-radius:9999px;font-size:.85em;font-weight:600;color:#fab42d;background:rgba(250,180,45,.12)}
+.mm-foot{display:flex;justify-content:space-between;gap:calc(var(--u)*2);font-size:max(10px,calc(var(--u)*.6));letter-spacing:.03em;color:var(--t3)}
+.mm-foot b{font-weight:600;color:var(--t2)}
+@media (max-aspect-ratio:5/4){
+  .mm{grid-template-rows:none;align-content:start}
+  .mm .head,.mm-foot{flex-direction:column;align-items:flex-start}
+  .mm .sup{text-align:left}
+  .mm-body{grid-template-columns:minmax(0,1fr);min-height:auto}
+  .mm-rows{min-height:calc(var(--u)*30)}
+}
+/* USE CASES: marca de casos que necesitan datos adicionales */
+.pci-card-tag.ext{background:rgba(4,8,26,.3);box-shadow:inset 0 0 0 1px rgba(139,205,255,.45);color:var(--sky)}
+.pci-card-tags{display:flex;flex-wrap:wrap;gap:calc(var(--u)*.4);min-width:0}
+.pci-card-ico{display:grid;place-items:center;flex:none;width:calc(var(--u)*3);height:calc(var(--u)*3);border-radius:calc(var(--u)*.85);background:rgba(4,8,26,.46);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:inset 0 0 0 1px var(--edge),inset 0 1px 0 rgba(255,255,255,.12)}
+.pci-card-ico img{display:block;width:62%;height:62%;max-width:none}
+/* CTA final hacia el dashboard */
+.end-cta{position:absolute;left:50%;bottom:calc(var(--pb) + var(--u)*.2);translate:-50% 0;display:inline-flex;align-items:center;gap:calc(var(--u)*.7);
+  height:max(40px,calc(var(--u)*2.9));padding:0 max(18px,calc(var(--u)*1.6));border-radius:9999px;text-decoration:none;
+  font-size:max(13px,calc(var(--u)*.9));font-weight:600;letter-spacing:.06em;color:var(--ink);background:linear-gradient(100deg,var(--sky),var(--ice));
+  box-shadow:0 0 0 1px rgba(255,255,255,.2),0 10px 40px -10px rgba(139,205,255,.7);transition:box-shadow .4s var(--e),translate .4s var(--eo)}
+.end-cta:hover{box-shadow:0 0 0 1px rgba(255,255,255,.4),0 14px 50px -8px rgba(139,205,255,.95);translate:-50% -2px}
+.end.active .end-cta{animation:pci-rise .8s var(--eo) 3.3s backwards}
+.end-tag{bottom:calc(var(--pb) + var(--u)*4.6)}
+@media (max-aspect-ratio:5/4){
+  :is(.cov,.pl){grid-template-rows:none;align-content:start}
+  .pl-card{min-height:calc(var(--u)*17)}
+  .pl-cards,.cov-kpis,.pl-flow{min-height:auto;flex-shrink:0}
+  :is(.cov,.pl) .head{flex-direction:column;align-items:flex-start}
+  :is(.cov,.pl) .sup{text-align:left}
+  .cov-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cov-mk{grid-template-columns:minmax(0,1fr);height:calc(var(--u)*60)}
+  .pl-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pl-flow{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:calc(var(--u)*2.4)}
+  .cov-foot,.pl-foot{flex-direction:column}
+}
+
 @media (max-aspect-ratio:5/4){
   .uc .head{flex-direction:column;align-items:flex-start}
   .uc .sup{text-align:left}
@@ -1323,8 +1563,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 </style>
 <noscript><style>.scene{opacity:1!important;visibility:visible!important;position:relative!important;min-height:100vh}.a,.line>span{opacity:1!important;transform:none!important}#stage{position:static!important}html,body{overflow:auto!important;height:auto!important}</style>
 <div style="position:fixed;z-index:999;left:0;right:0;top:0;padding:14px 20px;background:#fab42d;color:#03060f;font:600 15px system-ui">Esta presentación necesita JavaScript. Ábrela en Chrome, Edge o Safari (no en la vista previa de Dropbox).</div></noscript>
-</head>
-<body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="hb" viewBox="0 0 64 40"><path d="M34 4c12 0 24 6 24 16s-12 16-24 16c-2 0-3-1-3-3V7c0-2 1-3 3-3Z" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linejoin="round"/><path d="M4 8h20M4 16h20M4 24h20M4 32h20" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></symbol>
   <symbol id="spark" viewBox="0 0 32 32"><path d="M16 2v28M2 16h28M6 6l20 20M26 6 6 26" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
@@ -1356,86 +1594,310 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     </div>
   </section>
 
-  <!-- ============ 01 · PRICING DATA · el iceberg original ============ -->
-  <section class="scene s02" data-chap="1" data-steps="1" data-lock="2600" aria-label="Pricing data">
-    <div class="berg">
-      <div class="stage2">
-        <div class="copy">
-          <div class="eyebrow a" style="--d:.1s">01 / Pricing data</div>
-          <h2 class="mega"><span class="line"><span style="--d:.2s">The insight you see.</span></span><span class="line"><span style="--d:.32s"><em>The data behind it.</em></span></span></h2>
-          <p class="sup">Comparable market intelligence starts long before the dashboard.</p>
-        </div>
-
-        <div class="berg-art">
-          <div class="berg-depth" aria-hidden="true"></div>
-          <img class="berg-img" src="assets/method/iceberg.webp" alt="">
-        </div>
-        <span class="wline" aria-hidden="true"></span>
-
-        <svg class="ann" viewBox="0 0 1680 863" preserveAspectRatio="none" aria-hidden="true">
-          <!-- estado 1: lo visible de PCI, al lado de la punta -->
-          <path class="i0" pathLength="1" style="--d:0.9s" d="M922 368 L1450 368"/>
-          <path class="i0" pathLength="1" style="--d:1.0s" d="M963 420 L1450 420"/>
-          <path class="i0" pathLength="1" style="--d:1.1s" d="M1030 471 L1450 471"/>
-          <circle class="i0n" style="--d:0.9s" cx="922" cy="368" r="3.5"/>
-          <circle class="i0n" style="--d:1.0s" cx="963" cy="420" r="3.5"/>
-          <circle class="i0n" style="--d:1.1s" cx="1030" cy="471" r="3.5"/>
-
-          <!-- estado 2: lo visible rodeando la cima (reglas finas + nodos) -->
-          <path class="f1" pathLength="1" style="--d:0.95s" d="M470 96 L811 96 L811 212"/>
-          <path class="f1" pathLength="1" style="--d:1.05s" d="M470 170 L752 170 L752 276"/>
-          <path class="f1" pathLength="1" style="--d:1.0s" d="M938 212 L938 96 L1240 96"/>
-          <circle class="f1n" style="--d:1.3s" cx="811" cy="212" r="4"/>
-          <circle class="f1n" style="--d:1.4s" cx="752" cy="276" r="4"/>
-          <circle class="f1n" style="--d:1.35s" cx="938" cy="212" r="4"/>
-
-          <!-- estado 2: cuatro capas de datos, a profundidades reales del iceberg -->
-          <path class="st" pathLength="1" style="--d:0.85s" d="M678 446 L1044 446"/>
-          <path class="st" pathLength="1" style="--d:0.97s" d="M720 530 L1009 530"/>
-          <path class="st" pathLength="1" style="--d:1.09s" d="M749 614 L974 614"/>
-          <path class="st" pathLength="1" style="--d:1.21s" d="M801 698 L890 698"/>
-          <path class="ld" pathLength="1" style="--d:0.95s" d="M1044 446 L1278 446"/>
-          <path class="ld" pathLength="1" style="--d:1.07s" d="M1009 530 L1278 530"/>
-          <path class="ld" pathLength="1" style="--d:1.19s" d="M974 614 L1278 614"/>
-          <path class="ld" pathLength="1" style="--d:1.31s" d="M890 698 L1278 698"/>
-          <circle class="nd" style="--d:1.00s" cx="1044" cy="446" r="5"/>
-          <circle class="nd" style="--d:1.12s" cx="1009" cy="530" r="5"/>
-          <circle class="nd" style="--d:1.24s" cx="974" cy="614" r="5"/>
-          <circle class="nd" style="--d:1.36s" cx="890" cy="698" r="5"/>
-        </svg>
-
-        <div class="hd up">Pricing intelligence</div>
-        <div class="tag-o" style="--x0:1190;--y0:362;--x1:470;--y1:90;--d:0.95s;--r:0.2s"><i>01</i>Market positioning</div>
-        <div class="tag-o" style="--x0:1190;--y0:413.5;--x1:470;--y1:164;--d:1.05s;--r:0.28s"><i>02</i>Portfolio comparison</div>
-        <div class="tag-o" style="--x0:1190;--y0:465;--x1:950;--y1:90;--d:1.15s;--r:0.24s"><i>03</i>Affordability</div>
-
-        <div class="mla"><div class="me">Underlying data</div><h3>Data foundation</h3></div>
-
-        <div class="tag-l" style="--y:446;--d:1.05s"><b>COMPARABILITY</b><span>Structured records · Consistent comparisons · Coverage &amp; depth awareness</span></div>
-        <div class="tag-l" style="--y:530;--d:1.17s"><b>COMMON DATA MODEL</b><span>Market · Brand · Model · Trim · Powertrain · Price</span></div>
-        <div class="tag-l" style="--y:614;--d:1.29s"><b>MARKET CONTEXT</b><span>Registrations &amp; economic indicators</span></div>
-        <div class="tag-l" style="--y:698;--d:1.41s"><b>OFFICIAL SOURCES</b><span>Manufacturer websites &amp; vehicle configurators</span></div>
-
-        <p class="close"><span>Prices become intelligence when they are comparable.</span><em>Comparability is built below the surface.</em></p>
+  <!-- ============ 01 · ONE CAR · Kia EV3 versión base en 11 mercados (sustituye al iceberg) ============ -->
+  <section class="scene ev" data-chap="1" data-steps="0" aria-label="One Kia EV3, eleven markets">
+    <div class="head">
+      <div>
+        <div class="eyebrow a" style="--d:.1s">01 / Why it matters</div>
+        <h2 class="mega"><span class="line"><span style="--d:.2s">One Kia EV3.</span></span><span class="line"><span style="--d:.32s"><em>Eleven markets.</em></span></span></h2>
       </div>
-
-      <!-- respaldo vertical (tablet): misma información en columna -->
-      <div class="pf" aria-hidden="true">
-        <div class="pf-g"><b class="pf-h">Pricing intelligence</b>
-          <p><i>01</i>Market positioning</p><p><i>02</i>Portfolio comparison</p><p><i>03</i>Affordability</p></div>
-        <div class="pf-g pf-u"><b class="pf-h">Underlying data</b><h3>Data foundation</h3>
-          <p><span><strong>Comparability</strong>Structured records · Consistent comparisons · Coverage &amp; depth awareness</span></p>
-          <p><span><strong>Common data model</strong>Market · Brand · Model · Trim · Powertrain · Price</span></p>
-          <p><span><strong>Market context</strong>Registrations &amp; economic indicators</span></p>
-          <p><span><strong>Official sources</strong>Manufacturer websites &amp; vehicle configurators</span></p></div>
-        <p class="pf-c">Prices become intelligence when they are comparable.<em>Comparability is built below the surface.</em></p>
+      <p class="sup a" style="--d:.38s">Same base version, same 58.3 kWh battery, read from Kia’s own websites on 1 October 2026.</p>
+    </div>
+    <div class="ev-body">
+      <div class="ev-p ev-raw glass a" style="--d:.42s">
+        <h3>As each website shows it<small>Local currency, local format</small></h3>
+        <ul>
+          <li class="a" style="--d:0.50s"><b class="ctry" role="img" aria-label="Spain"><img src="assets/flags/es.svg" alt="" draggable="false"></b><span><s>37.040 €</s>24.530 €</span></li>
+          <li class="a" style="--d:0.54s"><b class="ctry" role="img" aria-label="Germany"><img src="assets/flags/de.svg" alt="" draggable="false"></b><span>36.190 €</span></li>
+          <li class="a" style="--d:0.58s"><b class="ctry" role="img" aria-label="Netherlands"><img src="assets/flags/nl.svg" alt="" draggable="false"></b><span>€ 36.995</span></li>
+          <li class="a" style="--d:0.62s"><b class="ctry" role="img" aria-label="Belgium"><img src="assets/flags/be.svg" alt="" draggable="false"></b><span>€ 38.490</span></li>
+          <li class="a" style="--d:0.66s"><b class="ctry" role="img" aria-label="Portugal"><img src="assets/flags/pt.svg" alt="" draggable="false"></b><span><s>39.900 €</s>36.199 €</span></li>
+          <li class="a" style="--d:0.70s"><b class="ctry" role="img" aria-label="Slovakia"><img src="assets/flags/sk.svg" alt="" draggable="false"></b><span><s>39 790 €</s>37 290 €</span></li>
+          <li class="a" style="--d:0.74s"><b class="ctry" role="img" aria-label="Finland"><img src="assets/flags/fi.svg" alt="" draggable="false"></b><span>37 890 €</span></li>
+          <li class="a" style="--d:0.78s"><b class="ctry" role="img" aria-label="Switzerland"><img src="assets/flags/ch.svg" alt="" draggable="false"></b><span>CHF 36’950.–</span></li>
+          <li class="a" style="--d:0.82s"><b class="ctry" role="img" aria-label="Czechia"><img src="assets/flags/cz.svg" alt="" draggable="false"></b><span><s>909 980 Kč</s>809 980 Kč</span></li>
+          <li class="a" style="--d:0.86s"><b class="ctry" role="img" aria-label="Poland"><img src="assets/flags/pl.svg" alt="" draggable="false"></b><span>166 900 zł</span></li>
+          <li class="a" style="--d:0.90s"><b class="ctry" role="img" aria-label="Sweden"><img src="assets/flags/se.svg" alt="" draggable="false"></b><span>434 900 kr</span></li>
+        </ul>
+      </div>
+      <div class="ev-p ev-chart glass a" style="--d:.5s">
+        <h3>The same data in PCI<small>Euros, list price against the price shown to buyers</small></h3>
+        <div class="ev-legend"><span><i class="l1"></i>List price</span><span><i class="l2"></i>Price shown</span><span><i class="l3"></i>Price shown with campaign</span></div>
+        <div class="ev-rows">
+          <div class="ev-r" style="--d:0.70s" title="Spain: list €37,040 · shown €24,530"><b class="ctry" role="img" aria-label="Spain"><img src="assets/flags/es.svg" alt="" draggable="false"></b><div class="trk"><i class="seg" style="left:12.65%;width:62.55%"></i><i class="dl" style="left:75.20%"></i><i class="dp hot" style="left:12.65%"></i></div><span>€24,530<em>−34%</em></span></div>
+          <div class="ev-r" style="--d:0.75s" title="Czechia: list €37,403 · shown €33,293"><b class="ctry" role="img" aria-label="Czechia"><img src="assets/flags/cz.svg" alt="" draggable="false"></b><div class="trk"><i class="seg" style="left:56.46%;width:20.55%"></i><i class="dl" style="left:77.02%"></i><i class="dp hot" style="left:56.46%"></i></div><span>€33,293<em>−11%</em></span></div>
+          <div class="ev-r" style="--d:0.80s" title="Germany: list €36,190 · shown €36,190"><b class="ctry" role="img" aria-label="Germany"><img src="assets/flags/de.svg" alt="" draggable="false"></b><div class="trk"><i class="dp" style="left:70.95%"></i></div><span>€36,190</span></div>
+          <div class="ev-r" style="--d:0.85s" title="Portugal: list €39,900 · shown €36,199"><b class="ctry" role="img" aria-label="Portugal"><img src="assets/flags/pt.svg" alt="" draggable="false"></b><div class="trk"><i class="seg" style="left:70.99%;width:18.51%"></i><i class="dl" style="left:89.50%"></i><i class="dp hot" style="left:70.99%"></i></div><span>€36,199<em>−9%</em></span></div>
+          <div class="ev-r" style="--d:0.90s" title="Netherlands: list €36,995 · shown €36,995"><b class="ctry" role="img" aria-label="Netherlands"><img src="assets/flags/nl.svg" alt="" draggable="false"></b><div class="trk"><i class="dp" style="left:74.98%"></i></div><span>€36,995</span></div>
+          <div class="ev-r" style="--d:0.95s" title="Slovakia: list €39,790 · shown €37,290"><b class="ctry" role="img" aria-label="Slovakia"><img src="assets/flags/sk.svg" alt="" draggable="false"></b><div class="trk"><i class="seg" style="left:76.45%;width:12.50%"></i><i class="dl" style="left:88.95%"></i><i class="dp hot" style="left:76.45%"></i></div><span>€37,290<em>−6%</em></span></div>
+          <div class="ev-r" style="--d:1.00s" title="Finland: list €37,890 · shown €37,890"><b class="ctry" role="img" aria-label="Finland"><img src="assets/flags/fi.svg" alt="" draggable="false"></b><div class="trk"><i class="dp" style="left:79.45%"></i></div><span>€37,890</span></div>
+          <div class="ev-r" style="--d:1.05s" title="Poland: list €38,133 · shown €38,133"><b class="ctry" role="img" aria-label="Poland"><img src="assets/flags/pl.svg" alt="" draggable="false"></b><div class="trk"><i class="dp" style="left:80.66%"></i></div><span>€38,133</span></div>
+          <div class="ev-r" style="--d:1.10s" title="Belgium: list €38,490 · shown €38,490"><b class="ctry" role="img" aria-label="Belgium"><img src="assets/flags/be.svg" alt="" draggable="false"></b><div class="trk"><i class="dp" style="left:82.45%"></i></div><span>€38,490</span></div>
+          <div class="ev-r" style="--d:1.15s" title="Sweden: list €39,099 · shown €39,099"><b class="ctry" role="img" aria-label="Sweden"><img src="assets/flags/se.svg" alt="" draggable="false"></b><div class="trk"><i class="dp" style="left:85.50%"></i></div><span>€39,099</span></div>
+          <div class="ev-r" style="--d:1.20s" title="Switzerland: list €40,002 · shown €40,002"><b class="ctry" role="img" aria-label="Switzerland"><img src="assets/flags/ch.svg" alt="" draggable="false"></b><div class="trk"><i class="dp" style="left:90.01%"></i></div><span>€40,002</span></div>
+          <div class="ev-axis" aria-hidden="true"><span style="left:15.00%">€25k</span><span style="left:40.00%">€30k</span><span style="left:65.00%">€35k</span><span style="left:90.00%">€40k</span></div>
+        </div>
       </div>
     </div>
+    <div class="ev-take">
+      <div class="a" style="--d:1.2s"><b>€3.8k</b><span>Spread between markets on list price alone</span></div>
+      <div class="hot a" style="--d:1.3s"><b>€15.5k</b><span>Real spread once campaigns are counted: Spain is €12.5k below its own list price</span></div>
+      <div class="a" style="--d:1.4s"><b>4 of 11</b><span>Markets running a campaign on this car this month</span></div>
+    </div>
+    <div class="ev-foot a" style="--d:1.5s"><span><b>One version of one model.</b> PCI does this for 14,000+ versions, every month.</span><span>Cheapest published EV3 version per market. CHF, CZK, PLN, SEK at ECB rates of 20 Oct 2026. FI and CH: model “from” price.</span></div>
   </section>
 
 
-  <!-- ============ 02 · PCI PLATFORM · reveal de la suite + tablet de producto ============ -->
-  <section class="scene s05 pci" data-chap="2" data-steps="8" data-auto="3000,1500" aria-label="PCI platform">
+
+
+
+
+  <!-- ============ 02 · COVERAGE · lo que capturamos cada mes (Full Run oct 2026) ============ -->
+  <section class="scene cov" data-chap="2" data-steps="0" aria-label="PCI coverage">
+    <div class="head">
+      <div>
+        <div class="eyebrow a" style="--d:.1s">02 / Coverage</div>
+        <h2 class="mega"><span class="line"><span style="--d:.2s">The market, captured.</span></span><span class="line"><span style="--d:.32s"><em>Every month.</em></span></span></h2>
+      </div>
+      <p class="sup a" style="--d:.38s">Official prices read directly from manufacturer and importer websites, version by version, in one data model.</p>
+    </div>
+    <div class="cov-kpis">
+      <div class="cov-kpi glass a" style="--d:0.42s"><b><span data-count="17">17</span></b><span class="k">Markets</span><span class="s">12 Europe · 5 Latin America</span></div>
+      <div class="cov-kpi glass a" style="--d:0.48s"><b><span data-count="66">66</span></b><span class="k">Brands</span><span class="s">Volume, premium and new Chinese entrants</span></div>
+      <div class="cov-kpi glass a" style="--d:0.54s"><b><span data-count="443">443</span></b><span class="k">Brand websites</span><span class="s">One per brand and market, read by 132 automated extractors</span></div>
+      <div class="cov-kpi glass a" style="--d:0.60s"><b><span data-count="850">850</span><sup>+</sup></b><span class="k">Models</span><span class="s">Current passenger and light commercial ranges</span></div>
+      <div class="cov-kpi glass a" style="--d:0.66s"><b><span data-count="14000">14,000</span><sup>+</sup></b><span class="k">Versions</span><span class="s">Priced at trim level, not just “from” prices</span></div>
+      <div class="cov-kpi glass a" style="--d:0.72s"><b><span data-count="51605">51,605</span></b><span class="k">Price records</span><span class="s">Per monthly run · October 2026</span></div>
+    </div>
+    <div class="cov-mk glass a" style="--d:.8s">
+      <div class="cov-g">
+        <div class="cov-gh"><b>Europe · 12 markets</b><span>309 brand websites · 37 brands · 12,300 versions</span></div>
+        <div class="cov-bars">
+            <div class="cov-bar" title="Spain · 35 brands · 2,055 versions" style="--v:35;--d:0.90s"><div class="col"><em>35</em><i></i></div><strong><span class="ctry" role="img" aria-label="Spain"><img src="assets/flags/es.svg" alt="" draggable="false"></span></strong><small>2,055</small></div>
+            <div class="cov-bar" title="Belgium · 35 brands · 1,786 versions" style="--v:35;--d:0.95s"><div class="col"><em>35</em><i></i></div><strong><span class="ctry" role="img" aria-label="Belgium"><img src="assets/flags/be.svg" alt="" draggable="false"></span></strong><small>1,786</small></div>
+            <div class="cov-bar" title="Germany · 32 brands · 2,276 versions" style="--v:32;--d:1.00s"><div class="col"><em>32</em><i></i></div><strong><span class="ctry" role="img" aria-label="Germany"><img src="assets/flags/de.svg" alt="" draggable="false"></span></strong><small>2,276</small></div>
+            <div class="cov-bar" title="Netherlands · 32 brands · 1,942 versions" style="--v:32;--d:1.05s"><div class="col"><em>32</em><i></i></div><strong><span class="ctry" role="img" aria-label="Netherlands"><img src="assets/flags/nl.svg" alt="" draggable="false"></span></strong><small>1,942</small></div>
+            <div class="cov-bar" title="Poland · 29 brands · 2,000 versions" style="--v:29;--d:1.10s"><div class="col"><em>29</em><i></i></div><strong><span class="ctry" role="img" aria-label="Poland"><img src="assets/flags/pl.svg" alt="" draggable="false"></span></strong><small>2,000</small></div>
+            <div class="cov-bar" title="Portugal · 28 brands · 1,338 versions" style="--v:28;--d:1.15s"><div class="col"><em>28</em><i></i></div><strong><span class="ctry" role="img" aria-label="Portugal"><img src="assets/flags/pt.svg" alt="" draggable="false"></span></strong><small>1,338</small></div>
+            <div class="cov-bar" title="Switzerland · 27 brands · 1,517 versions" style="--v:27;--d:1.20s"><div class="col"><em>27</em><i></i></div><strong><span class="ctry" role="img" aria-label="Switzerland"><img src="assets/flags/ch.svg" alt="" draggable="false"></span></strong><small>1,517</small></div>
+            <div class="cov-bar" title="Austria · 24 brands · 1,468 versions" style="--v:24;--d:1.25s"><div class="col"><em>24</em><i></i></div><strong><span class="ctry" role="img" aria-label="Austria"><img src="assets/flags/at.svg" alt="" draggable="false"></span></strong><small>1,468</small></div>
+            <div class="cov-bar" title="Sweden · 22 brands · 844 versions" style="--v:22;--d:1.30s"><div class="col"><em>22</em><i></i></div><strong><span class="ctry" role="img" aria-label="Sweden"><img src="assets/flags/se.svg" alt="" draggable="false"></span></strong><small>844</small></div>
+            <div class="cov-bar" title="Czechia · 17 brands · 1,239 versions" style="--v:17;--d:1.35s"><div class="col"><em>17</em><i></i></div><strong><span class="ctry" role="img" aria-label="Czechia"><img src="assets/flags/cz.svg" alt="" draggable="false"></span></strong><small>1,239</small></div>
+            <div class="cov-bar" title="Finland · 15 brands · 402 versions" style="--v:15;--d:1.40s"><div class="col"><em>15</em><i></i></div><strong><span class="ctry" role="img" aria-label="Finland"><img src="assets/flags/fi.svg" alt="" draggable="false"></span></strong><small>402</small></div>
+            <div class="cov-bar" title="Slovakia · 13 brands · 1,202 versions" style="--v:13;--d:1.45s"><div class="col"><em>13</em><i></i></div><strong><span class="ctry" role="img" aria-label="Slovakia"><img src="assets/flags/sk.svg" alt="" draggable="false"></span></strong><small>1,202</small></div>
+        </div>
+      </div>
+      <div class="cov-g">
+        <div class="cov-gh"><b>Latin America · 5</b><span>134 brand websites · 57 brands</span></div>
+        <div class="cov-bars">
+            <div class="cov-bar" title="Colombia · 32 brands · 536 versions" style="--v:32;--d:1.50s"><div class="col"><em>32</em><i></i></div><strong><span class="ctry" role="img" aria-label="Colombia"><img src="assets/flags/co.svg" alt="" draggable="false"></span></strong><small>536</small></div>
+            <div class="cov-bar" title="Chile · 27 brands · 543 versions" style="--v:27;--d:1.55s"><div class="col"><em>27</em><i></i></div><strong><span class="ctry" role="img" aria-label="Chile"><img src="assets/flags/cl.svg" alt="" draggable="false"></span></strong><small>543</small></div>
+            <div class="cov-bar" title="Bolivia · 26 brands · 283 versions" style="--v:26;--d:1.60s"><div class="col"><em>26</em><i></i></div><strong><span class="ctry" role="img" aria-label="Bolivia"><img src="assets/flags/bo.svg" alt="" draggable="false"></span></strong><small>283</small></div>
+            <div class="cov-bar" title="Peru · 25 brands · 450 versions" style="--v:25;--d:1.65s"><div class="col"><em>25</em><i></i></div><strong><span class="ctry" role="img" aria-label="Peru"><img src="assets/flags/pe.svg" alt="" draggable="false"></span></strong><small>450</small></div>
+            <div class="cov-bar" title="Argentina · 24 brands · 291 versions" style="--v:24;--d:1.70s"><div class="col"><em>24</em><i></i></div><strong><span class="ctry" role="img" aria-label="Argentina"><img src="assets/flags/ar.svg" alt="" draggable="false"></span></strong><small>291</small></div>
+        </div>
+      </div>
+    </div>
+    <div class="cov-foot a" style="--d:1s"><span><b>Bar</b> = brand websites covered in the market · <b>figure below</b> = versions priced</span><span>Source: PCI Full Run, October 2026 delivery (Europe + Latin America)</span></div>
+  </section>
+
+  <!-- ============ 03 · PRICE LAYERS · tipos de precio + ciclo mensual ============ -->
+  <section class="scene pl" data-chap="3" data-steps="0" aria-label="PCI price layers">
+    <div class="head">
+      <div>
+        <div class="eyebrow a" style="--d:.1s">03 / Price layers</div>
+        <h2 class="mega"><span class="line"><span style="--d:.2s">Six prices.</span></span><span class="line"><span style="--d:.32s"><em>One record.</em></span></span></h2>
+      </div>
+      <p class="sup a" style="--d:.38s">Every record carries its price type, currency and tax basis, so every comparison is like for like.</p>
+    </div>
+    <div class="pl-cards">
+      <article class="pl-card glass a" style="--d:0.42s"><span class="ix">01</span><h3>List price</h3><p>The manufacturer’s recommended retail price for every version.</p><div class="m"><b>17</b><span>markets · the reference layer</span></div></article>
+      <article class="pl-card glass a" style="--d:0.49s"><span class="ix">02</span><h3>Campaign price</h3><p>Published brand campaigns, discounts and “price from” offers.</p><div class="m"><b>20,700</b><span>records with promotion data</span></div></article>
+      <article class="pl-card glass a" style="--d:0.56s"><span class="ix">03</span><h3>Dealer stock</h3><p>Real units in dealer inventory: equipment, colour, availability and asking price.</p><div class="m"><b>15,800</b><span>stock units priced</span></div></article>
+      <article class="pl-card glass a" style="--d:0.63s"><span class="ix">04</span><h3>Configured price</h3><p>Options, packs, colours and engine upgrades, as built in the configurator.</p><div class="m"><b>12,600</b><span>configured records</span></div></article>
+      <article class="pl-card glass a" style="--d:0.70s"><span class="ix">05</span><h3>Net price</h3><p>Before VAT and registration tax, to compare across different tax systems.</p><div class="m"><b>11,500</b><span>records with net price</span></div></article>
+      <article class="pl-card glass a" style="--d:0.77s"><span class="ix">06</span><h3>Financing &amp; bonuses</h3><p>Monthly instalments, leasing, financing bonuses and trade-in incentives.</p><div class="m"><b>4,600+</b><span>records with financing data</span></div></article>
+    </div>
+    <div class="pl-flow a" style="--d:.95s">
+      <div><b><i>01</i>Capture</b><span>132 automated extractors read official configurators, catalogues and dealer stock.</span></div>
+      <div><b><i>02</i>Standardise</b><span>One model: market · brand · model · version · powertrain · body · price.</span></div>
+      <div><b><i>03</i>Validate</b><span>Monthly quality control. Doubtful prices are flagged, never silently removed.</span></div>
+      <div><b><i>04</i>Compare</b><span>Month on month, version by version, in every market.</span></div>
+    </div>
+    <div class="pl-foot a" style="--d:1.05s"><span>Record counts: Europe, October 2026. Latin America adds list, “from”, bonus and instalment prices in local currency and USD.</span><span>Depth varies by brand and market</span></div>
+  </section>
+
+  <!-- ============ 04 · MONTH ON MONTH · sep→oct 2026, mismas versiones en ambos runs ============ -->
+  <section class="scene mm" data-chap="4" data-steps="0" aria-label="Month on month">
+    <div class="head">
+      <div>
+        <div class="eyebrow a" style="--d:.1s">04 / Month on month</div>
+        <h2 class="mega"><span class="line"><span style="--d:.2s">One month.</span></span><span class="line"><span style="--d:.32s"><em>334 price changes.</em></span></span></h2>
+      </div>
+      <p class="sup a" style="--d:.38s">We compared the price of each version in September and in October, market by market.</p>
+    </div>
+    <div class="mm-body">
+      <div class="mm-p glass a" style="--d:.42s">
+        <h3>Europe · 12 markets</h3>
+        <div class="mm-k"><b>202</b><span>versions changed price</span></div>
+        <div class="mm-s"><span class="u"><b>136 went up</b> · usually by 0.7%</span><span class="d"><b>66 went down</b> · usually by 3.8%</span></div>
+        <p class="mm-note">Out of 8,534 versions we track in both months. Few changes: small rises, and fewer but bigger cuts.</p>
+        <div class="mm-rows">
+            <div class="mm-r" style="--d:0.60s" title="BE: 23 up · 22 down · 624 versions tracked"><b class="ctry" role="img" aria-label="Belgium"><img src="assets/flags/be.svg" alt="" draggable="false"></b><div class="dn"><i style="width:59.5%"></i></div><div class="up"><i style="width:62.2%"></i></div><span><em class="d">22↓</em><em class="u">23↑</em></span></div>
+            <div class="mm-r" style="--d:0.64s" title="ES: 37 up · 4 down · 1,057 versions tracked"><b class="ctry" role="img" aria-label="Spain"><img src="assets/flags/es.svg" alt="" draggable="false"></b><div class="dn"><i style="width:10.8%"></i></div><div class="up"><i style="width:100.0%"></i></div><span><em class="d">4↓</em><em class="u">37↑</em></span></div>
+            <div class="mm-r" style="--d:0.68s" title="NL: 26 up · 4 down · 960 versions tracked"><b class="ctry" role="img" aria-label="Netherlands"><img src="assets/flags/nl.svg" alt="" draggable="false"></b><div class="dn"><i style="width:10.8%"></i></div><div class="up"><i style="width:70.3%"></i></div><span><em class="d">4↓</em><em class="u">26↑</em></span></div>
+            <div class="mm-r" style="--d:0.72s" title="SE: 14 up · 9 down · 328 versions tracked"><b class="ctry" role="img" aria-label="Sweden"><img src="assets/flags/se.svg" alt="" draggable="false"></b><div class="dn"><i style="width:24.3%"></i></div><div class="up"><i style="width:37.8%"></i></div><span><em class="d">9↓</em><em class="u">14↑</em></span></div>
+            <div class="mm-r" style="--d:0.76s" title="DE: 8 up · 9 down · 1,215 versions tracked"><b class="ctry" role="img" aria-label="Germany"><img src="assets/flags/de.svg" alt="" draggable="false"></b><div class="dn"><i style="width:24.3%"></i></div><div class="up"><i style="width:21.6%"></i></div><span><em class="d">9↓</em><em class="u">8↑</em></span></div>
+            <div class="mm-r" style="--d:0.80s" title="PT: 11 up · 5 down · 760 versions tracked"><b class="ctry" role="img" aria-label="Portugal"><img src="assets/flags/pt.svg" alt="" draggable="false"></b><div class="dn"><i style="width:13.5%"></i></div><div class="up"><i style="width:29.7%"></i></div><span><em class="d">5↓</em><em class="u">11↑</em></span></div>
+            <div class="mm-r" style="--d:0.84s" title="AT: 5 up · 3 down · 583 versions tracked"><b class="ctry" role="img" aria-label="Austria"><img src="assets/flags/at.svg" alt="" draggable="false"></b><div class="dn"><i style="width:8.1%"></i></div><div class="up"><i style="width:13.5%"></i></div><span><em class="d">3↓</em><em class="u">5↑</em></span></div>
+            <div class="mm-r" style="--d:0.88s" title="CH: 7 up · 0 down · 686 versions tracked"><b class="ctry" role="img" aria-label="Switzerland"><img src="assets/flags/ch.svg" alt="" draggable="false"></b><div class="dn"><i style="width:0.0%"></i></div><div class="up"><i style="width:18.9%"></i></div><span><em class="d">0↓</em><em class="u">7↑</em></span></div>
+            <div class="mm-r" style="--d:0.92s" title="FI: 0 up · 6 down · 109 versions tracked"><b class="ctry" role="img" aria-label="Finland"><img src="assets/flags/fi.svg" alt="" draggable="false"></b><div class="dn"><i style="width:16.2%"></i></div><div class="up"><i style="width:0.0%"></i></div><span><em class="d">6↓</em><em class="u">0↑</em></span></div>
+            <div class="mm-r" style="--d:0.96s" title="PL: 3 up · 2 down · 1,016 versions tracked"><b class="ctry" role="img" aria-label="Poland"><img src="assets/flags/pl.svg" alt="" draggable="false"></b><div class="dn"><i style="width:5.4%"></i></div><div class="up"><i style="width:8.1%"></i></div><span><em class="d">2↓</em><em class="u">3↑</em></span></div>
+            <div class="mm-r" style="--d:1.00s" title="CZ: 2 up · 2 down · 502 versions tracked"><b class="ctry" role="img" aria-label="Czechia"><img src="assets/flags/cz.svg" alt="" draggable="false"></b><div class="dn"><i style="width:5.4%"></i></div><div class="up"><i style="width:5.4%"></i></div><span><em class="d">2↓</em><em class="u">2↑</em></span></div>
+            <div class="mm-r" style="--d:1.04s" title="SK: 0 up · 0 down · 694 versions tracked"><b class="ctry" role="img" aria-label="Slovakia"><img src="assets/flags/sk.svg" alt="" draggable="false"></b><div class="dn"><i style="width:0.0%"></i></div><div class="up"><i style="width:0.0%"></i></div><span><em class="d">0↓</em><em class="u">0↑</em></span></div>
+        </div>
+        <div class="mm-ax" aria-hidden="true"><span></span><span>← down</span><span>up →</span><span></span></div>
+      </div>
+      <div class="mm-p glass a" style="--d:.5s">
+        <h3>Latin America · 5 markets</h3>
+        <div class="mm-k"><b>132</b><span>versions changed price</span></div>
+        <div class="mm-s"><span class="u"><b>52 went up</b> · usually by 2.4%</span><span class="d"><b>80 went down</b> · usually by 3.2%</span></div>
+        <p class="mm-note">Out of 1,143 versions: one in nine moved. Chile and Colombia are cutting prices; Argentina and Bolivia are raising them.</p>
+        <div class="mm-rows">
+            <div class="mm-r" style="--d:0.80s" title="PE: 18 up · 21 down · 217 versions tracked"><b class="ctry" role="img" aria-label="Peru"><img src="assets/flags/pe.svg" alt="" draggable="false"></b><div class="dn"><i style="width:63.6%"></i></div><div class="up"><i style="width:54.5%"></i></div><span><em class="d">21↓</em><em class="u">18↑</em></span></div>
+            <div class="mm-r" style="--d:0.84s" title="CL: 3 up · 33 down · 350 versions tracked"><b class="ctry" role="img" aria-label="Chile"><img src="assets/flags/cl.svg" alt="" draggable="false"></b><div class="dn"><i style="width:100.0%"></i></div><div class="up"><i style="width:9.1%"></i></div><span><em class="d">33↓</em><em class="u">3↑</em></span></div>
+            <div class="mm-r" style="--d:0.88s" title="CO: 2 up · 23 down · 331 versions tracked"><b class="ctry" role="img" aria-label="Colombia"><img src="assets/flags/co.svg" alt="" draggable="false"></b><div class="dn"><i style="width:69.7%"></i></div><div class="up"><i style="width:6.1%"></i></div><span><em class="d">23↓</em><em class="u">2↑</em></span></div>
+            <div class="mm-r" style="--d:0.92s" title="BO: 16 up · 3 down · 113 versions tracked"><b class="ctry" role="img" aria-label="Bolivia"><img src="assets/flags/bo.svg" alt="" draggable="false"></b><div class="dn"><i style="width:9.1%"></i></div><div class="up"><i style="width:48.5%"></i></div><span><em class="d">3↓</em><em class="u">16↑</em></span></div>
+            <div class="mm-r" style="--d:0.96s" title="AR: 13 up · 0 down · 132 versions tracked"><b class="ctry" role="img" aria-label="Argentina"><img src="assets/flags/ar.svg" alt="" draggable="false"></b><div class="dn"><i style="width:0.0%"></i></div><div class="up"><i style="width:39.4%"></i></div><span><em class="d">0↓</em><em class="u">13↑</em></span></div>
+        </div>
+        <div class="mm-ax" aria-hidden="true"><span></span><span>← down</span><span>up →</span><span></span></div>
+      </div>
+      <div class="mm-p mm-mv glass a" style="--d:.58s">
+        <h3>Moves worth a call</h3>
+        <ul>
+          <li class="a" style="--d:0.90s"><div><b>Peugeot 3008 Allure</b><span>Poland</span></div><div class="pr"><s>191,100 zł</s>161,400 zł<em>−15.5%</em></div></li>
+          <li class="a" style="--d:0.97s"><div><b>Mitsubishi Outlander PHEV</b><span>Portugal</span></div><div class="pr"><s>€40,490</s>€34,490<em>−14.8%</em></div></li>
+          <li class="a" style="--d:1.04s"><div><b>Volkswagen Tiguan</b><span>Colombia</span></div><div class="pr"><s>$162.99M</s>$140.99M<em>−13.5%</em></div></li>
+          <li class="a" style="--d:1.11s"><div><b>Kia Carnival</b><span>Chile</span></div><div class="pr"><s>$46.06M</s>$41.09M<em>−10.8%</em></div></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mm-foot a" style="--d:1.2s"><span><b>Bars</b> = number of versions whose price went down (left) or up (right) in each market</span><span>Catalogue and configurator prices, 1 Sep vs 1 Oct 2026 runs. Dealer stock, entry-trim “from” prices and capture artefacts excluded.</span></div>
+  </section>
+
+  <!-- ============ 05 · WHY PCI · diferencia con JATO (fuentes públicas de JATO, ago-oct 2026) ============ -->
+  <section class="scene jt" data-chap="5" data-steps="0" aria-label="PCI and JATO">
+    <div class="head">
+      <div>
+        <div class="eyebrow a" style="--d:.1s">05 / Why PCI</div>
+        <h2 class="mega"><span class="line"><span style="--d:.2s">Two lenses.</span></span><span class="line"><span style="--d:.32s"><em>Different questions.</em></span></span></h2>
+      </div>
+      <p class="sup a" style="--d:.38s">JATO tells you what every car is. PCI tells you what the market charges for it today, and whether buyers can afford it.</p>
+    </div>
+    <div class="jt-t">
+      <span class="jt-pci a" style="--d:.45s" aria-hidden="true"></span>
+      <div class="hd"></div>
+      <div class="hd a" style="--d:.42s"><b>JATO</b><span>The reference catalogue</span></div>
+      <div class="hd p a" style="--d:.48s"><b>PCI</b><span>The live market signal</span></div>
+      <div class="rl a" style="--d:0.55s">The question</div>
+      <div class="c a" style="--d:0.57s"><span>What does every car offer, and at what list price?</span></div>
+      <div class="c p a" style="--d:0.59s"><span>What is each brand charging buyers <strong>this month</strong>, and can they afford it?</span></div>
+      <div class="rl a" style="--d:0.61s">Source</div>
+      <div class="c a" style="--d:0.63s"><span>Standardised industry database, licensed through its platform and API.</span></div>
+      <div class="c p a" style="--d:0.65s"><span>Read from <strong>443 official brand websites</strong>: configurators, catalogues, dealer stock.</span></div>
+      <div class="rl a" style="--d:0.67s">Breadth</div>
+      <div class="c a" style="--d:0.69s"><span><strong>58 markets · 200+ brands · 1,000+ attributes</strong> per vehicle. The specification reference.</span></div>
+      <div class="c p a" style="--d:0.71s"><span><strong>17 markets · 66 brands</strong>, built around Astara’s footprint, incl. Bolivia and Chinese importers.</span></div>
+      <div class="rl a" style="--d:0.73s">Price per vehicle</div>
+      <div class="c a" style="--d:0.75s"><span>Catalogue prices per version: list price, options, packs and colours.</span></div>
+      <div class="c p a" style="--d:0.77s"><span>Six price layers per version, plus <strong>real cars in dealer stock</strong>: 15,800 units with equipment, colour and asking price.</span></div>
+      <div class="rl a" style="--d:0.79s">Affordability</div>
+      <div class="c a" style="--d:0.81s"><span>Not part of its published specification offer.</span></div>
+      <div class="c p a" style="--d:0.83s"><span><strong>Price against average income</strong> in each country: weeks of gross salary per car, adjusted to purchasing power (Eurostat PPS).</span></div>
+      <div class="rl a" style="--d:0.85s">Market share</div>
+      <div class="c a" style="--d:0.87s"><span>Registration volumes, offered as a separate module.</span></div>
+      <div class="c p a" style="--d:0.89s"><span><strong>Share by brand and model</strong>, next to price and affordability in one view.</span></div>
+      <div class="rl a" style="--d:0.91s">Control</div>
+      <div class="c a" style="--d:0.93s"><span>A standard product and taxonomy, shared by the whole industry.</span></div>
+      <div class="c p a" style="--d:0.95s"><span><strong>Owned by Astara.</strong> New brands, markets or fields added on demand, in weeks.</span></div>
+    </div>
+    <div class="jt-end a" style="--d:1.05s">
+      <p>Complementary, not a replacement. <em>JATO is the reference; PCI is the signal Astara owns.</em></p>
+      <small>JATO: jato.com (specifications coverage; press release, 10 Aug 2026). PCI: Full Run, October 2026; affordability from Eurostat price levels and average salaries; share from 2026 YTD registrations.</small>
+    </div>
+  </section>
+
+  <!-- ============ 05 · USE CASES · ocho tarjetas ============ -->
+  <section class="scene uc" data-chap="6" data-steps="0" aria-label="PCI use cases">
+    <div class="head">
+      <div>
+        <div class="eyebrow a" style="--d:.1s">PCI · Price Competitiveness Index</div>
+        <h2 class="mega"><span class="line"><span style="--d:.2s">Use <em>cases</em></span></span></h2>
+      </div>
+      <p class="sup a" style="--d:.38s">Eight ways PCI turns prices into decisions. Six run on today’s data; two add an extra data layer.</p>
+    </div>
+    <div class="uc-grid">
+      <article class="pci-use-case-card a" data-use-case="01" style="--d:0.45s;--gx:22%;--gy:6%">
+        <div class="pci-card-surface">
+          <div class="pci-card-visual" aria-hidden="true" style="background-image:url(assets/use-cases/bg-01.webp);--img-pos:50% 92%"></div>
+          <div class="pci-card-top"><span class="pci-card-tags"><span class="pci-card-tag">BENCHMARK</span></span><span class="pci-card-ico" aria-hidden="true"><img src="assets/use-cases/icons/01.svg" alt="" draggable="false"></span></div>
+          <div class="pci-card-content"><h3>Competitive Price Benchmarking</h3><p>Position every version against its rivals, market by market.</p></div>
+        </div>
+      </article>
+      <article class="pci-use-case-card a" data-use-case="02" style="--d:0.52s;--gx:78%;--gy:4%">
+        <div class="pci-card-surface">
+          <div class="pci-card-visual" aria-hidden="true" style="background-image:url(assets/use-cases/bg-02.webp);--img-pos:50% 80%"></div>
+          <div class="pci-card-top"><span class="pci-card-tags"><span class="pci-card-tag">MONITOR</span></span><span class="pci-card-ico" aria-hidden="true"><img src="assets/use-cases/icons/02.svg" alt="" draggable="false"></span></div>
+          <div class="pci-card-content"><h3>Price Evolution &amp; Market Monitoring</h3><p>Detect price moves month on month, by version and market.</p></div>
+        </div>
+      </article>
+      <article class="pci-use-case-card a" data-use-case="03" style="--d:0.59s;--gx:40%;--gy:0%">
+        <div class="pci-card-surface">
+          <div class="pci-card-visual" aria-hidden="true" style="background-image:url(assets/use-cases/bg-03.webp);--img-pos:50% 90%"></div>
+          <div class="pci-card-top"><span class="pci-card-tags"><span class="pci-card-tag">STRATEGY</span></span><span class="pci-card-ico" aria-hidden="true"><img src="assets/use-cases/icons/03.svg" alt="" draggable="false"></span></div>
+          <div class="pci-card-content"><h3>Pricing Strategy &amp; Product Positioning</h3><p>Set launch prices against the real competitive set.</p></div>
+        </div>
+      </article>
+      <article class="pci-use-case-card a" data-use-case="04" style="--d:0.66s;--gx:86%;--gy:12%">
+        <div class="pci-card-surface">
+          <div class="pci-card-visual" aria-hidden="true" style="background-image:url(assets/use-cases/bg-04.webp);--img-pos:50% 90%"></div>
+          <div class="pci-card-top"><span class="pci-card-tags"><span class="pci-card-tag">PORTFOLIO</span></span><span class="pci-card-ico" aria-hidden="true"><img src="assets/use-cases/icons/04.svg" alt="" draggable="false"></span></div>
+          <div class="pci-card-content"><h3>Portfolio &amp; Trim Optimization</h3><p>Spot gaps and overlaps in the price ladder across trims and powertrains.</p></div>
+        </div>
+      </article>
+      <article class="pci-use-case-card a" data-use-case="05" style="--d:0.52s;--gx:14%;--gy:10%">
+        <div class="pci-card-surface">
+          <div class="pci-card-visual" aria-hidden="true" style="background-image:url(assets/use-cases/bg-05.webp);--img-pos:50% 95%"></div>
+          <div class="pci-card-top"><span class="pci-card-tags"><span class="pci-card-tag">PROMOTIONS</span></span><span class="pci-card-ico" aria-hidden="true"><img src="assets/use-cases/icons/05.svg" alt="" draggable="false"></span></div>
+          <div class="pci-card-content"><h3>Promotions &amp; Discount Intelligence</h3><p>Read commercial pressure: list vs campaign vs dealer stock prices.</p></div>
+        </div>
+      </article>
+      <article class="pci-use-case-card a" data-use-case="06" style="--d:0.59s;--gx:62%;--gy:2%">
+        <div class="pci-card-surface">
+          <div class="pci-card-visual" aria-hidden="true" style="background-image:url(assets/use-cases/bg-06.webp);--img-pos:50% 95%"></div>
+          <div class="pci-card-top"><span class="pci-card-tags"><span class="pci-card-tag">FLEET</span><span class="pci-card-tag ext">+ TCO DATA</span></span><span class="pci-card-ico" aria-hidden="true"><img src="assets/use-cases/icons/06.svg" alt="" draggable="false"></span></div>
+          <div class="pci-card-content"><h3>Fleet &amp; TCO Benchmarking</h3><p>Combine net prices and financing with running costs.</p></div>
+        </div>
+      </article>
+      <article class="pci-use-case-card a" data-use-case="07" style="--d:0.66s;--gx:30%;--gy:14%">
+        <div class="pci-card-surface">
+          <div class="pci-card-visual" aria-hidden="true" style="background-image:url(assets/use-cases/bg-07.webp);--img-pos:50% 85%"></div>
+          <div class="pci-card-top"><span class="pci-card-tags"><span class="pci-card-tag">OPPORTUNITY</span></span><span class="pci-card-ico" aria-hidden="true"><img src="assets/use-cases/icons/07.svg" alt="" draggable="false"></span></div>
+          <div class="pci-card-content"><h3>Market Opportunities &amp; White Spaces</h3><p>Find under-served price bands, body types and powertrains.</p></div>
+        </div>
+      </article>
+      <article class="pci-use-case-card a" data-use-case="08" style="--d:0.73s;--gx:74%;--gy:8%">
+        <div class="pci-card-surface">
+          <div class="pci-card-visual" aria-hidden="true" style="background-image:url(assets/use-cases/bg-08.webp);--img-pos:50% 100%"></div>
+          <div class="pci-card-top"><span class="pci-card-tags"><span class="pci-card-tag">RESIDUAL VALUE</span><span class="pci-card-tag ext">+ USED-CAR DATA</span></span><span class="pci-card-ico" aria-hidden="true"><img src="assets/use-cases/icons/08.svg" alt="" draggable="false"></span></div>
+          <div class="pci-card-content"><h3>Residual Value &amp; Used Car Intelligence</h3><p>Link new-car prices with used-car listings to read depreciation.</p></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ 05 · PCI PLATFORM · el dashboard (puente a la demo en vivo) · reveal de la suite + tablet de producto ============ -->
+  <section class="scene s05 pci" data-chap="7" data-steps="8" data-auto="3000,1500" aria-label="PCI platform">
     <div class="streaks img"></div>
     <div class="wm"><div class="wm-inner" id="wmInner">
       <div class="wm-word" id="wmWord"><img class="pci-logo" src="assets/brand/pci-logo.svg" width="130" height="130" alt="PCI"></div>
@@ -1462,7 +1924,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
           </div></div><div class="scan t2"></div></div>
         </div>
         <aside class="pv-side">
-          <p class="pv-lede">Explore markets, portfolios and vehicle-level pricing in one connected environment.</p>
+          <p class="pv-lede">The same engine, focused on one group. Explore markets, portfolios and version-level pricing in one connected environment.</p>
           <div class="pv-lb">Seven connected views</div>
           <div class="pv-nav"><span class="pv-rail" aria-hidden="true"><i></i><b></b></span>
           <ol class="pv-views">
@@ -1474,7 +1936,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
             <li class="v6" data-step="7" role="button" tabindex="0">Market Share</li>
             <li class="v7" data-step="8" role="button" tabindex="0">Full Detail</li>
           </ol></div>
-          <div class="pv-note">Demo environment · 21 European markets</div>
+          <div class="pv-note">HMG lens · Hyundai &amp; Kia · 21 European markets</div>
         </aside>
         <div class="journey" aria-hidden="true"><span><b>01</b>Markets</span><span><b>02</b>Brands</span><span><b>03</b>Models</span><span><b>04</b>Trims</span><span><b>05</b>Powertrain</span><span><b>06</b>Price</span></div>
       </div>
@@ -1482,105 +1944,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     </div>
   </section>
 
-  <!-- ============ 03 · USE CASES · ocho tarjetas ============ -->
-  <section class="scene uc" data-chap="3" data-steps="0" aria-label="PCI use cases">
-    <div class="head">
-      <div>
-        <div class="eyebrow a" style="--d:.1s">PCI · Price Competitiveness Index</div>
-        <h2 class="mega"><span class="line"><span style="--d:.2s">Use <em>cases</em></span></span></h2>
-      </div>
-      <p class="sup a" style="--d:.38s">Eight ways PCI turns automotive data into business decisions.</p>
-    </div>
-    <div class="uc-grid">
-      <article class="pci-use-case-card a" data-use-case="01" style="--d:0.45s;--gx:22%;--gy:6%">
-        <div class="pci-card-surface">
-          <div class="pci-card-visual" aria-hidden="true" style="background-image:url(assets/use-cases/01.webp);--img-pos:50% 92%"></div>
-          <div class="pci-card-top"><span class="pci-card-tag">BENCHMARK</span></div>
-          <div class="pci-card-content"><h3>Competitive Price Benchmarking</h3><p>Compare price positioning across brands, models and trims.</p></div>
-        </div>
-      </article>
-      <article class="pci-use-case-card a" data-use-case="02" style="--d:0.52s;--gx:78%;--gy:4%">
-        <div class="pci-card-surface">
-          <div class="pci-card-visual" aria-hidden="true" style="background-image:url(assets/use-cases/02.webp);--img-pos:50% 80%"></div>
-          <div class="pci-card-top"><span class="pci-card-tag">MONITOR</span></div>
-          <div class="pci-card-content"><h3>Price Evolution &amp; Market Monitoring</h3><p>Track price movements and changing market strategies.</p></div>
-        </div>
-      </article>
-      <article class="pci-use-case-card a" data-use-case="03" style="--d:0.59s;--gx:40%;--gy:0%">
-        <div class="pci-card-surface">
-          <div class="pci-card-visual" aria-hidden="true" style="background-image:url(assets/use-cases/03.webp);--img-pos:50% 90%"></div>
-          <div class="pci-card-top"><span class="pci-card-tag">STRATEGY</span></div>
-          <div class="pci-card-content"><h3>Pricing Strategy &amp; Product Positioning</h3><p>Assess launch prices, positioning and competitive gaps.</p></div>
-        </div>
-      </article>
-      <article class="pci-use-case-card a" data-use-case="04" style="--d:0.66s;--gx:86%;--gy:12%">
-        <div class="pci-card-surface">
-          <div class="pci-card-visual" aria-hidden="true" style="background-image:url(assets/use-cases/04.webp);--img-pos:50% 90%"></div>
-          <div class="pci-card-top"><span class="pci-card-tag">PORTFOLIO</span></div>
-          <div class="pci-card-content"><h3>Portfolio &amp; Trim Optimization</h3><p>Identify price gaps, overlaps and range opportunities.</p></div>
-        </div>
-      </article>
-      <article class="pci-use-case-card a" data-use-case="05" style="--d:0.52s;--gx:14%;--gy:10%">
-        <div class="pci-card-surface">
-          <div class="pci-card-visual" aria-hidden="true" style="background-image:url(assets/use-cases/05.webp);--img-pos:50% 95%"></div>
-          <div class="pci-card-top"><span class="pci-card-tag">PROMOTIONS</span></div>
-          <div class="pci-card-content"><h3>Promotions &amp; Discount Intelligence</h3><p>Compare list prices, offers and promotional pressure.</p></div>
-        </div>
-      </article>
-      <article class="pci-use-case-card a" data-use-case="06" style="--d:0.59s;--gx:62%;--gy:2%">
-        <div class="pci-card-surface">
-          <div class="pci-card-visual" aria-hidden="true" style="background-image:url(assets/use-cases/06.webp);--img-pos:50% 95%"></div>
-          <div class="pci-card-top"><span class="pci-card-tag">FLEET</span></div>
-          <div class="pci-card-content"><h3>Fleet &amp; TCO Benchmarking</h3><p>Evaluate fleet acquisition costs and TCO opportunities.</p></div>
-        </div>
-      </article>
-      <article class="pci-use-case-card a" data-use-case="07" style="--d:0.66s;--gx:30%;--gy:14%">
-        <div class="pci-card-surface">
-          <div class="pci-card-visual" aria-hidden="true" style="background-image:url(assets/use-cases/07.webp);--img-pos:50% 85%"></div>
-          <div class="pci-card-top"><span class="pci-card-tag">OPPORTUNITY</span></div>
-          <div class="pci-card-content"><h3>Market Opportunities &amp; White Spaces</h3><p>Reveal underserved price bands, technologies and body types.</p></div>
-        </div>
-      </article>
-      <article class="pci-use-case-card a" data-use-case="08" style="--d:0.73s;--gx:74%;--gy:8%">
-        <div class="pci-card-surface">
-          <div class="pci-card-visual" aria-hidden="true" style="background-image:url(assets/use-cases/08.webp);--img-pos:50% 100%"></div>
-          <div class="pci-card-top"><span class="pci-card-tag">RESIDUAL VALUE</span></div>
-          <div class="pci-card-content"><h3>Residual Value &amp; Used Car Intelligence</h3><p>Explore depreciation through new and used vehicle prices.</p></div>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- ============ 04 · BUSINESS APPLICATIONS · un motor, ocho aplicaciones ============ -->
-  <section class="scene apps" data-chap="4" data-steps="0" aria-label="PCI business applications">
-    <div class="head">
-      <div>
-        <div class="eyebrow a" style="--d:.1s">PCI · Price Competitiveness Index</div>
-        <h2 class="mega"><span class="line"><span style="--d:.2s">One engine.</span></span><span class="line"><span style="--d:.3s"><em>Multiple applications.</em></span></span></h2>
-      </div>
-      <div class="side a" style="--d:.38s"><div class="label">Business applications</div><p class="sup">A single pricing intelligence foundation can power multiple business solutions.</p></div>
-    </div>
-    <div class="pci-orbit-stage">
-      <div class="pci-orbit" id="pciOrbit">
-        <svg class="pci-orbit-svg" viewBox="0 0 1680 640" preserveAspectRatio="none" aria-hidden="true">
-          <defs><radialGradient id="pci-glow" cx="840" cy="596" r="560" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stop-color="#3f7cff" stop-opacity=".22"/><stop offset=".55" stop-color="#3f7cff" stop-opacity=".07"/><stop offset="1" stop-color="#3f7cff" stop-opacity="0"/></radialGradient></defs>
-          <path class="pci-glow" d="M280 596 A560 560 0 0 1 1400 596 Z" fill="url(#pci-glow)"/>
-          <g class="pci-orbit-ring core" data-ring="core"><path class="pci-arc-draw pci-arc" pathLength="1" d="M640 596 A200 200 0 0 1 840 396" style="--d:0.45s"/><path class="pci-arc-draw pci-arc" pathLength="1" d="M1040 596 A200 200 0 0 0 840 396" style="--d:0.45s"/><path id="pci-lp-core" d="M662 596 A178 178 0 0 1 1018 596" fill="none"/><text class="pci-fam" style="--d:1.09s"><textPath href="#pci-lp-core" startOffset="56.7%" text-anchor="middle">CORE PRICING</textPath></text></g><g class="pci-orbit-ring decision" data-ring="decision"><path class="pci-arc-draw pci-arc" pathLength="1" d="M490 596 A350 350 0 0 1 840 246" style="--d:0.73s"/><path class="pci-arc-draw pci-arc" pathLength="1" d="M1190 596 A350 350 0 0 0 840 246" style="--d:0.73s"/><path id="pci-lp-decision" d="M512 596 A328 328 0 0 1 1168 596" fill="none"/><text class="pci-fam" style="--d:1.37s"><textPath href="#pci-lp-decision" startOffset="51.1%" text-anchor="middle">DECISION TOOLS</textPath></text></g><g class="pci-orbit-ring extended" data-ring="extended"><mask id="pci-m-extended" maskUnits="userSpaceOnUse" x="0" y="0" width="1680" height="640"><path class="pci-arc-draw pci-arc-mask" pathLength="1" d="M340 596 A500 500 0 0 1 840 96" style="--d:1.01s"/><path class="pci-arc-draw pci-arc-mask" pathLength="1" d="M1340 596 A500 500 0 0 0 840 96" style="--d:1.01s"/></mask><path class="pci-arc" mask="url(#pci-m-extended)" d="M340 596 A500 500 0 0 1 1340 596"/><path id="pci-lp-extended" d="M362 596 A478 478 0 0 1 1318 596" fill="none"/><text class="pci-fam" style="--d:1.65s"><textPath href="#pci-lp-extended" startOffset="51.1%" text-anchor="middle">EXTENDED INTELLIGENCE</textPath></text></g>
-          <g class="pci-segs"><path class="pci-seg core" data-app="01" d="M647.7 540.9 A200 200 0 0 1 696.1 457.1"/><path class="pci-seg core" data-app="02" d="M722.4 434.2 A200 200 0 0 1 812.2 397.9"/><path class="pci-seg core" data-app="03" d="M978.9 452.1 A200 200 0 0 1 1030.2 534.2"/><path class="pci-seg decision" data-app="04" d="M490.9 571.6 A350 350 0 0 1 543.2 410.5"/><path class="pci-seg decision" data-app="05" d="M912.8 253.6 A350 350 0 0 1 1065.0 327.9"/><path class="pci-seg decision" data-app="06" d="M1130.2 400.3 A350 350 0 0 1 1188.1 559.4"/><path class="pci-seg extended" data-app="07" d="M416.0 331.0 A500 500 0 0 1 590.0 163.0"/><path class="pci-seg extended" data-app="08" d="M1090.0 163.0 A500 500 0 0 1 1264.0 331.0"/></g>
-          <g class="pci-leads"><path class="pci-lead core" data-app="01" pathLength="1" style="--d:0.90s" d="M666.8 496.0 L381.0 331.0 L320 331.0"/><path class="pci-lead core" data-app="02" pathLength="1" style="--d:1.03s" d="M765.1 410.6 L641.5 104.6 L320 104.6"/><path class="pci-lead core" data-app="03" pathLength="1" style="--d:0.91s" d="M1009.6 490.0 L1289.5 315.1 L1360 315.1"/><path class="pci-lead decision" data-app="04" pathLength="1" style="--d:1.13s" d="M507.1 487.8 L335.9 432.2 L320 432.2"/><path class="pci-lead decision" data-app="05" pathLength="1" style="--d:1.30s" d="M993.4 281.4 L1072.3 119.6 L1360 119.6"/><path class="pci-lead decision" data-app="06" pathLength="1" style="--d:1.14s" d="M1168.9 476.3 L1338.0 414.7 L1360 414.7"/><path class="pci-lead extended" data-app="07" pathLength="1" style="--d:1.51s" d="M492.7 236.3 L471.8 214.7 L320 214.7"/><path class="pci-lead extended" data-app="08" pathLength="1" style="--d:1.51s" d="M1187.3 236.3 L1208.2 214.7 L1360 214.7"/><circle class="pci-lead-end core" data-app="01" cx="320" cy="331.0" r="3" style="--d:1.28s"/><circle class="pci-lead-end core" data-app="02" cx="320" cy="104.6" r="3" style="--d:1.41s"/><circle class="pci-lead-end core" data-app="03" cx="1360" cy="315.1" r="3" style="--d:1.29s"/><circle class="pci-lead-end decision" data-app="04" cx="320" cy="432.2" r="3" style="--d:1.50s"/><circle class="pci-lead-end decision" data-app="05" cx="1360" cy="119.6" r="3" style="--d:1.67s"/><circle class="pci-lead-end decision" data-app="06" cx="1360" cy="414.7" r="3" style="--d:1.51s"/><circle class="pci-lead-end extended" data-app="07" cx="320" cy="214.7" r="3" style="--d:1.89s"/><circle class="pci-lead-end extended" data-app="08" cx="1360" cy="214.7" r="3" style="--d:1.89s"/></g>
-          <g class="pci-nodes"><g class="pci-orbit-node core" data-app="01" transform="translate(666.8 496.0)" style="--d:0.80s"><circle class="pci-node-flash" r="13"/><circle class="pci-node-ring" r="13"/><circle class="pci-node-dot" r="7"/><circle class="pci-node-hit" r="26"/></g><g class="pci-orbit-node core" data-app="02" transform="translate(765.1 410.6)" style="--d:0.93s"><circle class="pci-node-flash" r="13"/><circle class="pci-node-ring" r="13"/><circle class="pci-node-dot" r="7"/><circle class="pci-node-hit" r="26"/></g><g class="pci-orbit-node core" data-app="03" transform="translate(1009.6 490.0)" style="--d:0.81s"><circle class="pci-node-flash" r="13"/><circle class="pci-node-ring" r="13"/><circle class="pci-node-dot" r="7"/><circle class="pci-node-hit" r="26"/></g><g class="pci-orbit-node decision" data-app="04" transform="translate(507.1 487.8)" style="--d:1.03s"><circle class="pci-node-flash" r="13"/><circle class="pci-node-ring" r="13"/><circle class="pci-node-dot" r="7"/><circle class="pci-node-hit" r="26"/></g><g class="pci-orbit-node decision" data-app="05" transform="translate(993.4 281.4)" style="--d:1.20s"><circle class="pci-node-flash" r="13"/><circle class="pci-node-ring" r="13"/><circle class="pci-node-dot" r="7"/><circle class="pci-node-hit" r="26"/></g><g class="pci-orbit-node decision" data-app="06" transform="translate(1168.9 476.3)" style="--d:1.04s"><circle class="pci-node-flash" r="13"/><circle class="pci-node-ring" r="13"/><circle class="pci-node-dot" r="7"/><circle class="pci-node-hit" r="26"/></g><g class="pci-orbit-node extended" data-app="07" transform="translate(492.7 236.3)" style="--d:1.41s"><circle class="pci-node-flash" r="13"/><circle class="pci-node-ring" r="13"/><circle class="pci-node-dot" r="7"/><circle class="pci-node-hit" r="26"/></g><g class="pci-orbit-node extended" data-app="08" transform="translate(1187.3 236.3)" style="--d:1.41s"><circle class="pci-node-flash" r="13"/><circle class="pci-node-ring" r="13"/><circle class="pci-node-dot" r="7"/><circle class="pci-node-hit" r="26"/></g></g>
-          <circle class="pci-pulse" cx="840" cy="524" r="64"/>
-        </svg>
-        <span class="pci-horizon" aria-hidden="true"></span>
-        <div class="pci-orbit-hub"><img src="assets/brand/pci-logo.svg" width="130" height="130" alt="PCI"><span>Pricing intelligence engine</span></div>
-        <div class="pci-app core l" data-app="01" data-ring="core" role="button" tabindex="0" style="right:calc(1370*100%/1680);top:calc(331.0*100%/640);--d:1.22s"><b>Competitive Benchmarking</b><span>Compare price positions across vehicles and markets.</span></div><div class="pci-app core l" data-app="02" data-ring="core" role="button" tabindex="0" style="right:calc(1370*100%/1680);top:calc(104.6*100%/640);--d:1.35s"><b>Price Monitoring</b><span>Track price changes and competitor moves.</span></div><div class="pci-app core" data-app="03" data-ring="core" role="button" tabindex="0" style="left:calc(1370*100%/1680);top:calc(315.1*100%/640);--d:1.22s"><b>Automotive Price Index</b><span>Build structured market-level pricing indicators.</span></div><div class="pci-app decision l" data-app="04" data-ring="decision" role="button" tabindex="0" style="right:calc(1370*100%/1680);top:calc(432.2*100%/640);--d:1.44s"><b>Launch Pricing Simulator</b><span>Explore pricing scenarios for new models.</span></div><div class="pci-app decision" data-app="05" data-ring="decision" role="button" tabindex="0" style="left:calc(1370*100%/1680);top:calc(119.6*100%/640);--d:1.61s"><b>Portfolio Optimization</b><span>Identify gaps, overlaps and range opportunities.</span></div><div class="pci-app decision" data-app="06" data-ring="decision" role="button" tabindex="0" style="left:calc(1370*100%/1680);top:calc(414.7*100%/640);--d:1.45s"><b>Promotions Intelligence</b><span>Assess offers, discounts and commercial pressure.</span></div><div class="pci-app extended l" data-app="07" data-ring="extended" role="button" tabindex="0" style="right:calc(1370*100%/1680);top:calc(214.7*100%/640);--d:1.83s"><b>TCO &amp; Fleet Intelligence</b><span>Connect acquisition prices with ownership costs.</span></div><div class="pci-app extended" data-app="08" data-ring="extended" role="button" tabindex="0" style="left:calc(1370*100%/1680);top:calc(214.7*100%/640);--d:1.83s"><b>Residual Value Analysis</b><span>Link new-car pricing with depreciation and resale.</span></div>
-      </div>
-    </div>
-  </section>
-
   <!-- ============ 05 · ENDING · las líneas de la portada convergen en el producto ============ -->
-  <section class="scene end" data-chap="5" data-steps="0" aria-label="PCI · Price Competitiveness Index">
+  <section class="scene end" data-chap="8" data-steps="0" aria-label="PCI · Price Competitiveness Index">
     <div class="end-beams" aria-hidden="true"></div>
     <svg class="end-conv" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path pathLength="1" style="--d:0.15s" d="M-10 90 C426 90 680 429 960 475"/><path pathLength="1" style="--d:0.19s" d="M1930 90 C1494 90 1240 429 960 475"/><path pathLength="1" style="--d:0.22s" d="M-10 300 C426 300 680 454 960 475"/><path pathLength="1" style="--d:0.26s" d="M1930 300 C1494 300 1240 454 960 475"/><path pathLength="1" style="--d:0.29s" d="M-10 520 C426 520 680 480 960 475"/><path pathLength="1" style="--d:0.33s" d="M1930 520 C1494 520 1240 480 960 475"/><path pathLength="1" style="--d:0.36s" d="M-10 720 C426 720 680 504 960 475"/><path pathLength="1" style="--d:0.40s" d="M1930 720 C1494 720 1240 504 960 475"/><path pathLength="1" style="--d:0.43s" d="M250 -10 C570 -10 680 417 960 475"/><path pathLength="1" style="--d:0.47s" d="M1670 -10 C1350 -10 1240 417 960 475"/><path pathLength="1" style="--d:0.50s" d="M560 -10 C740 -10 680 417 960 475"/><path pathLength="1" style="--d:0.54s" d="M1360 -10 C1180 -10 1240 417 960 475"/><path pathLength="1" style="--d:0.57s" d="M820 -10 C883 -10 680 417 960 475"/><path pathLength="1" style="--d:0.61s" d="M1100 -10 C1037 -10 1240 417 960 475"/></svg>
     <div class="end-glow" aria-hidden="true"></div>
@@ -1589,6 +1954,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
       <div class="end-sub">Price Competitiveness Index</div>
       <div class="end-by"><span>by</span><img class="amark" src="assets/brand/astara-logo-white.svg" alt="Astara Intelligence"></div>
     </div>
+    <a class="end-cta" id="dashCta" href="#" target="_blank" rel="noopener">Open the live dashboard <span aria-hidden="true">→</span></a>
     <div class="end-tag"><h2 class="mega"><span class="line"><span style="--d:2.9s">From data <em>to decision.</em></span></span></h2></div>
   </section>
 
@@ -1597,17 +1963,20 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     <button class="brand" data-go="0" aria-label="Astara Intelligence · back to start"><img class="amark" src="assets/brand/astara-logo-white.svg" alt="Astara Intelligence"></button>
     <div class="chap">
       <button data-go="0" data-chap="0">Intro</button>
-      <button data-go="1" data-chap="1">Pricing Data</button>
-      <button data-go="2" data-chap="2">Platform</button>
-      <button data-go="3" data-chap="3">Use Cases</button>
-      <button data-go="4" data-chap="4">Applications</button>
+      <button data-go="1" data-chap="1">One Car</button>
+      <button data-go="2" data-chap="2">Coverage</button>
+      <button data-go="3" data-chap="3">Price Layers</button>
+      <button data-go="4" data-chap="4">Month on Month</button>
+      <button data-go="5" data-chap="5">Why PCI</button>
+      <button data-go="6" data-chap="6">Use Cases</button>
+      <button data-go="7" data-chap="7">Platform</button>
     </div>
     <span class="cur" id="curChap"></span>
     <div class="right">
       <span class="meta">
       <span class="keys"><span class="k-fine">Click, space or → to continue · F fullscreen</span><span class="k-touch">Swipe or use the arrows</span></span>
       <span class="beats" id="beats"></span>
-      <span class="count" id="count"><b>01</b> / 06</span>
+      <span class="count" id="count"><b>01</b> / 09</span>
       </span>
       <button class="arrow" id="prev" aria-label="Previous"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 8H3M7 4 3 8l4 4"/></svg></button>
       <button class="arrow" id="next" aria-label="Next"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8h11M9 4l4 4-4 4"/></svg></button>
@@ -1658,7 +2027,11 @@ document.querySelectorAll('[data-layer]').forEach(f=>f.innerHTML=L[f.dataset.lay
 /* ---------- Motor de escenas ---------- */
 const scenes=[...document.querySelectorAll('.scene')];
 const TOTAL=document.querySelectorAll('.scene').length;
-const CHAPS=['Intro','Pricing Data','PCI Platform','Use Cases','Business Applications','PCI'];
+const CHAPS=['Intro','One Car','Coverage','Price Layers','Month on Month','Why PCI','Use Cases','PCI Platform','PCI'];
+/* URL del dashboard en vivo (botón final). Cambiar aquí. */
+const DASHBOARD_URL='';
+(()=>{const c=document.getElementById('dashCta'); if(!c) return; if(DASHBOARD_URL) c.href=DASHBOARD_URL; else c.removeAttribute('target');
+  c.addEventListener('click',e=>{e.stopPropagation(); if(!DASHBOARD_URL) e.preventDefault();});})();
 let cur=0, step=0, timers=[], lockUntil=0;
 const nav=document.getElementById('nav'), beats=document.getElementById('beats'), countEl=document.getElementById('count'), prog=document.getElementById('progress'), curChap=document.getElementById('curChap');
 const stepsOf=i=>+scenes[i].dataset.steps||0;
@@ -1668,7 +2041,7 @@ const clearTimers=()=>{timers.forEach(clearTimeout);timers=[]};
 function counters(sc){
   sc.querySelectorAll('[data-count]').forEach(n=>{const to=+n.dataset.count;n.textContent='0';
     timers.push(setTimeout(()=>{const t0=performance.now();
-      const tick=t=>{const p=Math.min(1,Math.max(0,(t-t0)/1300));n.textContent=Math.round(to*(1-Math.pow(1-p,4)));if(p<1)requestAnimationFrame(tick)};
+      const tick=t=>{const p=Math.min(1,Math.max(0,(t-t0)/1300));n.textContent=Math.round(to*(1-Math.pow(1-p,4))).toLocaleString('en-US');if(p<1)requestAnimationFrame(tick)};
       requestAnimationFrame(tick)},900))});
 }
 function schedule(){
@@ -1767,5 +2140,38 @@ const m=location.hash.match(/^#(\d+)(?:\.(\d+))?/);
 if(m){cur=Math.min(scenes.length,Math.max(1,+m[1]))-1;step=Math.min(stepsOf(cur),+(m[2]||0));render(true); if(!m[2]) schedule();}
 else { render(true); schedule(); }
 </script>
-</body>
-</html>
+
+
+<script>
+/* Number tokens in Inter: wraps a number together with the unit or currency code attached to it (k, M, w, kWh, zł, Kč, kr, CHF)
+   in <n-u> (a <tspan class="nu"> inside SVG). A custom tag, so existing span/b/i rules do not touch it. Plain numbers need nothing: their digits are already Inter through --f. */
+(()=>{
+  const RE=/CHF\s[€$£]?\d[\d.,'’]*|[€$£]?[+−-]?\d[\d.,'’]*(?:\s?(?:kWh|kW|zł|Kč|kr)|[kKMBw])(?![A-Za-zÀ-ɏ])/g;
+  const SKIP='script,style,textarea,noscript,n-u,.nu,[data-count]';
+  const SVGNS='http://www.w3.org/2000/svg';
+  const wrap=node=>{
+    const t=node.nodeValue;if(!/\d/.test(t))return;
+    const p=node.parentElement;if(!p||p.closest(SKIP))return;
+    RE.lastIndex=0;let m,last=0,frag=null;
+    while((m=RE.exec(t))){
+      frag=frag||document.createDocumentFragment();
+      if(m.index>last)frag.appendChild(document.createTextNode(t.slice(last,m.index)));
+      const svg=p instanceof SVGElement,el=svg?document.createElementNS(SVGNS,'tspan'):document.createElement('n-u');
+      if(svg)el.setAttribute('class','nu');el.textContent=m[0];frag.appendChild(el);last=m.index+m[0].length;
+    }
+    if(!frag)return;
+    if(last<t.length)frag.appendChild(document.createTextNode(t.slice(last)));
+    node.replaceWith(frag);
+  };
+  const scan=root=>{
+    if(root.nodeType===3)return wrap(root);
+    if(root.nodeType!==1||root.closest(SKIP))return;
+    const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),list=[];let n;
+    while((n=w.nextNode()))list.push(n);
+    list.forEach(wrap);
+  };
+  scan(document.body);
+  new MutationObserver(ms=>ms.forEach(m=>m.addedNodes.forEach(scan))).observe(document.body,{childList:true,subtree:true});
+})();
+</script>
+</body></html>
