@@ -1644,6 +1644,17 @@ html.fs-lite #grain,html.fs-lite #aura{display:none}
 html.fs-lite *,html.fs-lite *::before,html.fs-lite *::after{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
 html.fs-lite .hdev img,html.fs-lite .stg2 .device img,html.fs-lite .pci-seg,html.fs-lite .sweep,html.fs-lite .end-sweep{filter:none!important}
 html.fs-lite .glass,html.fs-lite .cov-kpi,html.fs-lite .ev-p,html.fs-lite .mm-p{background-color:rgba(6,12,36,.55)}
+
+/* Pantalla completa en tablet: la «X» de salida la dibuja Safari (control del sistema) arriba a la izquierda y la página no puede
+   moverla. Se deja libre esa esquina bajando 30 px el contenido de todas las slides, para que no tape el antetítulo ni el titular. (esquina de salida) */
+@media (pointer:coarse){
+  html.is-fs{--py:calc(max(22px,calc(var(--u)*5)) + 30px)}
+}
+@media (pointer:coarse) and (max-aspect-ratio:5/4){
+  html.is-fs{--py:calc(max(22px,calc(var(--u)*4)) + 30px)}
+  /* iPad mini en vertical: Price Layers y Why PCI no tienen holgura; ahí el desplazamiento es de 10 px en vez de 30 */
+  html.is-fs :is(.pl,.jt){padding-top:calc(var(--py) - 20px)}
+}
 /* ===== FIN TABLET ===== */
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.001ms!important;animation:none!important}}
 </style>
