@@ -1622,6 +1622,20 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .mm-r,.mm-ax,.mm-r:has(.ctry){grid-template-columns:calc(var(--u)*2.2) minmax(0,1fr) minmax(0,1fr) calc(var(--u)*8.6)}
   .mm-r span{white-space:nowrap}
 }
+
+.end-cta[hidden]{display:none!important}
+
+/* Móvil (≤ 600 px): la barra no cabía (logo + capítulo + contador + 3 botones). Se compacta: el capítulo y los puntos se ocultan
+   (el contador ya dice dónde estás) y el logo se reduce, para que las flechas queden siempre a la vista. */
+@media (max-width:600px){
+  .nav{gap:6px}
+  .nav .cur,.nav .beats,.nav .keys,.nav .fs{display:none}
+  .nav .brand{padding-right:0;margin-right:0}
+  .nav .brand .amark{height:11px}
+  .nav .right{gap:6px}
+  .nav .meta{padding:0 10px}
+  .nav .arrow{width:40px;height:40px}
+}
 /* ===== FIN TABLET ===== */
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.001ms!important;animation:none!important}}
 </style>
@@ -2095,7 +2109,7 @@ const TOTAL=document.querySelectorAll('.scene').length;
 const CHAPS=['Intro','One Car','Coverage','Price Layers','Month on Month','Why PCI','Use Cases','PCI Platform','PCI'];
 /* URL del dashboard en vivo (botón final). Cambiar aquí. */
 const DASHBOARD_URL='';
-(()=>{const c=document.getElementById('dashCta'); if(!c) return; if(DASHBOARD_URL) c.href=DASHBOARD_URL; else c.removeAttribute('target');
+(()=>{const c=document.getElementById('dashCta'); if(!c) return; if(DASHBOARD_URL) c.href=DASHBOARD_URL; else c.hidden=true;
   c.addEventListener('click',e=>{e.stopPropagation(); if(!DASHBOARD_URL) e.preventDefault();});})();
 let cur=0, step=0, timers=[], lockUntil=0;
 const nav=document.getElementById('nav'), beats=document.getElementById('beats'), countEl=document.getElementById('count'), prog=document.getElementById('progress'), curChap=document.getElementById('curChap');
@@ -2216,6 +2230,11 @@ document.querySelectorAll('.stg2[data-apoyo]').forEach(st=>{
 const m=location.hash.match(/^#(\d+)(?:\.(\d+))?/);
 if(m){cur=Math.min(scenes.length,Math.max(1,+m[1]))-1;step=Math.min(stepsOf(cur),+(m[2]||0));render(true); if(!m[2]) schedule();}
 else { render(true); schedule(); }
+/* Enlaces directos: cambiar el hash con la página abierta (pegar un enlace, atrás/adelante) navega a esa slide. */
+addEventListener('hashchange',()=>{const m=location.hash.match(/^#(\d+)(?:\.(\d+))?/); if(!m) return;
+  const i=Math.min(scenes.length,Math.max(1,+m[1]))-1, st=Math.min(stepsOf(i),+(m[2]||0));
+  if(i===cur&&st===step) return; clearTimers(); cur=i; step=st; render(true); if(!m[2]) schedule();});
+
 </script>
 
 
