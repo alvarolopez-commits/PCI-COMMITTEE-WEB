@@ -1636,6 +1636,14 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .nav .meta{padding:0 10px}
   .nav .arrow{width:40px;height:40px}
 }
+
+/* Modo ligero (pantalla completa): Safari en iPad monta la pantalla completa en una vista aparte y, con ~20 capas de cristal
+   (backdrop-filter), tres desenfoques de 58 px a pantalla completa y un grano con mezcla de color, la página se quedaba congelada.
+   Se activa justo antes de pedir la pantalla completa y se quita al salir. Mismo diseño, sin esos efectos. */
+html.fs-lite #grain,html.fs-lite #aura{display:none}
+html.fs-lite *,html.fs-lite *::before,html.fs-lite *::after{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html.fs-lite .hdev img,html.fs-lite .stg2 .device img,html.fs-lite .pci-seg,html.fs-lite .sweep,html.fs-lite .end-sweep{filter:none!important}
+html.fs-lite .glass,html.fs-lite .cov-kpi,html.fs-lite .ev-p,html.fs-lite .mm-p{background-color:rgba(6,12,36,.55)}
 /* ===== FIN TABLET ===== */
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.001ms!important;animation:none!important}}
 </style>
@@ -2197,8 +2205,8 @@ document.querySelectorAll('.pv-views [data-step]').forEach(v=>{const f=e=>{e.sto
   const cur=()=>d.fullscreenElement||d.webkitFullscreenElement;
   const app=matchMedia('(display-mode: fullscreen),(display-mode: standalone)').matches||navigator.standalone===true;
   if(!req||app){b.hidden=true;return}
-  const sync=()=>{const on=!!cur();el.classList.toggle('is-fs',on);b.setAttribute('aria-pressed',on);b.setAttribute('aria-label',on?'Exit full screen':'Full screen');b.title=on?'Exit full screen (F)':'Full screen (F)'};
-  const toggle=()=>{if(cur()){exit&&exit.call(d)}else{try{const r=req.call(el,{navigationUI:'hide'});r&&r.catch&&r.catch(()=>{})}catch(e){}}};
+  const sync=()=>{const on=!!cur();el.classList.toggle('is-fs',on);el.classList.toggle('fs-lite',on);b.setAttribute('aria-pressed',on);b.setAttribute('aria-label',on?'Exit full screen':'Full screen');b.title=on?'Exit full screen (F)':'Full screen (F)'};
+  const toggle=()=>{if(cur()){exit&&exit.call(d)}else{el.classList.add('fs-lite');const undo=()=>{if(!cur())el.classList.remove('fs-lite')};try{const r=req.call(el,{navigationUI:'hide'});r&&r.catch&&r.catch(undo)}catch(e){undo()}}};
   b.addEventListener('click',e=>{e.stopPropagation();toggle()});
   d.addEventListener('fullscreenchange',sync);d.addEventListener('webkitfullscreenchange',sync);sync();
   window.__pciFs=toggle;})();
